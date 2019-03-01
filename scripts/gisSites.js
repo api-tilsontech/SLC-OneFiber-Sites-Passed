@@ -173,7 +173,7 @@ var gisSitesLayer = L.geoJson(null, {
           $("#feature-info").html(content);
           $("#featureModal").modal("show");
           activeRecord = feature.properties.site_name;
-          highlight.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], {
+          highlightLayer.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], {
             stroke: false,
             fillColor: "#00FFFF",
             fillOpacity: 0.7,

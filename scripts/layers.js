@@ -98,3 +98,11 @@ if (document.body.clientWidth <= 767) {
 } else {
   isCollapsed = false;
 }
+
+
+// INFO SIDEBAR
+
+var gisSitesSidebar = L.control.sidebar("gisSitesSidebar", {
+    closeButton: false,
+    position: "right"
+}).addTo(map);

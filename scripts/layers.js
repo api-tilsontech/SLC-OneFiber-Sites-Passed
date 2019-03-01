@@ -105,3 +105,32 @@ var gisSitesSidebar = L.control.sidebar("gisSitesSidebar", {
     closeButton: false,
     position: "right"
 }).addTo(map);
+
+
+// CREATED BY
+
+L.control.attribution({
+  prefix: "Created By: Tanner Anz",
+  position: "bottomright"
+}).addTo(map);
+
+
+// EXPAND LAYERS
+
+if (L.Browser.mobile) {
+  isCollapsed = true;
+} else {
+  isCollapsed = false;
+}
+
+
+// LAYERS
+
+var layerControl = L.control.layers(baseLayers, overlayLayers, {
+  collapsed: isCollapsed
+}).addTo(map);
+
+
+// MAP SCALE
+
+L.control.scale().addTo(map);

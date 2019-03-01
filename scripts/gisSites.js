@@ -247,11 +247,9 @@ var gisSitesLayer = L.geoJson(null, {
     layer.bindTooltip(feature.properties.nfid + "--" + feature.properties.site_name, {sticky: 'true', direction: 'top'});
 
     if (feature.properties) {
-      var title = feature.properties.site_name;
-      var content = "<table class='table table-striped table-bordered table-condensed'>";
-      content += "<table>";
       layer.on({
         click: function (e) {
+          $("#gisSitesInfo_TITLEe").html(feature.properties.nfid);
           gisSitesInfo(L.stamp(layer));
           activeRecord = feature.properties.site_name;
           highlightLayer.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], {
@@ -262,7 +260,6 @@ var gisSitesLayer = L.geoJson(null, {
           }));
         }
       });
-      $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '"><td class="feature-name">' + layer.feature.properties.site_name + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
     }
     if (feature.properties.removesite === "Yes") {
       layer.setIcon(
@@ -550,11 +547,11 @@ function gisSitesInfo(id) {
     });
   });
   content += "<table>";
-  $("#gisSites-Info_DATA").html(content);
-  gisSitesSidebar.show();
+  $("#gisSitesInfo_DATA").html(content);
+  gisSitesInfo.show();
 };
 
 
 $("#gisSitesClose-sidebarBTN").click(function(){
-  gisSitesSidebar.hide();
+  gisSitesInfo.hide();
 });

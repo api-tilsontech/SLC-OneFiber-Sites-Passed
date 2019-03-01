@@ -48,6 +48,24 @@
       </div>
     </div>
 
+    <div id="gisSitesTable-container"> 
+      <div id="gisSitesTable-toolbar" style="width: 400px;">
+        <div class="btn-group" role="group">
+          <div class="btn-group">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fa fa-cloud-download"></i> Export <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+              <li><a href="#" id="gisSitesTable-download-csv-btn"><i class="fa fa-file-text-o"></i> CSV</a></li>
+              <li><a href="#" id="gisSitesTable-download-excel-btn"><i class="fa fa-file-excel-o"></i> Excel</a></li>
+              <li><a href="#" id="gisSitesTable-download-pdf-btn"><i class="fa fa-file-pdf-o"></i> PDF</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <table id="gisSitesTable"></table>
+    </div>
+
     <div id="container">
       <div id="sidebar">
         <div class="sidebar-wrapper">
@@ -104,24 +122,6 @@
         <button type="button" class="btn btn-danger" id="gisSitesEdit-btn">Edit Record</button>
         <button type="button" class="btn btn-default" data-dismiss="modal" id="gisSitesClose-sidebarBTN">Close</button>
       </footer>
-    </div>
-
-    <div id="gisSitesTable-container"> 
-      <div id="gisSitesTable-toolbar" style="width: 400px;">
-        <div class="btn-group" role="group">
-          <div class="btn-group">
-            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="fa fa-cloud-download"></i> Export <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu">
-              <li><a href="#" id="gisSitesTable-download-csv-btn"><i class="fa fa-file-text-o"></i> CSV</a></li>
-              <li><a href="#" id="gisSitesTable-download-excel-btn"><i class="fa fa-file-excel-o"></i> Excel</a></li>
-              <li><a href="#" id="gisSitesTable-download-pdf-btn"><i class="fa fa-file-pdf-o"></i> PDF</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <table id="gisSitesTable"></table>
     </div>
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>

@@ -28,9 +28,6 @@ var highlightLayer = L.geoJson(null, {
     };
   },
   onEachFeature: function (feature, layer) {
-   if (feature.properties.sitetracker_id.toLowerCase().indexOf("slc_sit") === 0) {
-      layer.bindTooltip(feature.properties.nfid + " -- " + feature.properties.site_name, {sticky: 'true', direction: 'top'});
-    }
     layer.on({
       click: function (e) {
         if (feature.properties.sitetracker_id.toLowerCase().indexOf("slc_sit") === 0) {

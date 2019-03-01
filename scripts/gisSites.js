@@ -492,7 +492,7 @@ $.getJSON(gisSitesConfig.geojson, function (data) {
   gisSitesLayer.addData(data);
   gisSitesList = new List("features", {valueNames: ["feature-name"]});
   gisSitesList.sort("feature-name", {order:"asc"});
-  gisSitesTableConfig()
+  gisSitesBuildTable()
   $("#loading-mask").hide();
 }).error(function(jqXHR, textStatus, errorThrown) {
     console.log("error " + textStatus);
@@ -504,32 +504,10 @@ $.getJSON(gisSitesConfig.geojson, function (data) {
 
 
 function gisSitesBuildTable() {
-  $("#gisSitesTable").bootstrapTable({
-    cache: false,
-    height: $("#gisSitesTable-container").height(),
-    undefinedText: "",
-    striped: false,
-    minimumCountColumns: 1,
-    toolbar: "#gisSitesTable-toolbar",
-    search: true,
-    trimOnSearch: true,
-    showColumns: true,
-    showToggle: true,
-    columns: table,
-    onDblClickRow: function(row, $element) {
-      var layer = gisSitesLayer.getLayer(row.leaflet_stamp);
-      map.setView([layer.getLatLng().lat, layer.getLatLng().lng], 16);
-      highlightLayer.clearLayers();
-      highlightLayer.addData(gisSitesLayer.getLayer(row.leaflet_stamp).toGeoJSON());
-      $("#map-container").show();
-      $("#gisSitesTable-container").hide();
-    }
-  });
-
-  $(window).resize(function () {
-    $("#gisSitesTable").bootstrapTable("resetView", {
-      height: $("#gisSitesTable-container").height()
-    });
+  gisSitesTableFeatures = JSON.parse(gisSitesFeatures);
+  $('#gisSitesTableData').dynatable({
+    dataset: {
+      records: gisSitesTableFeatures
   });
 }
 

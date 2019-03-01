@@ -87,7 +87,7 @@ map.on('dblclick', function(event){
 });
 
 map.doubleClickZoom.disable();
-
+map.flyToBounds(gisSitesLayer.getBounds());
 
 
 

@@ -169,10 +169,10 @@ var gisSitesLayer = L.geoJson(null, {
       content += "<table>";
       layer.on({
         click: function (e) {
-          $("#feature-title").html(feature.properties[site_name]);
+          $("#feature-title").html(feature.properties.site_name);
           $("#feature-info").html(content);
           $("#featureModal").modal("show");
-          activeRecord = feature.properties["site_name"];
+          activeRecord = feature.properties.site_name;
           highlight.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], {
             stroke: false,
             fillColor: "#00FFFF",
@@ -189,7 +189,7 @@ var gisSitesLayer = L.geoJson(null, {
           }
         }
       });
-      $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '"><td class="feature-name">' + layer.feature.properties[site_name] + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+      $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '"><td class="feature-name">' + layer.feature.properties.site_name + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
     }
     if (feature.properties.removesite === "Yes") {
       layer.setIcon(

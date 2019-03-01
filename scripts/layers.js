@@ -32,7 +32,7 @@ var highlightLayer = L.geoJson(null, {
       click: function (e) {
         if (feature.properties.sitetracker_id.toLowerCase().indexOf("slc_sit") === 0) {
           gisSitesInfo(L.stamp(layer));
-          gisSitesInfo.show();
+          gisSitesInfo_MODAL.show();
         }
       }
     });
@@ -80,7 +80,7 @@ map.on('click', function(event){
 map.on('dblclick', function(event){
     map.clicked = 0;
     highlightLayer.clearLayers();
-    gisSitesInfo.hide();
+    gisSitesInfo_MODAL.hide();
 });
 
 
@@ -98,7 +98,7 @@ if (document.body.clientWidth <= 767) {
 
 // INFO SIDEBAR
 
-var gisSitesInfo = L.control.sidebar("gisSitesInfo", {
+var gisSitesInfo_MODAL = L.control.sidebar("gisSitesInfo_MODAL", {
     closeButton: false,
     position: "right"
 }).addTo(map);

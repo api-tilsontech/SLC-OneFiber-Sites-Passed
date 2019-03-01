@@ -161,9 +161,7 @@ var gisSitesConfig = {
 };
 
 
-function gisSitesBuildConfig() {
-  filters = [];
-
+function gisSitesTableConfig() {
   table = [{
     field: "action",
     title: "<i class='fa fa-gear'></i>&nbsp;Action",
@@ -181,42 +179,17 @@ function gisSitesBuildConfig() {
           '<i class="fa fa-info-circle"></i>',
         '</a>'
       ].join("");
+    },
+    events: {
+      "click .zoom": function (e, value, row, index) {
+        map.fitBounds(gisSitesLayer.getLayer(row.leaflet_stamp).getBounds());
+        highlightLayer.clearLayers();
+        highlightLayer.addData(gisSitesLayer.getLayer(row.leaflet_stamp).toGeoJSON());
+      }
     }
   }];
 
   $.each(gisSitesProperties, function(index, value) {
-    if (value.filter) {
-      var id;
-      if (value.filter.type == "integer") {
-        id = "cast(properties->"+ value.value +" as int)";
-      }
-      else if (value.filter.type == "double") {
-        id = "cast(properties->"+ value.value +" as double)";
-      }
-      else {
-        id = "properties->" + value.value;
-      }
-      filters.push({
-        id: id,
-        label: value.label
-      });
-      $.each(value.filter, function(key, val) {
-        if (filters[index]) {
-          // If values array is empty, fetch all distinct values
-          if (key == "values" && val.length === 0) {
-            alasql("SELECT DISTINCT(properties->"+value.value+") AS field FROM ? ORDER BY field ASC", [gisSitesData.features], function(results){
-              distinctValues = [];
-              $.each(results, function(index, value) {
-                distinctValues.push(value.field);
-              });
-            });
-            filters[index].values = distinctValues;
-          } else {
-            filters[index][key] = val;
-          }
-        }
-      });
-    }
     if (value.table) {
       table.push({
         field: value.value,
@@ -229,6 +202,8 @@ function gisSitesBuildConfig() {
       });
     }
   });
+
+  gisSitesBuildTable()
   map.flyToBounds(gisSitesLayer.getBounds());
 }
 
@@ -517,13 +492,46 @@ $.getJSON(gisSitesConfig.geojson, function (data) {
   gisSitesLayer.addData(data);
   gisSitesList = new List("features", {valueNames: ["feature-name"]});
   gisSitesList.sort("feature-name", {order:"asc"});
-  gisSitesBuildConfig()
+  gisSitesTableConfig()
   $("#loading-mask").hide();
 }).error(function(jqXHR, textStatus, errorThrown) {
     console.log("error " + textStatus);
     console.log("incoming Text " + jqXHR.responseText);
     alert("error " + textStatus);
 });
+
+
+
+
+function gisSitesBuildTable() {
+  $("#gisSitesTable").bootstrapTable({
+    cache: false,
+    height: $("#gisSitesTable-container").height(),
+    undefinedText: "",
+    striped: false,
+    minimumCountColumns: 1,
+    toolbar: "#gisSitesTable-toolbar",
+    search: true,
+    trimOnSearch: true,
+    showColumns: true,
+    showToggle: true,
+    columns: table,
+    onDblClickRow: function(row, $element) {
+      var layer = gisSitesLayer.getLayer(row.leaflet_stamp);
+      map.setView([layer.getLatLng().lat, layer.getLatLng().lng], 16);
+      highlightLayer.clearLayers();
+      highlightLayer.addData(gisSitesLayer.getLayer(row.leaflet_stamp).toGeoJSON());
+      $("#map-container").show();
+      $("#gisSitesTable-container").hide();
+    }
+  });
+
+  $(window).resize(function () {
+    $("#gisSitesTable").bootstrapTable("resetView", {
+      height: $("#gisSitesTable-container").height()
+    });
+  });
+}
 
 
 

@@ -90,12 +90,6 @@ map.on('dblclick', function(event){
 map.doubleClickZoom.disable();
 
 
-$(document).ready(function() {
-  map.flyToBounds(gisSitesLayer.getBounds());
-});
-
-
-
 // LARGER SCREENS
 
 if (document.body.clientWidth <= 767) {

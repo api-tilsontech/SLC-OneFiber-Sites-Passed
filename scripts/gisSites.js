@@ -152,6 +152,89 @@ var gisSitesProperties = [{
 
 
 
+// GIS SITES CONFIG
+
+var gisSitesConfig = {
+  geojson: "https://gis.tilsontech.com/arcgis/rest/services/SiteTracker/SLC_OneFiber/MapServer/2/query?where=objectid+IS+NOT+NULL&outFields=*&f=geojson&token=" + gis_token,
+  layerName: "Sites",
+  hoverProperty: "site_name"
+};
+
+
+function gisSitesBuildConfig() {
+  filters = [];
+
+  table = [{
+    field: "action",
+    title: "<i class='fa fa-gear'></i>&nbsp;Action",
+    align: "center",
+    valign: "middle",
+    width: "75px",
+    cardVisible: false,
+    switchable: false,
+    formatter: function(value, row, index) {
+      return [
+        '<a class="zoom" href="javascript:void(0)" title="Zoom" style="margin-right: 10px;">',
+          '<i class="fa fa-search-plus"></i>',
+        '</a>',
+        '<a class="identify" href="javascript:void(0)" title="Identify" style="margin-right: 10px;">',
+          '<i class="fa fa-info-circle"></i>',
+        '</a>'
+      ].join("");
+    }
+  }];
+
+  $.each(gisSitesProperties, function(index, value) {
+    if (value.filter) {
+      var id;
+      if (value.filter.type == "integer") {
+        id = "cast(properties->"+ value.value +" as int)";
+      }
+      else if (value.filter.type == "double") {
+        id = "cast(properties->"+ value.value +" as double)";
+      }
+      else {
+        id = "properties->" + value.value;
+      }
+      filters.push({
+        id: id,
+        label: value.label
+      });
+      $.each(value.filter, function(key, val) {
+        if (filters[index]) {
+          // If values array is empty, fetch all distinct values
+          if (key == "values" && val.length === 0) {
+            alasql("SELECT DISTINCT(properties->"+value.value+") AS field FROM ? ORDER BY field ASC", [gisSitesData.features], function(results){
+              distinctValues = [];
+              $.each(results, function(index, value) {
+                distinctValues.push(value.field);
+              });
+            });
+            filters[index].values = distinctValues;
+          } else {
+            filters[index][key] = val;
+          }
+        }
+      });
+    }
+    if (value.table) {
+      table.push({
+        field: value.value,
+        title: value.label
+      });
+      $.each(value.table, function(key, val) {
+        if (table[index+1]) {
+          table[index+1][key] = val;
+        }
+      });
+    }
+  });
+  map.flyToBounds(gisSitesLayer.getBounds());
+}
+
+
+
+
 // GIS SITES LAYER
 
 var gisSitesLayer = L.geoJson(null, {
@@ -413,7 +496,7 @@ $("#sidebar-hide-btn").click(function() {
 
 function sidebarClick(id) {
   var layer = gisSitesLayer.getLayer(id);
-  map.flyToBounds([layer.getLatLng().lat, layer.getLatLng().lng], 16);
+  map.setView([layer.getLatLng().lat, layer.getLatLng().lng], 16);
   layer.fire("click");
   /* Hide sidebar and go to the map on small screens */
   if (document.body.clientWidth <= 767) {
@@ -433,7 +516,7 @@ $.getJSON(gisSitesConfig.geojson, function (data) {
   gisSitesLayer.addData(data);
   gisSitesList = new List("features", {valueNames: ["feature-name"]});
   gisSitesList.sort("feature-name", {order:"asc"});
-
+  gisSitesBuildConfig()
   $("#loading-mask").hide();
 }).error(function(jqXHR, textStatus, errorThrown) {
     console.log("error " + textStatus);

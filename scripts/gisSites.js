@@ -245,9 +245,21 @@ var gisSitesLayer = L.geoJson(null, {
     layer.bindTooltip(feature.properties.nfid + "--" + feature.properties.site_name, {sticky: 'true', direction: 'top'});
 
     if (feature.properties) {
+      var title = feature.properties.site_name;
+      var content = "<table class='table table-striped table-bordered table-condensed'>";
+      content += "<table>";
       layer.on({
         click: function (e) {
-          gisSitesInfo(L.stamp(layer));
+          $("#feature-title").html(feature.properties[site_name]);
+          $("#feature-info").html(content);
+          $("#featureModal").modal("show");
+          activeRecord = feature.properties["site_name"];
+          highlight.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], {
+            stroke: false,
+            fillColor: "#00FFFF",
+            fillOpacity: 0.7,
+            radius: 10
+          }));
         },
         mouseover: function (e) {
           if (document.body.clientWidth > 767) {
@@ -258,6 +270,7 @@ var gisSitesLayer = L.geoJson(null, {
           }
         }
       });
+      $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '"><td class="feature-name">' + layer.feature.properties[site_name] + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
     }
     if (feature.properties.removesite === "Yes") {
       layer.setIcon(
@@ -467,6 +480,38 @@ var gisSitesLayer = L.geoJson(null, {
 });
 
 
+$(document).on("click", ".feature-row", function(e) {
+  sidebarClick(parseInt($(this).attr("id"), 10));
+});
+
+$("#list-btn").click(function() {
+  $('#sidebar').toggle();
+  map.invalidateSize();
+  return false;
+});
+
+$("#sidebar-toggle-btn").click(function() {
+  $("#sidebar").toggle();
+  map.invalidateSize();
+  return false;
+});
+
+$("#sidebar-hide-btn").click(function() {
+  $('#sidebar').hide();
+  map.invalidateSize();
+});
+
+
+function sidebarClick(id) {
+  var layer = gisSitesLayer.getLayer(id);
+  map.setView([layer.getLatLng().lat, layer.getLatLng().lng], 16);
+  layer.fire("click");
+  /* Hide sidebar and go to the map on small screens */
+  if (document.body.clientWidth <= 767) {
+    $("#sidebar").hide();
+    map.invalidateSize();
+  }
+}
 
 
 //GIS SITES DATA
@@ -477,7 +522,9 @@ $.getJSON(gisSitesConfig.geojson, function (data) {
     return feature.properties;
   });
   gisSitesLayer.addData(data);
-  gisSitesBuildConfig();
+  featureList = new List("features", {valueNames: ["feature-name"]});
+  featureList.sort("feature-name", {order:"asc"});
+
   $("#loading-mask").hide();
 }).error(function(jqXHR, textStatus, errorThrown) {
     console.log("error " + textStatus);

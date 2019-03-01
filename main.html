@@ -12,13 +12,14 @@
 
     <title class="title">Tilson DataMap</title>
 
-    <link href='https://api.mapbox.com/mapbox.js/v2.2.3/mapbox.css' rel='stylesheet' />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.6/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.6.3/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.4.0/dist/leaflet.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-table@1.13.5/dist/bootstrap-table.min.css">
-    <link rel="stylesheet" href="plugins/jQuery-QueryBuilder/query-builder.default.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-sidebar@0.2.0/src/L.Control.Sidebar.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="//cdn.leafletjs.com/leaflet-0.7.3/leaflet.css">
+    <link rel="stylesheet" href="//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.css">
+    <link rel="stylesheet" href="//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.Default.css">
+    <link rel="stylesheet" href="//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.24.0/L.Control.Locate.css">
+    <link rel="stylesheet" href="style.css">
 
     <link rel="stylesheet" href="style.css" />
 
@@ -27,119 +28,110 @@
   </head>
 
   <body>
-
-    <div id="loading-mask" class="modal-backdrop">
-      <div class="loading-indicator">
-        <div class="progress progress-striped active">
-          <div class="progress-bar progress-bar-info loading-bar"></div>
-        </div>
-      </div>
-    </div>
-
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container-fluid">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" name="title" id="navbar-title"><img src="Pictures/logos/tilson_2.png"></a>
+          <div class="navbar-icon-container">
+            <a href="#" class="navbar-icon pull-right visible-xs" id="nav-btn"><i class="fa fa-bars fa-lg white"></i></a>
+            <a href="#" class="navbar-icon pull-right visible-xs" id="sidebar-toggle-btn"><i class="fa fa-search fa-lg white"></i></a>
+          </div>
+          <a class="navbar-brand" href="#" name="title" id="navbar-title">Tilson DataMap</a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" name="view" id="map-only"><i class="fa fa-globe"></i> Map</a></li>
-            <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" name="view" id="graph-only"><i class="fa fa-table"></i> Table</a></li>
-            <li><a href="#" id="Filter_BTN" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-filter"></i>&nbsp;&nbsp;Filter</a></li>
-            <li><a href="#" id="Refresh_BTN" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-refresh fa-white"></i>&nbsp;&nbsp;Refresh</a></li>     
+            <!-- <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="refresh-btn"><i class="fa fa-refresh white"></i>&nbsp;&nbsp;Refresh</a></li> -->
+            <li class="dropdown">
+                <a class="dropdown-toggle" id="downloadDrop" href="#" role="button" data-toggle="dropdown"><i class="fa fa-refresh white"></i>&nbsp;&nbsp;Refresh <b class="caret"></b></a>
+                <ul class="dropdown-menu dropdown-menu-form">
+                  <li><a href="#" id="refresh-btn" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-refresh"></i>&nbsp;&nbsp;Refresh Now</a></li>
+                  <li class="dropdown-input"><input type="checkbox" id="auto-refresh">&nbsp;&nbsp;Auto Refresh (every minute)</li>
+                </ul>
+            </li>
+            <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="full-extent-btn"><i class="fa fa-arrows-alt white"></i>&nbsp;&nbsp;Full Extent</a></li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" id="downloadDrop" href="#" role="button" data-toggle="dropdown"><i class="fa fa-cloud-download white"></i>&nbsp;&nbsp;Download <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="" id="csv-download" download="" target="_blank" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-download"></i>&nbsp;&nbsp;CSV</a></li>
+                  <li><a href="" id="geojson-download" download="" target="_blank" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-download"></i>&nbsp;&nbsp;GeoJSON</a></li>
+                  <li><a href="" id="raw-kml-download" download="" target="_blank" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-download"></i>&nbsp;&nbsp;Raw KML</a></li>
+                  <li><a href="" id="kml-feed-download" download="feed.kml" target="_blank" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-download"></i>&nbsp;&nbsp;KML Feed</a></li>
+                </ul>
+            </li>
+            <li class="hidden-xs"><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="list-btn"><i class="fa fa-search white"></i>&nbsp;&nbsp;Search</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <a class="navbar-brand" href="https://www.tilsontech.com" target="_blank" name="title" id="navbar-title"> OneFiber | SLC </a>
+            <li class="dropdown">
+              <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-share white"></i>&nbsp;&nbsp;Share<b class="caret"></b></a>
+              <ul class="dropdown-menu" style="padding: 10px; min-width: 100px;">
+                <li>
+                  <iframe id="twitter-share" src="" width="100" height="21" title="Twitter Tweet Button" style="border: 0; overflow: hidden;"></iframe>
+                </li>
+                <li>
+                  <div id="fb-root"></div>
+                  <script>(function(d, s, id) {var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) return;js = d.createElement(s); js.id = id;js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";fjs.parentNode.insertBefore(js, fjs);}(document, 'script', 'facebook-jssdk'));</script>
+                  <div class="fb-share-button" data-layout="button_count" data-href=""></div>
+                </li>
+              </ul>
+            </li>
           </ul>
-        </div>
+        </div><!--/.navbar-collapse -->
       </div>
     </div>
 
-    <div id="map-container">
+    <div id="container">
+      <div id="sidebar">
+        <div class="sidebar-wrapper">
+          <div class="panel panel-default" id="features">
+            <div class="panel-heading">
+              <h3 class="panel-title">Records
+              <button type="button" class="btn btn-xs btn-default pull-right" id="sidebar-hide-btn"><i class="fa fa-chevron-left"></i></button></h3>
+            </div>
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-xs-8 col-md-8">
+                  <input type="text" class="form-control search" placeholder="Search" />
+                </div>
+                <div class="col-xs-4 col-md-4">
+                  <button type="button" class="btn btn-primary pull-right sort" data-sort="feature-name" id="sort-btn"><i class="fa fa-sort"></i>&nbsp;&nbsp;Sort</button>
+                </div>
+              </div>
+            </div>
+            <div class="sidebar-table">
+              <table class="table table-hover" id="feature-list">
+                <thead class="hidden">
+                  <tr>
+                    <th>Icon</th>
+                  <tr>
+                  <tr>
+                    <th>Name</th>
+                  <tr>
+                  <tr>
+                    <th>Chevron</th>
+                  <tr>
+                </thead>
+                <tbody class="list"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
       <div id="map"></div>
     </div>
-
-    <div id="sidebarFilter">
-      <a class="close">&times;</a>
-      <h1 id="title">Filter</h1>
-        <div class="modal-body">
-          <h2 id="title">Sites</h2>
-          <div id="gisSites-Filter_DATA"></div>
-        </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-warning" id="ResetFilter_BTN"><i class="fa fa-undo"></i> Reset Filter</button>
-        <button type="button" class="btn btn-success" id="ApplyFilter_BTN"><i class="fa fa-filter"></i> Apply Filter</button>
-      </div>
-      <footer>
-        <button type="button" class="btn btn-default" data-dismiss="modal" id="CloseFilter_BTN">Close</button>
-      </footer>
-    </div>
-
-    <div id="gisSitesTable-container"> 
-      <div id="gisSitesTable-toolbar" style="width: 400px;">
-        <div class="btn-group" role="group">
-          <div class="btn-group">
-            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="fa fa-cloud-download"></i> Export <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu">
-              <li><a href="#" id="gisSitesTable-download-csv-btn"><i class="fa fa-file-text-o"></i> CSV</a></li>
-              <li><a href="#" id="gisSitesTable-download-excel-btn"><i class="fa fa-file-excel-o"></i> Excel</a></li>
-              <li><a href="#" id="gisSitesTable-download-pdf-btn"><i class="fa fa-file-pdf-o"></i> PDF</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <table id="gisSitesTable"></table>
-    </div>
-
-    <div class="modal fade" id="gisSites-Filter_MODAL" tabindex="-1" role="dialog">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title">Sites<span id="record-count" class="badge pull-right" style="margin-right: 15px; margin-top: 2px;"></span></h4>
-          </div>
-          <div class="modal-body">
-            <div id="gisSites-Filter_DATA"></div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-info" id="gisSites-ResetFilter_BTN"><i class="fa fa-undo"></i> Reset Filter</button>
-            <button type="button" class="btn btn-primary" id="gisSites-ApplyFilter_BTN"><i class="fa fa-filter"></i> Apply Filter</button>
-          </div>
+    <div id="loading">
+      <div class="loading-indicator">
+        <div class="progress progress-striped active">
+          <div class="progress-bar progress-bar-info progress-bar-full"></div>
         </div>
       </div>
     </div>
 
-    <div id="gisSitesSidebar">
-      <h1 class="modal-title"><b>GIS Sites</b></h1>
-      <div id="gisSites-Info_DATA"></div>
-      <footer>
-        <button type="button" class="btn btn-primary" id="gisSitesTable-btn">View Table</button>
-        <button type="button" class="btn btn-success" id="gisSitesCreate-btn">Create Record</button>
-        <button type="button" class="btn btn-danger" id="gisSitesEdit-btn">Edit Record</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal" id="gisSitesClose-sidebarBTN">Close</button>
-      </footer>
-    </div>
-
-    <script src='https://api.mapbox.com/mapbox.js/v2.2.3/mapbox.js'></script>
-    <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.4.0/dist/leaflet.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.6/dist/js/bootstrap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap-table@1.13.5/dist/bootstrap-table.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/alasql/0.2/alasql.min.js"></script>
-    <script src="plugins/jQuery-QueryBuilder/query-builder.standalone.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/leaflet-sidebar@0.2.0/src/L.Control.Sidebar.min.js"></script>
-
-    <script src="scripts/base.js"></script>
-    <script src="scripts/gisSites.js"></script>
-    <script src="scripts/layers.js"></script>
-    <script src="scripts/control.js"></script>
-    <script src="scripts/refresh.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.1.1/list.min.js"></script>
+    <script src="//cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+    <script src="//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/leaflet.markercluster.js"></script>
+    <script src="//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.24.0/L.Control.Locate.js"></script>
+    <script src="scripts/app.js"></script>
   </body>
-</html
+</html>

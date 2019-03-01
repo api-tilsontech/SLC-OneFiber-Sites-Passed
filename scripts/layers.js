@@ -22,7 +22,7 @@ var highlightLayer = L.geoJson(null, {
       color: "#FF0000",
       weight: 8,
       opacity: 1,
-      fillColor: "#FF0000",
+      fillColor: "#00f4ff",
       fillOpacity: 1,
       clickable: false
     };
@@ -32,7 +32,7 @@ var highlightLayer = L.geoJson(null, {
       click: function (e) {
         if (feature.properties.sitetracker_id.toLowerCase().indexOf("slc_sit") === 0) {
           gisSitesInfo(L.stamp(layer));
-          gisSitesInfoModal.show();
+          gisSitesSidebar.show();
         }
       }
     });
@@ -80,7 +80,7 @@ map.on('click', function(event){
 map.on('dblclick', function(event){
     map.clicked = 0;
     highlightLayer.clearLayers();
-    gisSitesInfoModal.hide();
+    gisSitesSidebar.hide();
 });
 
 
@@ -98,7 +98,7 @@ if (document.body.clientWidth <= 767) {
 
 // INFO SIDEBAR
 
-var gisSitesInfoModal = L.control.sidebar("gisSitesInfoModal", {
+var gisSitesSidebar = L.control.sidebar("gisSitesSidebar", {
     closeButton: false,
     position: "right"
 }).addTo(map);

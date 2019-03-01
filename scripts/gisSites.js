@@ -450,3 +450,46 @@ $.getJSON(gisSitesConfig.geojson, function (data) {
     console.log("incoming Text " + jqXHR.responseText);
     alert("error " + textStatus);
 });
+
+
+
+// GIS SITES INFO
+
+function gisSitesInfo(id) {
+  
+  if (document.body.clientWidth > 767) {
+    var featureProperties = highlightLayer.getLayer(id).feature.properties;
+  } else {
+    var featureProperties = gisSitesLayer.getLayer(id).feature.properties;
+  }
+
+  var content = "<table class='table table-striped table-bordered table-condensed'>";
+
+  $.each(featureProperties, function(key, value) {
+    if (!value) {
+      value = "";
+    }
+    if (typeof value == "string" && value.includes('SLC_SIT')) {
+      sessionStorage.setItem("siteID", value);
+    }
+    $.each(gisSitesProperties, function(index, property) {
+      if (key == property.value) {
+        if (property.info !== false) {
+          content += "<tr><th>" + property.label + "</th><td>" + value + "</td></tr>";
+        }
+      }
+    });
+  });
+  content += "<table>";
+  $("#gisSites-Info_DATA").html(content);
+  gisSitesSidebar.show();
+};
+
+var gisSitesSidebar = L.control.sidebar("gisSitesSidebar", {
+    closeButton: false,
+    position: "right"
+}).addTo(map);
+
+$("#gisSitesClose-sidebarBTN").click(function(){
+  gisSitesSidebar.hide();
+});

@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.css">
     <link rel="stylesheet" href="//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.Default.css">
     <link rel="stylesheet" href="//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.24.0/L.Control.Locate.css">
+    <link rel="stylesheet" href="plugins/leaflet/sidebar/L.Control.Sidebar.css" />
     <link rel="stylesheet" href="style.css">
 
     <link rel="stylesheet" href="style.css" />
@@ -110,6 +111,17 @@
       </div>
     </div>
 
+    <div id="gisSitesSidebar">
+      <h1 class="modal-title"><b>GIS Sites</b></h1>
+      <div id="gisSites-Info_DATA"></div>
+      <footer>
+        <button type="button" class="btn btn-primary" id="gisSitesTable-btn">View Table</button>
+        <button type="button" class="btn btn-success" id="gisSitesCreate-btn">Create Record</button>
+        <button type="button" class="btn btn-danger" id="gisSitesEdit-btn">Edit Record</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal" id="gisSitesClose-sidebarBTN">Close</button>
+      </footer>
+    </div>
+
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
@@ -117,8 +129,10 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/leaflet/1.4.0/leaflet.js"></script>
     <script src="//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/leaflet.markercluster.js"></script>
     <script src="//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.24.0/L.Control.Locate.js"></script>
+    <script src="plugins/leaflet/sidebar/L.Control.Sidebar.js"></script>
     
     <script src="scripts/base.js"></script>
     <script src="scripts/gisSites.js"></script>
+    <script src="scripts/layers.js"></script>
   </body>
 </html>

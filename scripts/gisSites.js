@@ -508,6 +508,7 @@ function gisSitesBuildTable() {
   $('#gisSitesTableData').dynatable({
     dataset: {
       records: gisSitesTableFeatures
+    }
   });
 }
 

@@ -19,6 +19,7 @@ function checkAuth() {
   if (!sessionStorage.getItem("gis_token") || sessionStorage.getItem("gis_token") ===  "ERROR") {
     $(document).ready(function() {
       $("#login-modal").modal("show");
+      alert("No GIS Token Returned")
     });
   } else {
     $("#login-modal").modal("hide");

@@ -413,7 +413,7 @@ $("#sidebar-hide-btn").click(function() {
 
 function sidebarClick(id) {
   var layer = gisSitesLayer.getLayer(id);
-  map.setView([layer.getLatLng().lat, layer.getLatLng().lng], 16);
+  map.flyToBounds([layer.getLatLng().lat, layer.getLatLng().lng], 16);
   layer.fire("click");
   /* Hide sidebar and go to the map on small screens */
   if (document.body.clientWidth <= 767) {

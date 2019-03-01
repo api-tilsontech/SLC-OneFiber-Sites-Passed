@@ -86,8 +86,13 @@ map.on('dblclick', function(event){
     gisSitesSidebar.hide();
 });
 
+
 map.doubleClickZoom.disable();
-map.flyToBounds(gisSitesLayer.getBounds());
+
+
+$(document).ready(function() {
+  map.flyToBounds(gisSitesLayer.getBounds());
+});
 
 
 

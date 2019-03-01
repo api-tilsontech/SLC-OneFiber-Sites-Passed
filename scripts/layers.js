@@ -19,10 +19,10 @@ var mapboxSat = L.tileLayer('https://api.mapbox.com/v4/cfritz1387.573ca1ee/{z}/{
 var highlightLayer = L.geoJson(null, {
   style: function (feature) {
     return {
-      color: "#00f4ff",
-      weight: 6,
+      color: "#FF0000",
+      weight: 8,
       opacity: 1,
-      fillColor: "#00f4ff",
+      fillColor: "#FF0000",
       fillOpacity: 1,
       clickable: false
     };

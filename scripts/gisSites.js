@@ -548,10 +548,10 @@ function gisSitesInfo(id) {
   });
   content += "<table>";
   $("#gisSitesInfo_DATA").html(content);
-  gisSitesInfo_MODAL.show();
+  gisSitesInfoModal.show();
 };
 
 
 $("#gisSitesClose-sidebarBTN").click(function(){
-  gisSitesInfo_MODAL.hide();
+  gisSitesInfoModal.hide();
 });

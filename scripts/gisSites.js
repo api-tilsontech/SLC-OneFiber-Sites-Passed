@@ -169,9 +169,7 @@ var gisSitesLayer = L.geoJson(null, {
       content += "<table>";
       layer.on({
         click: function (e) {
-          $("#feature-title").html(feature.properties.site_name);
-          $("#feature-info").html(content);
-          $("#featureModal").modal("show");
+          gisSitesInfo(L.stamp(layer));
           activeRecord = feature.properties.site_name;
           highlightLayer.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], {
             stroke: false,
@@ -179,14 +177,6 @@ var gisSitesLayer = L.geoJson(null, {
             fillOpacity: 0.7,
             radius: 10
           }));
-        },
-        mouseover: function (e) {
-          if (document.body.clientWidth > 767) {
-            $(".info-control").html(feature.properties[gisSitesConfig.hoverProperty]);
-            $(".info-control").show();
-            highlightLayer.clearLayers();
-            highlightLayer.addData(gisSitesLayer.getLayer(L.stamp(layer)).toGeoJSON());
-          }
         }
       });
       $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '"><td class="feature-name">' + layer.feature.properties.site_name + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
@@ -441,8 +431,8 @@ $.getJSON(gisSitesConfig.geojson, function (data) {
     return feature.properties;
   });
   gisSitesLayer.addData(data);
-  featureList = new List("features", {valueNames: ["feature-name"]});
-  featureList.sort("feature-name", {order:"asc"});
+  gisSitesList = new List("features", {valueNames: ["feature-name"]});
+  gisSitesList.sort("feature-name", {order:"asc"});
 
   $("#loading-mask").hide();
 }).error(function(jqXHR, textStatus, errorThrown) {
@@ -457,11 +447,7 @@ $.getJSON(gisSitesConfig.geojson, function (data) {
 
 function gisSitesInfo(id) {
   
-  if (document.body.clientWidth > 767) {
-    var featureProperties = highlightLayer.getLayer(id).feature.properties;
-  } else {
-    var featureProperties = gisSitesLayer.getLayer(id).feature.properties;
-  }
+  var featureProperties = gisSitesLayer.getLayer(id).feature.properties;
 
   var content = "<table class='table table-striped table-bordered table-condensed'>";
 
@@ -485,10 +471,6 @@ function gisSitesInfo(id) {
   gisSitesSidebar.show();
 };
 
-var gisSitesSidebar = L.control.sidebar("gisSitesSidebar", {
-    closeButton: false,
-    position: "right"
-}).addTo(map);
 
 $("#gisSitesClose-sidebarBTN").click(function(){
   gisSitesSidebar.hide();

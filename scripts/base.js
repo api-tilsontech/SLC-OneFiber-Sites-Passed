@@ -11,7 +11,7 @@ function verifyUser() {
     $(".navbar-collapse").css("opacity", "0");
     window.confirm
     if (window.confirm('Click OK to go to Login Page')) {
-      window.location.href='https://api-tilsontech.github.io/SLC-OneFiber_DataMap_NEW/index.html';
+      window.location.href='main.html';
     };
   };
 };

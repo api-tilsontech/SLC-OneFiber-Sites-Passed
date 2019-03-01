@@ -22,7 +22,7 @@ function checkAuth() {
     });
   } else {
     $("#login-modal").modal("hide");
-    window.location.href = "tilson_prod.html";
+    window.location.href = "main.html";
   }
 };
 

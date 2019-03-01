@@ -478,6 +478,7 @@ $.getJSON(gisSitesConfig.geojson, function (data) {
   });
   gisSitesLayer.addData(data);
   gisSitesBuildConfig();
+  $("#loading-mask").hide();
 }).error(function(jqXHR, textStatus, errorThrown) {
     console.log("error " + textStatus);
     console.log("incoming Text " + jqXHR.responseText);

@@ -256,9 +256,9 @@ var gisSitesLayer = L.geoJson(null, {
           activeRecord = feature.properties.site_name;
           highlightLayer.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], {
             stroke: false,
-            fillColor: "#00FFFF",
-            fillOpacity: 0.7,
-            radius: 10
+            fillColor: "#FF0000",
+            fillOpacity: 1,
+            radius: 14
           }));
         }
       });

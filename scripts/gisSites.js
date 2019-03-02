@@ -7,14 +7,6 @@ var gisSitesConfig = {
 };
 
 
-
-// GIS SITES FIELDS
-
-var gisSitesFields = gisSitesProperties.map(function(props) {
-  return props.value;
-}).join("%2C");
-
-
 // GIS SITES PROPERTIES
 
 var gisSitesProperties = [{
@@ -155,6 +147,14 @@ var gisSitesProperties = [{
     values: []
   }
 }];
+
+
+
+// GIS SITES FIELDS
+
+var gisSitesFields = gisSitesProperties.map(function(elem) {
+  return elem.value;
+}).join("%2C");
 
 
 

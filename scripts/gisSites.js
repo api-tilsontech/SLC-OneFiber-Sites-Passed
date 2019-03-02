@@ -198,9 +198,10 @@ function gisSitesBuildConfig() {
   }];
 
   $.each(gisSitesData.features, function(key, value) {
+    $.each(value.properties, function(index, attr) {
     table.push({
-      field: value.properties,
-      title: key.properties
+      title: index,
+      field: attr
     });
   });
 

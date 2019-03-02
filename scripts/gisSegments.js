@@ -348,7 +348,7 @@ var gisSegmentsLayer = L.geoJson(null, {
 function gisSegmentsSearchClick(id) {
   gisSegmentsSearch.show();
   var layer = gisSegmentsLayer.getLayer(id);
-  map.setView([layer.getCenter()], 16);
+  map.setView([layer.getBounds()], 16);
   layer.fire("click");
   /* Hide sidebar and go to the map on small screens */
   if (document.body.clientWidth <= 767) {

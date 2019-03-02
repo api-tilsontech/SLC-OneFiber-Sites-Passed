@@ -197,37 +197,16 @@ function gisSitesBuildConfig() {
     }
   }];
 
-  $.each(gisSitesData.features, function(key, value) {
-    $.each(value.properties, function(index, attr) {
+  $.each(gisSitesData.features, function(key, val) {
+    $.each(val.properties, function(i,j) {
       table.push({
-        title: index,
-        field: attr
+        title: i,
+        field: j
       });
     });
   });
 
-
-  $("#gisSitesTable").bootstrapTable({
-    cache: false,
-    height: $("#gisSitesTable-container").height(),
-    undefinedText: "",
-    striped: false,
-    minimumCountColumns: 1,
-    search: true,
-    trimOnSearch: true,
-    showColumns: true,
-    showToggle: true,
-    columns: table,
-    onDblClickRow: function(row, $element) {
-      var layer = gisSitesLayer.getLayer(row.leaflet_stamp);
-      map.setView([layer.getLatLng().lat, layer.getLatLng().lng], 16);
-      highlightLayer.clearLayers();
-      highlightLayer.addData(gisSitesLayer.getLayer(row.leaflet_stamp).toGeoJSON());
-      $("#map-container").show();
-      $("#gisSitesTable-container").hide();
-    }
-  });
-
+  gisSitesBuildTable()
   map.flyToBounds(gisSitesLayer.getBounds());
 }
 
@@ -535,10 +514,117 @@ function gisSitesInfo(id) {
 
 
 
-
-
-
 // GIS SITES TABLE
+
+
+function gisSitesBuildTable() {
+  /*
+  $('#gisSitesTable').DataTable( {
+    data: gisSitesData.features,
+    columns: [
+      { data: 'objectid' },
+      { data: 'sitetracker_id' },
+      { data: 'site_name' }
+    ]
+  });
+}
+*/
+
+$("#gisSitesTable").bootstrapTable({
+  cache: false,
+  height: $("#gisSitesTable-container").height(),
+  undefinedText: "",
+  striped: false,
+  minimumCountColumns: 1,
+  search: true,
+  trimOnSearch: true,
+  showColumns: true,
+  showToggle: true,
+  columns: table,
+  onDblClickRow: function(row, $element) {
+    var layer = gisSitesLayer.getLayer(row.leaflet_stamp);
+    map.setView([layer.getLatLng().lat, layer.getLatLng().lng], 16);
+    highlightLayer.clearLayers();
+    highlightLayer.addData(gisSitesLayer.getLayer(row.leaflet_stamp).toGeoJSON());
+    $("#map-container").show();
+    $("#gisSitesTable-container").hide();
+  }
+});
+
+$(window).resize(function () {
+  $("#gisSitesTable").bootstrapTable("resetView", {
+    height: $("#gisSitesTable-container").height()
+  });
+});
+
+
+// GIS SITES TABLE EXPORT
+
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1;
+var yyyy = today.getFullYear();
+
+if(dd<10) {
+    dd = '0'+dd
+} 
+
+if(mm<10) {
+    mm = '0'+mm
+} 
+
+today = mm + '.' + dd + '.' + yyyy;
+
+
+$("#gisSitesTable-download-csv-btn").click(function() {
+  $("#gisSitesTable").tableExport({
+    headings: true,
+    type: "csv",
+    ignoreColumn: [0],
+    fileName: "SLC_GIS_Sites_"+ today +""
+  });
+  $(".navbar-collapse.in").collapse("hide");
+  return false;
+});
+
+$("#gisSitesTable-download-excel-btn").click(function() {
+  $("#gisSitesTable").tableExport({
+    headings: true,
+    type: "excel",
+    ignoreColumn: [0],
+    fileName: "SLC_GIS_Sites_"+ today +""
+  });
+  $(".navbar-collapse.in").collapse("hide");
+  return false;
+});
+
+$("#gisSitesTable-download-pdf-btn").click(function() {
+  $("#gisSitesTable").tableExport({
+    type: "pdf",
+    ignoreColumn: [0],
+    fileName: "SLC_GIS_Sites_"+ today +"",
+    jspdf: {
+      format: "bestfit",
+      margins: {
+        left: 20,
+        right: 10,
+        top: 20,
+        bottom: 20
+      },
+      autotable: {
+        extendWidth: true,
+        overflow: "linebreak"
+      }
+    }
+  });
+  $(".navbar-collapse.in").collapse("hide");
+  return false;
+});
+
+
+
+
+// GIS SITES OPEN TABLE
 
 $("#gisSites_table-btn").click(function(){
   $("#gisSitesTable-container").show();

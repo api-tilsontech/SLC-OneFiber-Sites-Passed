@@ -452,7 +452,7 @@ var gisSitesLayer = L.geoJson(null, {
 });
 
 
-$(document).on("click", "gisSites_feature-list.feature-row", function(e) {
+$(document).on("click", ".gisSites_feature-row", function(e) {
   gisSitesSearchClick(parseInt($(this).attr("id"), 10));
 });
 

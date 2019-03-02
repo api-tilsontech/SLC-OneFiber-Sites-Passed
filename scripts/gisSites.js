@@ -233,7 +233,7 @@ var gisSitesLayer = L.geoJson(null, {
           }));
         }
       });
-      $("#gisSites_feature-list tbody").append('<tr onclick= "gisSitesSearchClick(' +L.stamp(layer) + ')"><td class="feature-name">' + layer.feature.properties.site_name + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+      $("#gisSites_feature-list tbody").append('<tr onclick= "gisSitesSearchClick(' +L.stamp(layer) + ')"><td class="gisSites_feature-name">' + layer.feature.properties.site_name + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
     }
     if (feature.properties.removesite === "Yes") {
       layer.setIcon(

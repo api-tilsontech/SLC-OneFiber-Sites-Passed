@@ -352,7 +352,7 @@ function gisSegmentsSearchClick(id) {
   map.fitBounds(line.getBounds());
   highlightLayer.clearLayers();
   highlightLayer.addData(layer.toGeoJSON());
-  highlightLayer.fire("click");
+  layer.fire("click");
 
   if (document.body.clientWidth <= 767) {
     gisSegmentsSidebar.hide();
@@ -386,25 +386,47 @@ $.getJSON(gisSegmentsConfig.geojson, function (data) {
 
 function gisSegmentsInfo(id) {
   
-  var featureProperties = highlightLayer.getLayer(id).feature.properties;
+  if (highlightLayer.getLayer(id).feature.properties) {
+    var featureProperties = highlightLayer.getLayer(id).feature.properties;
 
-  var content = "<table class='table table-striped table-bordered table-condensed'>";
+    var content = "<table class='table table-striped table-bordered table-condensed'>";
 
-  $.each(featureProperties, function(key, value) {
-    if (!value) {
-      value = "";
-    }
-    if (typeof value == "string" && value.includes('SLC_SEG')) {
-      sessionStorage.setItem("segmentID", value);
-    }
-    $.each(gisSegmentsProperties, function(index, property) {
-      if (key == property.value) {
-        if (property.info !== false) {
-          content += "<tr><th>" + property.label + "</th><td>" + value + "</td></tr>";
-        }
+    $.each(featureProperties, function(key, value) {
+      if (!value) {
+        value = "";
       }
+      if (typeof value == "string" && value.includes('SLC_SEG')) {
+        sessionStorage.setItem("segmentID", value);
+      }
+      $.each(gisSegmentsProperties, function(index, property) {
+        if (key == property.value) {
+          if (property.info !== false) {
+            content += "<tr><th>" + property.label + "</th><td>" + value + "</td></tr>";
+          }
+        }
+      });
     });
-  });
+  } else {
+    var featureProperties = gisSegmentsLayer.getLayer(id).feature.properties;
+
+    var content = "<table class='table table-striped table-bordered table-condensed'>";
+
+    $.each(featureProperties, function(key, value) {
+      if (!value) {
+        value = "";
+      }
+      if (typeof value == "string" && value.includes('SLC_SEG')) {
+        sessionStorage.setItem("segmentID", value);
+      }
+      $.each(gisSegmentsProperties, function(index, property) {
+        if (key == property.value) {
+          if (property.info !== false) {
+            content += "<tr><th>" + property.label + "</th><td>" + value + "</td></tr>";
+          }
+        }
+      });
+    });
+  }
   content += "<table>";
   $("#gisSegments-Info_DATA").html(content);
   gisSegmentsSidebar.show();

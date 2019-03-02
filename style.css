@@ -22,15 +22,6 @@ input[type="radio"], input[type="checkbox"] {
 #map {
   height: 100%;
 }
-#gisSites_sidebar {
-  width: 250px;
-  height: 100%;
-  max-width: 100%;
-  float: left;
-  -webkit-transition: all 0.25s ease-out;
-    -moz-transition: all 0.25s ease-out;
-    transition: all 0.25s ease-out;
-}
 #gisSites_features {
   margin: 0px;
   border: none;

@@ -347,7 +347,7 @@ var gisSegmentsLayer = L.geoJson(null, {
 function gisSegmentsSearchClick(id) {
   var layer = gisSegmentsLayer.getLayer(id);
   var coords = layer.feature.geometry.coordinates
-  var geom = L.geoJson.coordsToLatLngs(coords);
+  var geom = coords.map(function (pt) {return [pt[1], pt[0]]})
   var line = L.polyline(geom);
   map.fitBounds(line.getBounds());
   layer.fire("click");

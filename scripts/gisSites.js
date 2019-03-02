@@ -465,8 +465,8 @@ $.getJSON(gisSitesConfig.geojson, function (data) {
     return feature.properties;
   });
   gisSitesLayer.addData(data);
-  gisSitesList = new List("gisSites_features", {valueNames: ["feature-name"]});
-  gisSitesList.sort("feature-name", {order:"asc"});
+  gisSitesList = new List("gisSites_features", {valueNames: ["gisSites_feature-name"]});
+  gisSitesList.sort("gisSites_feature-name", {order:"asc"});
   gisSitesBuildConfig()
   $("#loading-mask").hide();
 }).error(function(jqXHR, textStatus, errorThrown) {

@@ -170,29 +170,6 @@ function gisSitesBuildConfig() {
     gisSitesTableData += '<tr>';
   });
   */
-
-  $("#gisSitesTable").bootstrapTable({
-    cache: false,
-    height: $("#gisSitesTable-container").height(),
-    undefinedText: "",
-    striped: false,
-    minimumCountColumns: 1,
-    search: true,
-    trimOnSearch: true,
-    showColumns: true,
-    showToggle: true,
-    columns: table,
-    onDblClickRow: function(row, $element) {
-      var layer = gisSitesLayer.getLayer(row.leaflet_stamp);
-      map.setView([layer.getLatLng().lat, layer.getLatLng().lng], 16);
-      highlightLayer.clearLayers();
-      highlightLayer.addData(gisSitesLayer.getLayer(row.leaflet_stamp).toGeoJSON());
-      $("#map-container").show();
-      $("#gisSitesTable-container").hide();
-    }
-  });
-
-
   table = [{
     field: "action",
     title: "<i class='fa fa-gear'></i>&nbsp;Action",
@@ -225,6 +202,28 @@ function gisSitesBuildConfig() {
       field: value.properties,
       title: key.properties
     });
+  });
+
+
+  $("#gisSitesTable").bootstrapTable({
+    cache: false,
+    height: $("#gisSitesTable-container").height(),
+    undefinedText: "",
+    striped: false,
+    minimumCountColumns: 1,
+    search: true,
+    trimOnSearch: true,
+    showColumns: true,
+    showToggle: true,
+    columns: table,
+    onDblClickRow: function(row, $element) {
+      var layer = gisSitesLayer.getLayer(row.leaflet_stamp);
+      map.setView([layer.getLatLng().lat, layer.getLatLng().lng], 16);
+      highlightLayer.clearLayers();
+      highlightLayer.addData(gisSitesLayer.getLayer(row.leaflet_stamp).toGeoJSON());
+      $("#map-container").show();
+      $("#gisSitesTable-container").hide();
+    }
   });
 
   map.flyToBounds(gisSitesLayer.getBounds());

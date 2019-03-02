@@ -527,35 +527,35 @@ function gisSitesBuildTable() {
       { data: 'site_name' }
     ]
   });
-}
-*/
+  */
 
-$("#gisSitesTable").bootstrapTable({
-  cache: false,
-  height: $("#gisSitesTable-container").height(),
-  undefinedText: "",
-  striped: false,
-  minimumCountColumns: 1,
-  search: true,
-  trimOnSearch: true,
-  showColumns: true,
-  showToggle: true,
-  columns: table,
-  onDblClickRow: function(row, $element) {
-    var layer = gisSitesLayer.getLayer(row.leaflet_stamp);
-    map.setView([layer.getLatLng().lat, layer.getLatLng().lng], 16);
-    highlightLayer.clearLayers();
-    highlightLayer.addData(gisSitesLayer.getLayer(row.leaflet_stamp).toGeoJSON());
-    $("#map-container").show();
-    $("#gisSitesTable-container").hide();
-  }
-});
-
-$(window).resize(function () {
-  $("#gisSitesTable").bootstrapTable("resetView", {
-    height: $("#gisSitesTable-container").height()
+  $("#gisSitesTable").bootstrapTable({
+    cache: false,
+    height: $("#gisSitesTable-container").height(),
+    undefinedText: "",
+    striped: false,
+    minimumCountColumns: 1,
+    search: true,
+    trimOnSearch: true,
+    showColumns: true,
+    showToggle: true,
+    columns: table,
+    onDblClickRow: function(row, $element) {
+      var layer = gisSitesLayer.getLayer(row.leaflet_stamp);
+      map.setView([layer.getLatLng().lat, layer.getLatLng().lng], 16);
+      highlightLayer.clearLayers();
+      highlightLayer.addData(gisSitesLayer.getLayer(row.leaflet_stamp).toGeoJSON());
+      $("#map-container").show();
+      $("#gisSitesTable-container").hide();
+    }
   });
-});
+
+  $(window).resize(function () {
+    $("#gisSitesTable").bootstrapTable("resetView", {
+      height: $("#gisSitesTable-container").height()
+    });
+  });
+}
 
 
 // GIS SITES TABLE EXPORT

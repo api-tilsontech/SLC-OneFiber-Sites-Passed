@@ -445,7 +445,6 @@ var gisSitesLayer = L.geoJson(null, {
 
 
 function gisSitesSearchClick(id) {
-  gisSitesSearch.show();
   var layer = gisSitesLayer.getLayer(id);
   map.setView([layer.getLatLng().lat, layer.getLatLng().lng], 16);
   layer.fire("click");

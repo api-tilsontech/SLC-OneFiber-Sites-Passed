@@ -32,9 +32,9 @@ var highlightLayer = L.geoJson(null, {
       layer.bindTooltip(feature.properties.fqn_id + " -- " + feature.properties.oofstatus, {sticky: 'true', direction: 'top'});
     } else if (feature.properties.sitetracker_id.toLowerCase().indexOf("slc_seg") === 0) {
       if (feature.properties.fqn_id.toLowerCase().indexOf("fib:bur") === 0) {
-        layer.bindTooltip(feature.properties.fqn_id + "-- Underground", {sticky: 'true', direction: 'top'});
+        layer.bindTooltip(feature.properties.fqn_id + " -- Underground", {sticky: 'true', direction: 'top'});
       } else if (feature.properties.fqn_id.toLowerCase().indexOf("fib:aer") === 0) {
-        layer.bindTooltip(feature.properties.fqn_id + "-- Aerial", {sticky: 'true', direction: 'top'});
+        layer.bindTooltip(feature.properties.fqn_id + " -- Aerial", {sticky: 'true', direction: 'top'});
       }
     } else if (feature.properties.sitetracker_id.toLowerCase().indexOf("slc_sit") === 0) {
       layer.bindTooltip(feature.properties.nfid + " -- " + feature.properties.site_name, {sticky: 'true', direction: 'top'});
@@ -117,6 +117,9 @@ map.on('dblclick', function(event){
     map.clicked = 0;
     highlightLayer.clearLayers();
     gisSitesSidebar.hide();
+    gisSegmentsSidebar.hide();
+    gisSitesSearch.hide();
+    gisSegmentsSearch.hide();
 });
 
 

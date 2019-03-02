@@ -350,8 +350,10 @@ function gisSegmentsSearchClick(id) {
   var geom = coords.map(function (pt) {return [pt[1], pt[0]]})
   var line = L.polyline(geom);
   map.fitBounds(line.getBounds());
+  highlightLayer.clearLayers();
+  highlightLayer.addData(layer.toGeoJSON());
   layer.fire("click");
-  /* Hide sidebar and go to the map on small screens */
+
   if (document.body.clientWidth <= 767) {
     gisSegmentsSidebar.hide();
     gisSitesSidebar.hide();

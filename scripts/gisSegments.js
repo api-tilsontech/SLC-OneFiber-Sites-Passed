@@ -294,7 +294,6 @@ function gisSegmentsBuildConfig() {
       });
     }
   });
-  map.flyToBounds(gisSegmentsLayer.getBounds());
 }
 
 

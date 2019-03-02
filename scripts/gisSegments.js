@@ -345,13 +345,15 @@ var gisSegmentsLayer = L.geoJson(null, {
 
 
 function gisSegmentsSearchClick(id) {
-  gisSegmentsSearch.show();
   var layer = gisSegmentsLayer.getLayer(id);
-  map.setView([layer.feature.geometry.coordinates], 16);
+  var coords = layer.feature.geometry.coordinates
+  var geom = L.geoJson.coordsToLatLngs(coords);
+  var line = L.polyline(geom);
+  map.fitBounds(line.getBounds());
   layer.fire("click");
   /* Hide sidebar and go to the map on small screens */
   if (document.body.clientWidth <= 767) {
-    gisSegmentsSidebar.show();
+    gisSegmentsSidebar.hide();
     gisSitesSidebar.hide();
     map.invalidateSize();
   }

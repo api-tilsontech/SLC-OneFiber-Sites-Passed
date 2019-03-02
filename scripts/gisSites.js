@@ -504,11 +504,10 @@ $.getJSON(gisSitesConfig.geojson, function (data) {
 
 
 function gisSitesBuildTable() {
-  gisSitesTableFeatures = JSON.parse(gisSitesData.features);
   console.log(gisSitesTableFeatures);
   $('#gisSitesTableData').dynatable({
     dataset: {
-      records: gisSitesTableFeatures
+      records: gisSitesData.features
     }
   });
 }

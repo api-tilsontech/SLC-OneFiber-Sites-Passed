@@ -28,14 +28,46 @@ var highlightLayer = L.geoJson(null, {
     };
   },
   onEachFeature: function (feature, layer) {
+    if (feature.properties.sitetracker_id.toLowerCase().indexOf("slc_rou") === 0) {
+      layer.bindTooltip(feature.properties.fqn_id + " -- " + feature.properties.oofstatus, {sticky: 'true', direction: 'top'});
+    } else if (feature.properties.sitetracker_id.toLowerCase().indexOf("slc_seg") === 0) {
+      if (feature.properties.fqn_id.toLowerCase().indexOf("fib:bur") === 0) {
+        layer.bindTooltip(feature.properties.fqn_id + "-- Underground", {sticky: 'true', direction: 'top'});
+      } else if (feature.properties.fqn_id.toLowerCase().indexOf("fib:aer") === 0) {
+        layer.bindTooltip(feature.properties.fqn_id + "-- Aerial", {sticky: 'true', direction: 'top'});
+      }
+    } else if (feature.properties.sitetracker_id.toLowerCase().indexOf("slc_sit") === 0) {
+      layer.bindTooltip(feature.properties.nfid + " -- " + feature.properties.site_name, {sticky: 'true', direction: 'top'});
+    }
     layer.on({
       click: function (e) {
-        if (feature.properties.sitetracker_id.toLowerCase().indexOf("slc_sit") === 0) {
+        if (feature.properties.sitetracker_id.toLowerCase().indexOf("slc_rou") === 0) {
+          gisRoutesInfo(L.stamp(layer));
+          gisSitesSidebar.hide();
+          gisSegmentsSidebar.hide();
+          gisRoutesSidebar.show();
+          gisStructuresSidebar.hide();
+          gisPolesSidebar.hide();
+          gisSplicesSidebar.hide();
+          fulcrumRoutesSidebar.hide();
+        } else if (feature.properties.sitetracker_id.toLowerCase().indexOf("slc_seg") === 0) {
+          gisSegmentsInfo(L.stamp(layer));
+          gisSitesSidebar.hide();
+          gisSegmentsSidebar.show();
+          gisRoutesSidebar.hide();
+          gisStructuresSidebar.hide();
+          gisPolesSidebar.hide();
+          gisSplicesSidebar.hide();
+          fulcrumRoutesSidebar.hide();
+        } else if (feature.properties.sitetracker_id.toLowerCase().indexOf("slc_sit") === 0) {
           gisSitesInfo(L.stamp(layer));
           gisSitesSidebar.show();
-        } else {
-          gisSegmentsInfo(L.stamp(layer));
-          gisSegmentsSidebar.show();
+          gisSegmentsSidebar.hide();
+          gisRoutesSidebar.hide();
+          gisStructuresSidebar.hide();
+          gisPolesSidebar.hide();
+          gisSplicesSidebar.hide();
+          fulcrumRoutesSidebar.hide();
         }
       }
     });
@@ -55,8 +87,8 @@ var baseLayers = {
 // OVERLAY LAYERS
 
 var overlayLayers = {
-  "<span id='layer-name'>GIS Sites</span>": gisSitesLayer,
-  "<span id='layer-name'>GIS Sites</span>": gisSegmentsLayer
+  "<span id='layer-name'>Sites</span>": gisSitesLayer,
+  "<span id='layer-name'>Segments</span>": gisSegmentsLayer
 };
 
 

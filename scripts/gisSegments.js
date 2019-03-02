@@ -348,7 +348,7 @@ var gisSegmentsLayer = L.geoJson(null, {
 function gisSegmentsSearchClick(id) {
   gisSegmentsSearch.show();
   var layer = gisSegmentsLayer.getLayer(id);
-  map.setView([layer.getLatLng().lat, layer.getLatLng().lng], 16);
+  map.setView([layer.getCenter()], 16);
   layer.fire("click");
   /* Hide sidebar and go to the map on small screens */
   if (document.body.clientWidth <= 767) {
@@ -383,7 +383,7 @@ $.getJSON(gisSegmentsConfig.geojson, function (data) {
 
 function gisSegmentsInfo(id) {
   
-  var featureProperties = gisSegmentsLayer.getLayer(id).feature.properties;
+  var featureProperties = highlightLayer.getLayer(id).feature.properties;
 
   var content = "<table class='table table-striped table-bordered table-condensed'>";
 

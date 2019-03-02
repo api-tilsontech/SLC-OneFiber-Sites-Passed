@@ -159,7 +159,9 @@ var gisSitesConfig = {
 
 // GIS SITES BUILD CONFIG
 
+
 function gisSitesBuildConfig() {
+  /*
   var gisSitesTableData = '';
    $.each(gisSitesData.features, function(key, value) {
     gisSitesTableData += '<tr>';
@@ -167,9 +169,30 @@ function gisSitesBuildConfig() {
     gisSitesTableData += '<td>' + value.properties.site_name + '</td>';
     gisSitesTableData += '<tr>';
   });
-  $('#gisSitesTable').append(gisSitesTableData);
+  */
 
-  /*
+  $("#gisSitesTable").bootstrapTable({
+    cache: false,
+    height: $("#gisSitesTable-container").height(),
+    undefinedText: "",
+    striped: false,
+    minimumCountColumns: 1,
+    search: true,
+    trimOnSearch: true,
+    showColumns: true,
+    showToggle: true,
+    columns: table,
+    onDblClickRow: function(row, $element) {
+      var layer = gisSitesLayer.getLayer(row.leaflet_stamp);
+      map.setView([layer.getLatLng().lat, layer.getLatLng().lng], 16);
+      highlightLayer.clearLayers();
+      highlightLayer.addData(gisSitesLayer.getLayer(row.leaflet_stamp).toGeoJSON());
+      $("#map-container").show();
+      $("#gisSitesTable-container").hide();
+    }
+  });
+
+
   table = [{
     field: "action",
     title: "<i class='fa fa-gear'></i>&nbsp;Action",
@@ -197,20 +220,13 @@ function gisSitesBuildConfig() {
     }
   }];
 
-  $.each(gisSitesProperties, function(index, value) {
-    if (value.table) {
-      table.push({
-        field: value.value,
-        title: value.label
-      });
-      $.each(value.table, function(key, val) {
-        if (table[index+1]) {
-          table[index+1][key] = val;
-        }
-      });
-    }
+  $.each(gisSitesData.features, function(key, value) {
+    table.push({
+      field: value.properties,
+      title: key.properties
+    });
   });
-  */
+
   map.flyToBounds(gisSitesLayer.getBounds());
 }
 

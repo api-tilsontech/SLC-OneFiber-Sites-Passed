@@ -1,12 +1,3 @@
-// GIS SITES REST URL
-
-var gisSitesConfig = {
-  geojson: "https://gis.tilsontech.com/arcgis/rest/services/SiteTracker/SLC_OneFiber/MapServer/2/query?where=objectid+IS+NOT+NULL&outFields=" + gisSitesFields + "&f=geojson&token=" + gis_token,
-  layerName: "Sites",
-  hoverProperty: "site_name"
-};
-
-
 // GIS SITES PROPERTIES
 
 var gisSitesProperties = [{
@@ -157,6 +148,16 @@ var gisSitesFields = gisSitesProperties.map(function(elem) {
 }).join("%2C");
 
 
+// GIS SITES REST URL
+
+var gisSitesConfig = {
+  geojson: "https://gis.tilsontech.com/arcgis/rest/services/SiteTracker/SLC_OneFiber/MapServer/2/query?where=objectid+IS+NOT+NULL&outFields=" + gisSitesFields + "&f=geojson&token=" + gis_token,
+  layerName: "Sites",
+  hoverProperty: "site_name"
+};
+
+
+// GIS SITES BUILD CONFIG
 
 function gisSitesBuildConfig() {
   table = [{

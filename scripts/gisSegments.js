@@ -1,13 +1,3 @@
-// GIS SEGMENTS CONFIG
-
-var gisSegmentsConfig = {
-  geojson: "https://gis.tilsontech.com/arcgis/rest/services/SiteTracker/SLC_OneFiber/MapServer/3/query?where=fqn_id+IS+NOT+NULL&outFields=" + gisSegmentsFields + "&f=geojson&token=" + gis_token,
-  layerName: "Segments",
-  hoverProperty: "fqn_id",
-  sortProperty: "fqn_id",
-  sortOrder: "ascend",
-};
-
 // GIS SEGMENTS PROPERTIES
 
 var gisSegmentsProperties = [{
@@ -252,12 +242,14 @@ var gisSegmentsFields = gisSegmentsProperties.map(function(elem) {
 }).join("%2C");
 
 
-// GIS SEGMETNS CONFIG
+// GIS SEGMENTS CONFIG
 
 var gisSegmentsConfig = {
-  geojson: "https://gis.tilsontech.com/arcgis/rest/services/SiteTracker/SLC_OneFiber/MapServer/2/query?where=objectid+IS+NOT+NULL&outFields=*&f=geojson&token=" + gis_token,
-  layerName: "Sites",
-  hoverProperty: "site_name"
+  geojson: "https://gis.tilsontech.com/arcgis/rest/services/SiteTracker/SLC_OneFiber/MapServer/3/query?where=fqn_id+IS+NOT+NULL&outFields=" + gisSegmentsFields + "&f=geojson&token=" + gis_token,
+  layerName: "Segments",
+  hoverProperty: "fqn_id",
+  sortProperty: "fqn_id",
+  sortOrder: "ascend",
 };
 
 

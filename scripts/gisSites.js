@@ -490,7 +490,7 @@ $.getJSON(gisSitesConfig.geojson, function (data) {
     return feature.properties;
   });
   gisSitesLayer.addData(data);
-  gisSitesList = new List("features", {valueNames: ["feature-name"]});
+  gisSitesList = new List("gisSites_features", {valueNames: ["feature-name"]});
   gisSitesList.sort("feature-name", {order:"asc"});
   gisSitesBuildConfig()
   $("#loading-mask").hide();

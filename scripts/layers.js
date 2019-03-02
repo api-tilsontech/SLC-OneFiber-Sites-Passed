@@ -42,7 +42,7 @@ var highlightLayer = L.geoJson(null, {
     layer.on({
       click: function (e) {
         if (feature.properties.sitetracker_id.toLowerCase().indexOf("slc_rou") === 0) {
-          gisRoutesInfo(L.stamp(layer));
+          gisRoutesHighlightInfo(L.stamp(layer));
           gisSitesSidebar.hide();
           gisSegmentsSidebar.hide();
           gisRoutesSidebar.show();
@@ -51,7 +51,7 @@ var highlightLayer = L.geoJson(null, {
           gisSplicesSidebar.hide();
           fulcrumRoutesSidebar.hide();
         } else if (feature.properties.sitetracker_id.toLowerCase().indexOf("slc_seg") === 0) {
-          gisSegmentsInfo(L.stamp(layer));
+          gisSegmentsHighlightInfo(L.stamp(layer));
           gisSitesSidebar.hide();
           gisSegmentsSidebar.show();
           gisRoutesSidebar.hide();
@@ -60,7 +60,7 @@ var highlightLayer = L.geoJson(null, {
           gisSplicesSidebar.hide();
           fulcrumRoutesSidebar.hide();
         } else if (feature.properties.sitetracker_id.toLowerCase().indexOf("slc_sit") === 0) {
-          gisSitesInfo(L.stamp(layer));
+          gisSitesHighlightInfo(L.stamp(layer));
           gisSitesSidebar.show();
           gisSegmentsSidebar.hide();
           gisRoutesSidebar.hide();

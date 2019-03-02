@@ -352,7 +352,7 @@ function gisSegmentsSearchClick(id) {
   map.fitBounds(line.getBounds());
   highlightLayer.clearLayers();
   highlightLayer.addData(layer.toGeoJSON());
-  layer.fire("click");
+  highlightLayer.fire("click");
 
   if (document.body.clientWidth <= 767) {
     gisSegmentsSidebar.hide();
@@ -395,7 +395,7 @@ function gisSegmentsInfo(id) {
       value = "";
     }
     if (typeof value == "string" && value.includes('SLC_SEG')) {
-      sessionStorage.setItem("siteID", value);
+      sessionStorage.setItem("segmentID", value);
     }
     $.each(gisSegmentsProperties, function(index, property) {
       if (key == property.value) {

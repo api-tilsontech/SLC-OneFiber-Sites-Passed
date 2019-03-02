@@ -452,7 +452,7 @@ var gisSitesLayer = L.geoJson(null, {
 });
 
 
-$(document).on("click", ".feature-row", function(e) {
+$(document).on("click", ".gisSites_feature-row", function(e) {
   gisSitesSidebarClick(parseInt($(this).attr("id"), 10));
 });
 
@@ -464,6 +464,7 @@ function gisSitesSidebarClick(id) {
   /* Hide sidebar and go to the map on small screens */
   if (document.body.clientWidth <= 767) {
     gisSitesSearch.hide();
+    gisSitesSidebar.show();
     map.invalidateSize();
   }
 }

@@ -453,7 +453,6 @@ var gisSitesLayer = L.geoJson(null, {
 
 
 $(document).on("click", ".feature-row", function(e) {
-  alert("Click Worked");
   gisSitesSearchClick(parseInt($(this).attr("id"), 10));
 });
 

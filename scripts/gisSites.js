@@ -161,7 +161,7 @@ var gisSitesConfig = {
 };
 
 
-function gisSitesTableConfig() {
+function gisSitesBuildConfig() {
   table = [{
     field: "action",
     title: "<i class='fa fa-gear'></i>&nbsp;Action",
@@ -202,8 +202,6 @@ function gisSitesTableConfig() {
       });
     }
   });
-
-  gisSitesBuildTable()
   map.flyToBounds(gisSitesLayer.getBounds());
 }
 
@@ -492,24 +490,13 @@ $.getJSON(gisSitesConfig.geojson, function (data) {
   gisSitesLayer.addData(data);
   gisSitesList = new List("features", {valueNames: ["feature-name"]});
   gisSitesList.sort("feature-name", {order:"asc"});
-  gisSitesBuildTable()
+  gisSitesBuildConfig()
   $("#loading-mask").hide();
 }).error(function(jqXHR, textStatus, errorThrown) {
     console.log("error " + textStatus);
     console.log("incoming Text " + jqXHR.responseText);
     alert("error " + textStatus);
 });
-
-
-
-
-function gisSitesBuildTable() {
-  $('#gisSitesTableData').dynatable({
-    dataset: {
-      records: gisSitesData.features
-    }
-  });
-}
 
 
 

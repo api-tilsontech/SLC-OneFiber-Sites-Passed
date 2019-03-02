@@ -447,28 +447,24 @@ var gisSitesLayer = L.geoJson(null, {
 
 
 $(document).on("click", ".feature-row", function(e) {
-  sidebarClick(parseInt($(this).attr("id"), 10));
+  gisSitesSidebarClick(parseInt($(this).attr("id"), 10));
 });
 
-$("#list-btn").click(function() {
-  $('#sidebar').toggle();
+$("#gisSites_list-btn").click(function() {
+  $('#gisSites_sidebar').toggle();
+  $('#gisSegments_sidebar').hide();
   map.invalidateSize();
   return false;
 });
 
-$("#sidebar-toggle-btn").click(function() {
-  $("#sidebar").toggle();
-  map.invalidateSize();
-  return false;
-});
 
-$("#sidebar-hide-btn").click(function() {
-  $('#sidebar').hide();
+$("#gisSites_sidebar-hide-btn").click(function() {
+  $('#gisSites_sidebar').hide();
   map.invalidateSize();
 });
 
 
-function sidebarClick(id) {
+function gisSitesSidebarClick(id) {
   var layer = gisSitesLayer.getLayer(id);
   map.setView([layer.getLatLng().lat, layer.getLatLng().lng], 16);
   layer.fire("click");

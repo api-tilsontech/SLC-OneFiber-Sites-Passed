@@ -33,6 +33,9 @@ var highlightLayer = L.geoJson(null, {
         if (feature.properties.sitetracker_id.toLowerCase().indexOf("slc_sit") === 0) {
           gisSitesInfo(L.stamp(layer));
           gisSitesSidebar.show();
+        } else {
+          gisSegmentsInfo(L.stamp(layer));
+          gisSegmentsSidebar.show();
         }
       }
     });
@@ -53,6 +56,7 @@ var baseLayers = {
 
 var overlayLayers = {
   "<span id='layer-name'>GIS Sites</span>": gisSitesLayer,
+  "<span id='layer-name'>GIS Sites</span>": gisSegmentsLayer
 };
 
 

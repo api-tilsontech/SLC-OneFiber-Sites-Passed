@@ -55,7 +55,8 @@ var baseLayers = {
 // OVERLAY LAYERS
 
 var overlayLayers = {
-  "<span id='layer-name'>GIS Sites</span>": gisSitesLayer
+  "<span id='layer-name'>GIS Sites</span>": gisSitesLayer,
+  "<span id='layer-name'>GIS Sites</span>": gisSegmentsLayer
 };
 
 

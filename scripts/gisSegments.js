@@ -1,15 +1,12 @@
 // GIS SEGMENTS CONFIG
 
 var gisSegmentsConfig = {
-  geojson: "https://gis.tilsontech.com/arcgis/rest/services/SiteTracker/SLC_OneFiber/MapServer/3/query?where=fqn_id+IS+NOT+NULL&outFields=*&f=geojson&token=" + gis_token,
+  geojson: "https://gis.tilsontech.com/arcgis/rest/services/SiteTracker/SLC_OneFiber/MapServer/3/query?where=fqn_id+IS+NOT+NULL&outFields=" + gisSegmentsFields + "&f=geojson&token=" + gis_token,
   layerName: "Segments",
   hoverProperty: "fqn_id",
   sortProperty: "fqn_id",
   sortOrder: "ascend",
 };
-
-
-
 
 // GIS SEGMENTS PROPERTIES
 
@@ -248,7 +245,14 @@ var gisSegmentsProperties = [{
 }];
 
 
-// GIS SITES CONFIG
+// GIS SEGMETNS FIELDS
+
+var gisSegmentsFields = gisSegmentsProperties.map(function(elem) {
+  return elem.value;
+}).join("%2C");
+
+
+// GIS SEGMETNS CONFIG
 
 var gisSegmentsConfig = {
   geojson: "https://gis.tilsontech.com/arcgis/rest/services/SiteTracker/SLC_OneFiber/MapServer/2/query?where=objectid+IS+NOT+NULL&outFields=*&f=geojson&token=" + gis_token,
@@ -343,34 +347,21 @@ var gisSegmentsLayer = L.geoJson(null, {
           }
         }
       });
+      $("#gisSegments_feature-list tbody").append('<tr onclick= "gisSegmentsSearchClick(' +L.stamp(layer) + ')"><td class="feature-name">' + layer.feature.properties.fqn_id + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
     }
   }
 });
 
 
-$(document).on("click", ".feature-row", function(e) {
-  sidebarClick(parseInt($(this).attr("id"), 10));
-});
-
-$("#gisSegments_list-btn").click(function() {
-  $('#sidebar').toggle();
-  map.invalidateSize();
-  return false;
-});
-
-$("#gisSegments_sidebar-hide-btn").click(function() {
-  $('#gisSegments_sidebar').hide();
-  map.invalidateSize();
-});
-
-
-function sidebarClick(id) {
+function gisSegmentsSearchClick(id) {
+  gisSegmentsSearch.show();
   var layer = gisSegmentsLayer.getLayer(id);
   map.setView([layer.getLatLng().lat, layer.getLatLng().lng], 16);
   layer.fire("click");
   /* Hide sidebar and go to the map on small screens */
   if (document.body.clientWidth <= 767) {
-    $("#sidebar").hide();
+    gisSegmentsSidebar.show();
+    gisSitesSidebar.hide();
     map.invalidateSize();
   }
 }
@@ -384,7 +375,7 @@ $.getJSON(gisSegmentsConfig.geojson, function (data) {
     return feature.properties;
   });
   gisSegmentsLayer.addData(data);
-  gisSegmentsList = new List("features", {valueNames: ["feature-name"]});
+  gisSegmentsList = new List("gisSegments_features", {valueNames: ["feature-name"]});
   gisSegmentsList.sort("feature-name", {order:"asc"});
   gisSegmentsBuildConfig()
   $("#loading-mask").hide();

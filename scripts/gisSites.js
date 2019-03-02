@@ -158,15 +158,6 @@ var gisSitesFields = gisSitesProperties.map(function(elem) {
 
 
 
-// GIS SITES CONFIG
-
-var gisSitesConfig = {
-  geojson: "https://gis.tilsontech.com/arcgis/rest/services/SiteTracker/SLC_OneFiber/MapServer/2/query?where=objectid+IS+NOT+NULL&outFields=*&f=geojson&token=" + gis_token,
-  layerName: "Sites",
-  hoverProperty: "site_name"
-};
-
-
 function gisSitesBuildConfig() {
   table = [{
     field: "action",
@@ -460,6 +451,7 @@ function gisSitesSearchClick(id) {
   /* Hide sidebar and go to the map on small screens */
   if (document.body.clientWidth <= 767) {
     gisSitesSidebar.show();
+    gisSegmentsSidebar.hide();
     map.invalidateSize();
   }
 }

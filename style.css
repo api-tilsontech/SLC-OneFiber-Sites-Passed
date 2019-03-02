@@ -32,14 +32,30 @@ input[type="radio"], input[type="checkbox"] {
 #gisSites_sidebar-hide-btn {
   margin-top: -2px;
 }
-#aboutTabsContent {
-  padding-top: 10px;
-}
 #gisSites-Info_DATA table tr td {
   word-break: break-all;
   word-break: break-word;
   -webkit-hyphens: auto;
     hyphens: auto;
+}
+#gisSegments_features {
+  margin: 0px;
+  border: none;
+  border-radius: 0px;
+  -webkit-box-shadow: none;
+    box-shadow: none;
+}
+#gisSegments_sidebar-hide-btn {
+  margin-top: -2px;
+}
+#gisSegments-Info_DATA table tr td {
+  word-break: break-all;
+  word-break: break-word;
+  -webkit-hyphens: auto;
+    hyphens: auto;
+}
+#aboutTabsContent {
+  padding-top: 10px;
 }
 .progress-bar-full {
   width: 100%;

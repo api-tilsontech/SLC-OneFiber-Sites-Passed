@@ -11,7 +11,7 @@ var gisSitesSidebar = L.control.sidebar("gisSitesSidebar", {
 }).addTo(map);
 
 
-/* GIS SEARCH SIDEBAR
+// GIS SEARCH SIDEBAR
 
 $("#gisSites_list-btn").click(function(){
   gisSitesSearch.show();
@@ -29,4 +29,3 @@ var gisSitesSearch = L.control.sidebar("gisSitesSearch", {
     closeButton: false,
     position: "left"
 }).addTo(map);
-*/

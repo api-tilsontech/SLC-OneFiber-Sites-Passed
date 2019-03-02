@@ -452,12 +452,12 @@ var gisSitesLayer = L.geoJson(null, {
 });
 
 
-$(document).on("click", ".gisSites_feature-row", function(e) {
-  gisSitesSidebarClick(parseInt($(this).attr("id"), 10));
+$(document).on("click", "gisSites_feature-list.feature-row", function(e) {
+  gisSitesSearchClick(parseInt($(this).attr("id"), 10));
 });
 
 
-function gisSitesSidebarClick(id) {
+function gisSitesSearchClick(id) {
   var layer = gisSitesLayer.getLayer(id);
   map.setView([layer.getLatLng().lat, layer.getLatLng().lng], 16);
   layer.fire("click");

@@ -199,9 +199,10 @@ function gisSitesBuildConfig() {
 
   $.each(gisSitesData.features, function(key, value) {
     $.each(value.properties, function(index, attr) {
-    table.push({
-      title: index,
-      field: attr
+      table.push({
+        title: index,
+        field: attr
+      });
     });
   });
 

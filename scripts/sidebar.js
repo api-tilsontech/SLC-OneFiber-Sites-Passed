@@ -11,22 +11,21 @@ var gisSitesSidebar = L.control.sidebar("gisSitesSidebar", {
 }).addTo(map);
 
 
-/* GIS SEARCH SIDEBAR
+// GIS SEARCH SIDEBAR
 
-$("#gisSites_list-btn").click(function(){
+$("#list-btn").click(function(){
   gisSitesSearch.show();
   map.invalidateSize();
 });
 
 
-$("#gisSites_sidebar-hide-btn").click(function() {
+$("#sidebar-hide-btn").click(function() {
   gisSitesSearch.hide();
   map.invalidateSize();
 });
 
 
-var gisSitesSearch = L.control.sidebar("gisSitesSearch", {
+var gisSitesSearch = L.control.sidebar("sidebar", {
     closeButton: false,
     position: "left"
 }).addTo(map);
-*/

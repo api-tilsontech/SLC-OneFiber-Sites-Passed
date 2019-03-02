@@ -457,23 +457,6 @@ $(document).on("click", ".feature-row", function(e) {
   gisSitesSearchClick(parseInt($(this).attr("id"), 10));
 });
 
-$("#list-btn").click(function() {
-  $('#sidebar').toggle();
-  map.invalidateSize();
-  return false;
-});
-
-$("#sidebar-toggle-btn").click(function() {
-  $("#sidebar").toggle();
-  map.invalidateSize();
-  return false;
-});
-
-$("#sidebar-hide-btn").click(function() {
-  $('#sidebar').hide();
-  map.invalidateSize();
-});
-
 
 function gisSitesSearchClick(id) {
   var layer = gisSitesLayer.getLayer(id);

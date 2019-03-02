@@ -160,6 +160,16 @@ var gisSitesConfig = {
 // GIS SITES BUILD CONFIG
 
 function gisSitesBuildConfig() {
+  var gisSitesTableData = '';
+   $.each(gisSitesData.features, function(key, value) {
+    gisSitesTableData += '<tr>';
+    gisSitesTableData += '<td>' + value.properties.nfid + '</td>';
+    gisSitesTableData += '<td>' + value.properties.site_name + '</td>';
+    gisSitesTableData += '<tr>';
+  });
+  $('#gisSitesTable').append(gisSitesTableData);
+
+  /*
   table = [{
     field: "action",
     title: "<i class='fa fa-gear'></i>&nbsp;Action",
@@ -200,6 +210,7 @@ function gisSitesBuildConfig() {
       });
     }
   });
+  */
   map.flyToBounds(gisSitesLayer.getBounds());
 }
 
@@ -504,3 +515,18 @@ function gisSitesInfo(id) {
   $("#gisSites-Info_DATA").html(content);
   gisSitesSidebar.show();
 };
+
+
+
+
+
+
+// GIS SITES TABLE
+
+$("#gisSites_table-btn").click(function(){
+  $("#gisSitesTable-container").show();
+  $("#gisSitesTable-container").css("height", "100%");
+  $("#map-container").hide();
+  $(window).resize();
+  map.flyToBounds(gisSitesLayer.getBounds());
+});

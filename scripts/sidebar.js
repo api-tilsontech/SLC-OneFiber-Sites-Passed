@@ -1,4 +1,4 @@
-// GIS INFO SIDEBAR
+// GIS SITES INFO SIDEBAR
 
 $("#gisSitesClose-sidebarBTN").click(function(){
   gisSitesSidebar.hide();
@@ -11,6 +11,9 @@ var gisSitesSidebar = L.control.sidebar("gisSitesSidebar", {
 }).addTo(map);
 
 
+
+// GIS SEGMENTS INFO SIDEBAR
+
 $("#gisSegmentsClose-sidebarBTN").click(function(){
   gisSegmentsSidebar.hide();
 });
@@ -22,7 +25,8 @@ var gisSegmentsSidebar = L.control.sidebar("gisSegmentsSidebar", {
 }).addTo(map);
 
 
-// GIS SEARCH SIDEBAR
+
+// GIS SITES SEARCH SIDEBAR
 
 $("#gisSites_list-btn").click(function(){
   gisSitesSearch.show();
@@ -42,6 +46,9 @@ var gisSitesSearch = L.control.sidebar("gisSitesSearch", {
     position: "left"
 }).addTo(map);
 
+
+
+// GIS SEGMENTS SEARCH SIDEBAR
 
 $("#gisSegments_list-btn").click(function(){
   gisSegmentsSearch.show();

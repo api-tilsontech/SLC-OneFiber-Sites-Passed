@@ -162,3 +162,13 @@ var layerControl = L.control.layers(baseLayers, overlayLayers, {
 // MAP SCALE
 
 L.control.scale().addTo(map);
+
+
+// MAP VIEW
+
+$("#map-only").click(function(){
+  $("#gisSitesTable-container").hide();
+  $("#map-container").show();
+  $(window).resize();
+  map.flyToBounds(gisSitesLayer.getBounds());
+});

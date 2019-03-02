@@ -242,7 +242,7 @@ var gisSitesLayer = L.geoJson(null, {
           }));
         }
       });
-      $("#gisSites_feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '"><td class="feature-name">' + layer.feature.properties.site_name + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+      $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '"><td class="feature-name">' + layer.feature.properties.site_name + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
     }
     if (feature.properties.removesite === "Yes") {
       layer.setIcon(
@@ -455,6 +455,23 @@ var gisSitesLayer = L.geoJson(null, {
 $(document).on("click", ".feature-row", function(e) {
   alert("Click Worked");
   gisSitesSearchClick(parseInt($(this).attr("id"), 10));
+});
+
+$("#list-btn").click(function() {
+  $('#sidebar').toggle();
+  map.invalidateSize();
+  return false;
+});
+
+$("#sidebar-toggle-btn").click(function() {
+  $("#sidebar").toggle();
+  map.invalidateSize();
+  return false;
+});
+
+$("#sidebar-hide-btn").click(function() {
+  $('#sidebar').hide();
+  map.invalidateSize();
 });
 
 

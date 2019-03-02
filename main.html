@@ -40,7 +40,7 @@
             <li class="dropdown">
               <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-search white"></i> <span id="view">Search </span><b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li class="hidden-xs"><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="gisSites_list-btn"><i class="fa fa-search black"></i>Sites</a></li>
+                <li class="hidden-xs"><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="list-btn"><i class="fa fa-search black"></i>Sites</a></li>
                 <li class="hidden-xs"><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="gisSegments_list-btn"><i class="fa fa-search black"></i>Segments</a></li>
                 <li class="hidden-xs"><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="gisRoutes_list-btn"><i class="fa fa-search black"></i>Routes</a></li>
                 <li class="hidden-xs"><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="gisStructures_list-btn"><i class="fa fa-search black"></i>Structures</a></li>
@@ -61,13 +61,13 @@
       <div id="map"></div>
     </div>
 
-    <div id="gisSitesSearch">
-      <div id="gisSites_sidebar">
+    <div id="search-container">
+      <div id="sidebar">
         <div class="sidebar-wrapper">
-          <div class="panel panel-default" id="gisSites_features">
+          <div class="panel panel-default" id="features">
             <div class="panel-heading">
               <h3 class="panel-title">Records
-              <button type="button" class="btn btn-xs btn-default pull-right" id="gisSites_sidebar-hide-btn"><i class="fa fa-chevron-left"></i></button></h3>
+              <button type="button" class="btn btn-xs btn-default pull-right" id="sidebar-hide-btn"><i class="fa fa-chevron-left"></i></button></h3>
             </div>
             <div class="panel-body">
               <div class="row">
@@ -75,12 +75,12 @@
                   <input type="text" class="form-control search" placeholder="Search" />
                 </div>
                 <div class="col-xs-4 col-md-4">
-                  <button type="button" class="btn btn-primary pull-right sort" data-sort="feature-name" id="gisSites_sort-btn"><i class="fa fa-sort"></i>&nbsp;&nbsp;Sort</button>
+                  <button type="button" class="btn btn-primary pull-right sort" data-sort="feature-name" id="sort-btn"><i class="fa fa-sort"></i>&nbsp;&nbsp;Sort</button>
                 </div>
               </div>
             </div>
             <div class="sidebar-table">
-              <table class="table table-hover" id="gisSites_feature-list">
+              <table class="table table-hover" id="feature-list">
                 <thead class="hidden">
                   <tr>
                     <th>Icon</th>

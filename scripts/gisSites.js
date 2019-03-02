@@ -456,19 +456,6 @@ $(document).on("click", ".feature-row", function(e) {
   gisSitesSidebarClick(parseInt($(this).attr("id"), 10));
 });
 
-$("#gisSites_list-btn").click(function() {
-  $('#gisSites_sidebar').toggle();
-  $('#gisSegments_sidebar').hide();
-  map.invalidateSize();
-  return false;
-});
-
-
-$("#gisSites_sidebar-hide-btn").click(function() {
-  $('#gisSites_sidebar').hide();
-  map.invalidateSize();
-});
-
 
 function gisSitesSidebarClick(id) {
   var layer = gisSitesLayer.getLayer(id);
@@ -476,7 +463,7 @@ function gisSitesSidebarClick(id) {
   layer.fire("click");
   /* Hide sidebar and go to the map on small screens */
   if (document.body.clientWidth <= 767) {
-    $("#gisSites_sidebar").hide();
+    gisSitesSearch.hide();
     map.invalidateSize();
   }
 }
@@ -529,8 +516,3 @@ function gisSitesInfo(id) {
   $("#gisSites-Info_DATA").html(content);
   gisSitesSidebar.show();
 };
-
-
-$("#gisSitesClose-sidebarBTN").click(function(){
-  gisSitesSidebar.hide();
-});

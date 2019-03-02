@@ -99,14 +99,6 @@ if (document.body.clientWidth <= 767) {
 }
 
 
-// INFO SIDEBAR
-
-var gisSitesSidebar = L.control.sidebar("gisSitesSidebar", {
-    closeButton: false,
-    position: "right"
-}).addTo(map);
-
-
 // CREATED BY
 
 L.control.attribution({

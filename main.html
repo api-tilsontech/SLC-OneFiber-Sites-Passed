@@ -40,12 +40,12 @@
             <li class="dropdown">
               <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-search white"></i> <span id="view">Search </span><b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li class="hidden-xs"><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="gisSites_list-btn"><i class="fa fa-search white"></i>&nbsp;&nbsp;Sites</a></li>
-                <li class="hidden-xs"><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="gisSegments_list-btn"><i class="fa fa-search white"></i>&nbsp;&nbsp;Segments</a></li>
-                <li class="hidden-xs"><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="gisRoutes_list-btn"><i class="fa fa-search white"></i>&nbsp;&nbsp;Routes</a></li>
-                <li class="hidden-xs"><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="gisStructures_list-btn"><i class="fa fa-search white"></i>&nbsp;&nbsp;Structures</a></li>
-                <li class="hidden-xs"><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="gisPoles_list-btn"><i class="fa fa-search white"></i>&nbsp;&nbsp;Poles</a></li>
-                <li class="hidden-xs"><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="gisSplices_list-btn"><i class="fa fa-search white"></i>&nbsp;&nbsp;Splices</a></li>
+                <li class="hidden-xs"><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="gisSites_list-btn"><i class="fa fa-search black"></i>Sites</a></li>
+                <li class="hidden-xs"><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="gisSegments_list-btn"><i class="fa fa-search black"></i>Segments</a></li>
+                <li class="hidden-xs"><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="gisRoutes_list-btn"><i class="fa fa-search black"></i>Routes</a></li>
+                <li class="hidden-xs"><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="gisStructures_list-btn"><i class="fa fa-search black"></i>Structures</a></li>
+                <li class="hidden-xs"><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="gisPoles_list-btn"><i class="fa fa-search black"></i>Poles</a></li>
+                <li class="hidden-xs"><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="gisSplices_list-btn"><i class="fa fa-search black"></i>Splices</a></li>
               </ul>
             </li>
             <li><a href="#" id="Refresh_BTN" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-refresh fa-white"></i>&nbsp;&nbsp;Refresh</a></li> 
@@ -61,7 +61,7 @@
       <div id="map"></div>
     </div>
 
-    <div id="gisSites_container">
+    <div id="gisSitesSearch">
       <div id="gisSites_sidebar">
         <div class="sidebar-wrapper">
           <div class="panel panel-default" id="gisSites_features">
@@ -99,13 +99,6 @@
         </div>
       </div>
     </div>
-    <div id="gisSites_loading">
-      <div class="loading-indicator">
-        <div class="progress progress-striped active">
-          <div class="progress-bar progress-bar-info progress-bar-full"></div>
-        </div>
-      </div>
-    </div>
 
     <div id="gisSitesSidebar">
       <h1 class="modal-title text-primary" id="gisSitesInfo_Title"></h1>
@@ -131,6 +124,7 @@
     
     <script src="scripts/base.js"></script>
     <script src="scripts/gisSites.js"></script>
+    <script src="scripts/sidebar.js"></script>
     <script src="scripts/layers.js"></script>
     <script src="scripts/control.js"></script>
   </body>

@@ -1,12 +1,18 @@
 // GIS SITES REST URL
 
 var gisSitesConfig = {
-  geojson: "https://gis.tilsontech.com/arcgis/rest/services/SiteTracker/SLC_OneFiber/MapServer/2/query?where=objectid+IS+NOT+NULL&outFields=*&f=geojson&token=" + gis_token,
+  geojson: "https://gis.tilsontech.com/arcgis/rest/services/SiteTracker/SLC_OneFiber/MapServer/2/query?where=objectid+IS+NOT+NULL&outFields=" + gisSitesFields + "&f=geojson&token=" + gis_token,
   layerName: "Sites",
   hoverProperty: "site_name"
 };
 
 
+
+// GIS SITES FIELDS
+
+var gisSitesFields = gisSitesProperties.map(function(props) {
+  return props.value;
+}).join("%2C");
 
 
 // GIS SITES PROPERTIES
@@ -236,7 +242,7 @@ var gisSitesLayer = L.geoJson(null, {
           }));
         }
       });
-      $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '"><td class="feature-name">' + layer.feature.properties.site_name + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+      $("#gisSites_feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '"><td class="feature-name">' + layer.feature.properties.site_name + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
     }
     if (feature.properties.removesite === "Yes") {
       layer.setIcon(
@@ -447,30 +453,30 @@ var gisSitesLayer = L.geoJson(null, {
 
 
 $(document).on("click", ".feature-row", function(e) {
-  sidebarClick(parseInt($(this).attr("id"), 10));
+  gisSitesSidebarClick(parseInt($(this).attr("id"), 10));
 });
 
 $("#gisSites_list-btn").click(function() {
-  $("#feature-list tbody").empty();
-  $('#sidebar').toggle();
+  $('#gisSites_sidebar').toggle();
+  $('#gisSegments_sidebar').hide();
   map.invalidateSize();
   return false;
 });
 
 
 $("#gisSites_sidebar-hide-btn").click(function() {
-  $('#sidebar').hide();
+  $('#gisSites_sidebar').hide();
   map.invalidateSize();
 });
 
 
-function sidebarClick(id) {
+function gisSitesSidebarClick(id) {
   var layer = gisSitesLayer.getLayer(id);
   map.setView([layer.getLatLng().lat, layer.getLatLng().lng], 16);
   layer.fire("click");
   /* Hide sidebar and go to the map on small screens */
   if (document.body.clientWidth <= 767) {
-    $("#sidebar").hide();
+    $("#gisSites_sidebar").hide();
     map.invalidateSize();
   }
 }

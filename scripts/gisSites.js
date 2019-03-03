@@ -544,7 +544,7 @@ function gisSitesBuildTable() {
     "searching": true, // Toggle search all columns field
     "stateSave": false, // If true, table will restore to user filtered state when page is reopened     
     "scrollCollapse": true, // If true, the table will be collapsed if the height of the records is < the scrollY option; prevents footer from floating
-    "columns": gisSitesTableColumns,
+    "columns": [gisSitesTableColumns],
     "language": {
       "emptyTable": "Loading..."
     }

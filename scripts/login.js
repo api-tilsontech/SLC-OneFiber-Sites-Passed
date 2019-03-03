@@ -16,7 +16,7 @@ function bindUIActions() {
 };
 
 function checkAuth() {
-  if (!sessionStorage.getItem("gis_token") || sessionStorage.getItem("gis_token") ===  "ERROR") {
+  if (!sessionStorage.getItem("st_token") || sessionStorage.getItem("st_token") ===  "ERROR") {
     $(document).ready(function() {
       $("#login-modal").modal("show");
     });

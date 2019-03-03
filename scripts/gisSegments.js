@@ -295,11 +295,15 @@ var gisSegmentsLayer = L.geoJson(null, {
     }
   },
   onEachFeature: function (feature, layer) {
-    if (feature.properties.fqn_id.indexOf("BUR") === 0) {
-      layer.bindTooltip(feature.properties.fqn_id + "-- Underground", {sticky: 'true', direction: 'top'});
-    } else if (feature.properties.fqn_id.indexOf("AER") === 0) {
-      layer.bindTooltip(feature.properties.fqn_id + "-- Aerial", {sticky: 'true', direction: 'top'});
-    };
+    if (feature.properties.fqn_id) {
+      if (feature.properties.fqn_id.indexOf("BUR") === 0) {
+        layer.bindTooltip(feature.properties.fqn_id + "-- Underground", {sticky: 'true', direction: 'top'});
+      } else if (feature.properties.fqn_id.indexOf("AER") === 0) {
+        layer.bindTooltip(feature.properties.fqn_id + "-- Aerial", {sticky: 'true', direction: 'top'});
+      };
+    } else {
+      layer.bindTooltip("NO FQNID -- Aerial", {sticky: 'true', direction: 'top'});
+    }
     
     if (feature.properties) {
       layer.on({

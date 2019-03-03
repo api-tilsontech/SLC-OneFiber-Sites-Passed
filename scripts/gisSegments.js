@@ -443,7 +443,7 @@ function gisSegmentsBuildTable() {
     columnDefs: [{
       targets: [11,12,13,14,15],
       render: $.fn.dataTable.render.moment('X', 'Do MMM YY')
-    }]
+    }],
     data: gisData,
     "autoWidth": true, // Feature control DataTables' smart column width handling
     "deferRender": false, // Feature control deferred rendering for additional speed of initialisation.

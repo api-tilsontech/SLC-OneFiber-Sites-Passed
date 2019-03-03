@@ -385,6 +385,9 @@ function gisSegmentsInfo(id) {
     if (key == "sitetracker_id") {
       sessionStorage.setItem("segmentSiteTrackerID", value);
     }
+    if (key == "fqn_id") {
+      sessionStorage.setItem("fqn_id", value);
+    }
     $.each(gisSegmentsProperties, function(index, property) {
       if (key == property.value) {
         if (value && property.filter.value == "date") {
@@ -415,8 +418,11 @@ function gisSegmentsHighlightInfo(id) {
     if (!value) {
       value = "";
     }
-    if (typeof value == "string" && value.includes('SLC_SEG')) {
-      sessionStorage.setItem("segmentID", value);
+    if (key == "sitetracker_id") {
+      sessionStorage.setItem("segmentSiteTrackerID", value);
+    }
+    if (key == "fqn_id") {
+      sessionStorage.setItem("fqn_id", value);
     }
     $.each(gisSegmentsProperties, function(index, property) {
       if (key == property.value) {
@@ -479,6 +485,8 @@ function gisSegmentsBuildTable() {
 
 $("#gisSegments_table-btn").click(function(){
   $("#gisSegmentsTable-container").show();
+  $("#gisSitesTable-container").hide();
+  $("#gisRoutesTable-container").hide();
   $("#map-container").hide();
   $(window).resize();
 });

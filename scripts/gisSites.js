@@ -469,6 +469,10 @@ function gisSitesInfo(id) {
     if (key == "sitetracker_id") {
       sessionStorage.setItem("siteSiteTrackerID", value);
     }
+    if (key == "site_name") {
+      sessionStorage.setItem("site_name", value);
+    }
+
     $.each(gisSitesProperties, function(index, property) {
       if (key == property.value) {
         if (property.info !== false) {
@@ -519,5 +523,7 @@ function gisSitesBuildTable() {
 $("#gisSites_table-btn").click(function(){
   $("#map-container").hide();
   $("#gisSitesTable-container").show();
+  $("#gisSegmentsTable-container").hide();
+  $("#gisRoutesTable-container").hide();
   $(window).resize();
 });

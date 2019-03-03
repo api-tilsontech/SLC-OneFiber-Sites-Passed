@@ -14,7 +14,9 @@ var gisSitesSidebar = L.control.sidebar("gisSitesSidebar", {
 $("#gisSitesTable-btn").click(function(){
   $("#map-container").hide();
   $("#gisSitesTable-container").show();
-  gisSitesDataTable.search(sessionStorage.getItem("siteSiteTrackerID")).draw();
+  $("#gisSegmentsTable-container").hide();
+  $("#gisRoutesTable-container").hide();
+  gisSitesDataTable.search(sessionStorage.getItem("site_name")).draw();
   $(window).resize();
 });
 
@@ -55,6 +57,17 @@ var gisSegmentsSidebar = L.control.sidebar("gisSegmentsSidebar", {
 }).addTo(map);
 
 
+$("#gisSegmentsTable-btn").click(function(){
+  $("#map-container").hide();
+  $("#gisSitesTable-container").hide();
+  $("#gisSegmentsTable-container").show();
+  $("#gisRoutesTable-container").hide();
+  gisSegmentsDataTable.search(sessionStorage.getItem("fqn_id")).draw();
+  $(window).resize();
+});
+
+
+
 // GIS SEGMENTS SEARCH SIDEBAR
 
 $("#gisSegments_list-btn").click(function(){
@@ -89,6 +102,16 @@ var gisRoutesSidebar = L.control.sidebar("gisRoutesSidebar", {
     closeButton: false,
     position: "right"
 }).addTo(map);
+
+
+$("#gisRoutesTable-btn").click(function(){
+  $("#map-container").hide();
+  $("#gisSitesTable-container").hide();
+  $("#gisSegmentsTable-container").hide();
+  $("#gisRoutesTable-container").show();
+  gisRoutesDataTable.search(sessionStorage.getItem("fqn_id")).draw();
+  $(window).resize();
+});
 
 
 // GIS ROUTES SEARCH SIDEBAR

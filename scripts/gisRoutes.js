@@ -368,7 +368,7 @@ function gisRoutesInfo(id) {
       sessionStorage.setItem("routeLat", value);
     }
     if (key == "fqn_id") {
-      sessionStorage.setItem("routeFQNID", value);
+      sessionStorage.setItem("fqn_id", value);
     }
     if (key == "fibercable_fqnid") {
       sessionStorage.setItem("routeSegmentFQNID1", value);
@@ -424,7 +424,7 @@ function gisRoutesHighlightInfo(id) {
       sessionStorage.setItem("routeLat", value);
     }
     if (key == "fqn_id") {
-      sessionStorage.setItem("routeFQNID", value);
+      sessionStorage.setItem("fqn_id", value);
     }
     if (key == "fibercable_fqnid") {
       sessionStorage.setItem("routeSegmentFQNID1", value);
@@ -497,6 +497,8 @@ function gisRoutesBuildTable() {
 
 $("#gisRoutes_table-btn").click(function(){
   $("#gisRoutesTable-container").show();
+  $("#gisSegmentsTable-container").hide();
+  $("#gisSitesTable-container").hide();
   $("#map-container").hide();
   $(window).resize();
 });

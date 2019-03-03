@@ -461,7 +461,7 @@ function gisSegmentsBuildTable() {
       $( api.table().footer() ).html(
         api.column( [7,8], {page:'current'} ).data().sum()
       );
-    }
+    },
     "autoWidth": true,
     "deferRender": false,
     "info": true,

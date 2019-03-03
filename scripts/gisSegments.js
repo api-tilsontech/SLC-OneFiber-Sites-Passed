@@ -377,6 +377,10 @@ function gisSegmentsInfo(id) {
     }
     $.each(gisSegmentsProperties, function(index, property) {
       if (key == property.value) {
+        if (value && property.filter.value == "date") {
+          date = new Date(value);
+          value = (date.getMonth() + 1) + "/" + date.getDate() + "/" + date.getFullYear();
+        }
         if (property.info !== false) {
           content += "<tr><th>" + property.label + "</th><td>" + value + "</td></tr>";
         }

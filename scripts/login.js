@@ -49,6 +49,7 @@ function gisLogin() {
       }
     },
     success: function (data) {
+      console.log(data)
       var body = JSON.parse(data);
 
       if (body.token) {
@@ -86,6 +87,7 @@ function stLogin() {
       }
     },
     success: function (data) {
+      console.log(data)
       if (data.access_token) {
         sessionStorage.setItem("st_token", data.access_token);
         checkAuth();

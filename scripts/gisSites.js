@@ -565,15 +565,7 @@ function gisSitesBuildTable() {
     showColumns: true,
     showToggle: true,
     data: gisSitesData.features,
-    columns: gisSitesTable,
-    onDblClickRow: function(row, $element) {
-      var layer = gisSitesLayer.getLayer(row.leaflet_stamp);
-      map.setView([layer.getLatLng().lat, layer.getLatLng().lng], 16);
-      highlightLayer.clearLayers();
-      highlightLayer.addData(gisSitesLayer.getLayer(row.leaflet_stamp).toGeoJSON());
-      $("#map-container").show();
-      $("#gisSitesTable-container").hide();
-    }
+    columns: gisSitesTable
   });
 
   $(window).resize(function () {

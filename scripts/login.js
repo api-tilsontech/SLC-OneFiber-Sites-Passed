@@ -3,7 +3,7 @@ bindUIActions();
 
 function bindUIActions() {
   $("#login-btn").click(function() {
-    login();
+    gisLogin();
   });
 
   $("#login-modal").on("shown.bs.modal", function (e) {
@@ -26,7 +26,7 @@ function checkAuth() {
   }
 };
 
-function login() {
+function gisLogin() {
   var email = $("#email").val();
   var password = $("#password").val();
 
@@ -53,7 +53,7 @@ function login() {
 
       if (body.token) {
         sessionStorage.setItem("gis_token", body.token);
-        checkAuth();
+        stLogin();
       } else {
         sessionStorage.setItem("gis_token", "ERROR");
         alert(body.error.details);
@@ -63,6 +63,43 @@ function login() {
     error: function (data) {
       checkAuth();
       alert("No GIS Token Returned")
+    }
+  });
+};
+
+
+function stLogin() {
+  $.ajax({
+    type: "POST",
+    url: "https://login.salesforce.com/services/oauth2/token",
+    contentType: "application/x-www-form-urlencoded",
+    data: {
+      "grant_type": "password",
+      "username": "api@tilsontech.com",
+      "password": "T1l$0n-@P1!NGbBJVDK7ITtonlc0hC0Zq6f",
+      "client_id": "3MVG9szVa2RxsqBZK_Iso6j7i51E9Emnc84NfMX6gbmBjacrCizqWKz9AQfHJaRJE2Gk.zkg.sCZZShIEuoWq",
+      "client_secret": "1975582391282376903"
+    },
+    statusCode: {
+      400: function() {
+        alert("Incorrect credentials, please try again.");
+      }
+    },
+    success: function (data) {
+      var body = JSON.parse(data);
+
+      if (body.access_token) {
+        sessionStorage.setItem("st_token", body.access_token);
+        checkAuth();
+      } else {
+        sessionStorage.setItem("st_token", "ERROR");
+        alert(body.error.details);
+        checkAuth();
+      }
+    },
+    error: function (data) {
+      checkAuth();
+      alert("No ST Token Returned")
     }
   });
 };

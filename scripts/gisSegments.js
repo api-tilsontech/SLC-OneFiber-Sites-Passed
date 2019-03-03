@@ -3,7 +3,7 @@
 var gisSegmentsProperties = [{
 
   value: "sitetracker_id",
-  label: "SiteTracker ID",
+  label: "STID",
   table: {
     visible: true
   },
@@ -17,22 +17,7 @@ var gisSegmentsProperties = [{
 },
 {
   value: "objectid",
-  label: "GIS_ID",
-  table: {
-    visible: true,
-    sortable: true
-  },
-  filter: {
-    type: "string",
-    vertical: true,
-    multiple: true,
-    operators: ["equal", "not_equal", "contains"],
-    values: []
-  }
-},
-{
-  value: "workorderid",
-  label: "WO_ID",
+  label: "GISID",
   table: {
     visible: true,
     sortable: true
@@ -61,8 +46,39 @@ var gisSegmentsProperties = [{
   }
 },
 {
+  value: "oofstatus",
+  label: "STATUS",
+  table: {
+    visible: true,
+    sortable: true
+  },
+  filter: {
+    type: "string",
+    input: "radio",
+    vertical: true,
+    multiple: true,
+    operators: ["equal", "not_equal"],
+    values: []
+  }
+},
+{
+  value: "workorderid",
+  label: "WOID",
+  table: {
+    visible: true,
+    sortable: true
+  },
+  filter: {
+    type: "string",
+    vertical: true,
+    multiple: true,
+    operators: ["equal", "not_equal", "contains"],
+    values: []
+  }
+},
+{
   value: "sitespannfid",
-  label: "Site NFID",
+  label: "NFID",
   table: {
     visible: true,
     sortable: true
@@ -77,7 +93,7 @@ var gisSegmentsProperties = [{
 },
 {
   value: "cabletype",
-  label: "Cable Type",
+  label: "TYPE",
   table: {
     visible: true,
     sortable: true
@@ -93,7 +109,7 @@ var gisSegmentsProperties = [{
 },
 {
   value: "fibercount",
-  label: "Strand Count",
+  label: "STRANDS",
   table: {
     visible: true,
     sortable: true
@@ -109,7 +125,7 @@ var gisSegmentsProperties = [{
 },
 {
   value: "calculatedlength",
-  label: "Engineered Footage",
+  label: "ENG FT",
   table: {
     visible: true,
     sortable: true
@@ -124,7 +140,7 @@ var gisSegmentsProperties = [{
 },
 {
   value: "real_length",
-  label: "Actual Footage",
+  label: "ACT FT",
   table: {
     visible: true,
     sortable: true
@@ -138,24 +154,8 @@ var gisSegmentsProperties = [{
   }
 },
 {
-  value: "oofstatus",
-  label: "Status",
-  table: {
-    visible: true,
-    sortable: true
-  },
-  filter: {
-    type: "string",
-    input: "radio",
-    vertical: true,
-    multiple: true,
-    operators: ["equal", "not_equal"],
-    values: []
-  }
-},
-{
   value: "oofdateindesign",
-  label: "In Design",
+  label: "IN DESIGN (A)",
   table: {
     visible: true,
     sortable: true
@@ -171,7 +171,7 @@ var gisSegmentsProperties = [{
 },
 {
   value: "oofdatepermitsubmitted",
-  label: "Permit Submitted",
+  label: "PERMIT SBMT (A)",
   table: {
     visible: true,
     sortable: true
@@ -187,7 +187,7 @@ var gisSegmentsProperties = [{
 },
 {
   value: "permit_received",
-  label: "Permit Received",
+  label: "PERMIT RCVD (A)",
   table: {
     visible: true,
     sortable: true
@@ -203,7 +203,7 @@ var gisSegmentsProperties = [{
 },
 {
   value: "oofdatecableplaced",
-  label: "Cable Placed",
+  label: "CABLE PLACED (A)",
   table: {
     visible: true,
     sortable: true
@@ -219,7 +219,7 @@ var gisSegmentsProperties = [{
 },
 {
   value: "oofdatesplicedandtested",
-  label: "Spliced/Tested",
+  label: "SPLICED/TESTED (A)",
   table: {
     visible: true,
     sortable: true

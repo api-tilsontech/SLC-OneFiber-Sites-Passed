@@ -2,7 +2,7 @@
 
 var gisSitesProperties = [{
   value: "sitetracker_id",
-  label: "SiteTracker ID",
+  label: "STID",
   table: {
     visible: true
   },
@@ -15,8 +15,53 @@ var gisSitesProperties = [{
   }
 },
 {
-  value: "type",
-  label: "Type",
+  value: "objectid",
+  label: "GISID",
+  table: {
+    visible: true,
+    sortable: true
+  },
+  filter: {
+    type: "string",
+    vertical: true,
+    multiple: true,
+    operators: ["equal", "not_equal", "contains"],
+    values: []
+  }
+},
+{
+  value: "nfid",
+  label: "NFID",
+  table: {
+    visible: true,
+    sortable: true
+  },
+  filter: {
+    type: "string",
+    vertical: true,
+    multiple: true,
+    operators: ["equal", "not_equal", "contains"],
+    values: []
+  }
+},
+{
+  value: "site_name",
+  label: "NAME",
+  table: {
+    visible: true,
+    sortable: true
+  },
+  filter: {
+    type: "string",
+    vertical: true,
+    multiple: true,
+    operators: ["equal", "not_equal", "contains"],
+    values: []
+  }
+},
+{
+  value: "clustername",
+  label: "HUB",
   table: {
     visible: true,
     sortable: true
@@ -32,7 +77,7 @@ var gisSitesProperties = [{
 },
 {
   value: "tower_type",
-  label: "Tower Type",
+  label: "TYPE",
   table: {
     visible: true,
     sortable: true
@@ -47,38 +92,8 @@ var gisSitesProperties = [{
   }
 },
 {
-  value: "carrier_sector_count",
-  label: "Sector Count",
-  table: {
-    visible: true,
-    sortable: true
-  },
-  filter: {
-    type: "string",
-    vertical: true,
-    multiple: true,
-    operators: ["equal", "not_equal"],
-    values: []
-  }
-},
-{
-  value: "city",
-  label: "City",
-  table: {
-    visible: true,
-    sortable: true
-  },
-  filter: {
-    type: "string",
-    vertical: true,
-    multiple: true,
-    operators: ["equal", "not_equal", "contains"],
-    values: []
-  }
-},
-{
   value: "spoke",
-  label: "Spoke",
+  label: "SPOKE",
   table: {
     visible: true,
     sortable: true
@@ -93,39 +108,8 @@ var gisSitesProperties = [{
   }
 },
 {
-  value: "clustername",
-  label: "Cluster Name",
-  table: {
-    visible: true,
-    sortable: true
-  },
-  filter: {
-    type: "string",
-    input: "radio",
-    vertical: true,
-    multiple: true,
-    operators: ["equal", "not_equal"],
-    values: []
-  }
-},
-{
-  value: "site_name",
-  label: "Site Name",
-  table: {
-    visible: true,
-    sortable: true
-  },
-  filter: {
-    type: "string",
-    vertical: true,
-    multiple: true,
-    operators: ["equal", "not_equal", "contains"],
-    values: []
-  }
-},
-{
-  value: "nfid",
-  label: "Site NFID",
+  value: "city",
+  label: "CITY",
   table: {
     visible: true,
     sortable: true

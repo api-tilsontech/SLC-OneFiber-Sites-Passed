@@ -3,7 +3,7 @@
 var gisRoutesProperties = [{
 
   value: "sitetracker_id",
-  label: "ST_ID",
+  label: "STID",
   table: {
     visible: true
   },
@@ -17,7 +17,7 @@ var gisRoutesProperties = [{
 },
 {
   value: "objectid",
-  label: "GIS_ID",
+  label: "GISID",
   table: {
     visible: true
   },
@@ -30,10 +30,26 @@ var gisRoutesProperties = [{
   }
 },
 {
-  value: "constructiontype",
-  label: "Type",
+  value: "fqn_id",
+  label: "FQNID",
   table: {
-    visible: true
+    visible: false,
+    sortable: false
+  },
+  filter: {
+    type: "string",
+    vertical: true,
+    multiple: true,
+    operators: ["equal", "not_equal", "contains"],
+    values: []
+  }
+},
+{
+  value: "oofstatus",
+  label: "STATUS",
+  table: {
+    visible: true,
+    sortable: true
   },
   filter: {
     type: "string",
@@ -45,22 +61,8 @@ var gisRoutesProperties = [{
   }
 },
 {
-  value: "calculatedlength",
-  label: "ENG_FT",
-  table: {
-    visible: true
-  },
-  filter: {
-    type: "integer",
-    vertical: true,
-    multiple: true,
-    operators: ["between"],
-    values: []
-  }
-},
-{
   value: "workorderid",
-  label: "WO_ID",
+  label: "WOID",
   table: {
     visible: false,
     sortable: true
@@ -89,23 +91,52 @@ var gisRoutesProperties = [{
   }
 },
 {
-  value: "fqn_id",
-  label: "ROU_ID",
+  value: "constructiontype",
+  label: "TYPE",
   table: {
-    visible: false,
-    sortable: false
+    visible: true
   },
   filter: {
     type: "string",
+    input: "radio",
     vertical: true,
     multiple: true,
-    operators: ["equal", "not_equal", "contains"],
+    operators: ["equal", "not_equal"],
+    values: []
+  }
+},
+{
+  value: "calculatedlength",
+  label: "ENG FT",
+  table: {
+    visible: true
+  },
+  filter: {
+    type: "integer",
+    vertical: true,
+    multiple: true,
+    operators: ["between"],
+    values: []
+  }
+},
+{
+  value: "cableplacedfootage",
+  label: "ACT FT",
+  table: {
+    visible: true,
+    sortable: true
+  },
+  filter: {
+    type: "integer",
+    vertical: false,
+    multiple: true,
+    operators: ["between"],
     values: []
   }
 },
 {
   value: "fibercable_fqnid",
-  label: "SEG_ID_1",
+  label: "SEG ID 1",
   table: {
     visible: true,
     sortable: true
@@ -120,7 +151,7 @@ var gisRoutesProperties = [{
 },
 {
   value: "cable_fqnid_2",
-  label: "SEG_ID_2",
+  label: "SEG ID 2",
   table: {
     visible: true,
     sortable: true
@@ -135,7 +166,7 @@ var gisRoutesProperties = [{
 },
 {
   value: "cable_fqnid_3",
-  label: "SEG_ID_3",
+  label: "SEG ID 3",
   table: {
     visible: true,
     sortable: true
@@ -150,7 +181,7 @@ var gisRoutesProperties = [{
 },
 {
   value: "cable_fqnid_4",
-  label: "SEG_ID_4",
+  label: "SEG ID 4",
   table: {
     visible: true,
     sortable: true
@@ -160,37 +191,6 @@ var gisRoutesProperties = [{
     vertical: true,
     multiple: true,
     operators: ["equal", "not_equal", "contains"],
-    values: []
-  }
-},
-{
-  value: "cableplacedfootage",
-  label: "ACT_FT",
-  table: {
-    visible: true,
-    sortable: true
-  },
-  filter: {
-    type: "integer",
-    vertical: false,
-    multiple: true,
-    operators: ["between"],
-    values: []
-  }
-},
-{
-  value: "oofstatus",
-  label: "Status",
-  table: {
-    visible: true,
-    sortable: true
-  },
-  filter: {
-    type: "string",
-    input: "radio",
-    vertical: true,
-    multiple: true,
-    operators: ["equal", "not_equal"],
     values: []
   }
 }];

@@ -304,6 +304,7 @@ var gisSegmentsLayer = L.geoJson(null, {
     if (feature.properties) {
       layer.on({
         click: function (e) {
+          $("#gisSegmentsInfo_Title").html(feature.properties.fqn_id);
           gisSegmentsInfo(L.stamp(layer));
         },
         mouseover: function (e) {

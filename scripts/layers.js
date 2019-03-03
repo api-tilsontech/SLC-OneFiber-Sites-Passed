@@ -51,6 +51,7 @@ var highlightLayer = L.geoJson(null, {
           gisSplicesSidebar.hide();
           fulcrumRoutesSidebar.hide();
         } else if (feature.properties.sitetracker_id.toLowerCase().indexOf("slc_seg") === 0) {
+          $("#gisSegmentsInfo_Title").html(feature.properties.fqn_id);
           gisSegmentsHighlightInfo(L.stamp(layer));
           gisSitesSidebar.hide();
           gisSegmentsSidebar.show();

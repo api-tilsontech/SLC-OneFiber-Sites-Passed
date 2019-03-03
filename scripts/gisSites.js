@@ -517,7 +517,7 @@ function gisSitesBuildTable() {
   });
   */
 
-  var table = new Tabulator("#gisSitesTable", {
+  var table = ("#gisSitesTable").tabulator({
     data: gisSitesData.features,
     columns: gisSitesTable
   });

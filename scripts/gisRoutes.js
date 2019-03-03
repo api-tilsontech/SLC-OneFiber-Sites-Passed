@@ -222,11 +222,6 @@ function gisRoutesBuildConfig() {
       gisRoutesTable.push({
         data: "properties." + value.value,
         title: value.label,
-        render: function (value) {
-          var date = new Date(data);
-          var month = date.getMonth() + 1;
-          return (month.length > 1 ? month : "0" + month) + "/" + date.getDate() + "/" + date.getFullYear();
-        }
       });
       $.each(value.table, function(key, val) {
         if (gisRoutesTable[index+1]) {

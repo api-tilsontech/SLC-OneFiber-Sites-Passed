@@ -440,14 +440,11 @@ function gisSegmentsBuildTable() {
         'copy', 'csv', 'excel', 'pdf', 'print'
     ],
     colReorder: true,
+    columnDefs: [{
+      targets: [11,12,13,14,15],
+      render: $.fn.dataTable.render.moment('X', 'Do MMM YY')
+    }]
     data: gisData,
-    "render": function (gisData) {
-      if (gisData.properties.oofdatecableplaced !== "" || gisData.properties.oofdateindesign !== "" || gisData.properties.oofdatepermitsubmitted !== "" || gisData.properties.oofdatesplicedandtested !== "" || gisData.properties.permit_received !== "") {
-        var date = new Date(gisData);
-        var month = date.getMonth() + 1;
-        return (month.length > 1 ? month : "0" + month) + "/" + date.getDate() + "/" + date.getFullYear();
-      }
-    },
     "autoWidth": true, // Feature control DataTables' smart column width handling
     "deferRender": false, // Feature control deferred rendering for additional speed of initialisation.
     "info": true, // Display info about table including filtering

@@ -170,7 +170,7 @@ function gisSitesBuildConfig() {
     gisSitesTableData += '<tr>';
   });
   */
-  table = [{
+  gisSitesTable = [{
     field: "action",
     title: "<i class='fa fa-gear'></i>&nbsp;Action",
     align: "center",
@@ -197,13 +197,18 @@ function gisSitesBuildConfig() {
     }
   }];
 
-  $.each(gisSitesData.features, function(key, val) {
-    $.each(val.properties, function(i,j) {
-      table.push({
-        title: i,
-        field: j
+  $.each(gisSitesProperties, function(index, value) {
+    if (value.table) {
+      gisSitesTable.push({
+        field: value.value,
+        title: value.label
       });
-    });
+      $.each(value.table, function(key, val) {
+        if (table[index+1]) {
+          table[index+1][key] = val;
+        }
+      });
+    }
   });
 
   gisSitesBuildTable()
@@ -519,18 +524,12 @@ function gisSitesInfo(id) {
 
 
 function gisSitesBuildTable() {
-
-  var columns = [];
-  data = gisSitesData.features;
-  columnNames = Object.keys(data.properties);
-  for (var i in columnNames) {
-    columns.push({data: columnNames[i], title: columnNames[i]});
-  }
+  /*
 
   var table = $('#gisSitesTable').DataTable({ // Change table element ID here
     dom: 'Bfrtip', // Add this to enable export buttons
     buttons: [ // Add this to choose which buttons to display
-        'Copy', 'CSV', 'Excel', 'PDF', 'Print'
+        'copy', 'csv', 'excel', 'pdf', 'print'
     ],
     data: gisSitesData.features,
     "autoWidth": false, // Feature control DataTables' smart column width handling
@@ -545,10 +544,41 @@ function gisSitesBuildTable() {
     "searching": true, // Toggle search all columns field
     "stateSave": false, // If true, table will restore to user filtered state when page is reopened     
     "scrollCollapse": true, // If true, the table will be collapsed if the height of the records is < the scrollY option; prevents footer from floating
-    "columns": columns,
+    "columns": [ // Location within the JSON of each column to pipe into the HTML table, in order of columns. For AGOL items, fields stored within attributes array of JSON.
+      { data: "properties.nfid" },
+
+    ],
     "language": {
       "emptyTable": "Loading..."
     }
+  });
+  */
+
+  $("#gisSitesTable").bootstrapTable({
+    cache: false,
+    height: $("#gisSitesTable-container").height(),
+    undefinedText: "",
+    striped: false,
+    minimumCountColumns: 1,
+    search: true,
+    trimOnSearch: true,
+    showColumns: true,
+    showToggle: true,
+    columns: table,
+    onDblClickRow: function(row, $element) {
+      var layer = gisSitesLayer.getLayer(row.leaflet_stamp);
+      map.setView([layer.getLatLng().lat, layer.getLatLng().lng], 16);
+      highlightLayer.clearLayers();
+      highlightLayer.addData(gisSitesLayer.getLayer(row.leaflet_stamp).toGeoJSON());
+      $("#map-container").show();
+      $("#gisSitesTable-container").hide();
+    }
+  });
+
+  $(window).resize(function () {
+    $("#gisSitesTable").bootstrapTable("resetView", {
+      height: $("#gisSitesTable-container").height()
+    });
   });
 }
 

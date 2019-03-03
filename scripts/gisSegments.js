@@ -281,13 +281,13 @@ function gisSegmentsBuildConfig() {
 var gisSegmentsLayer = L.geoJson(null, {
   style: function (feature, layer) {
     if (feature.properties.fqn_id) {
-      if (feature.properties.fqn_id.indexOf("BUR") === 0) {
+      if (feature.properties.fqn_id.toLowerCase().indexOf("fib:bur") === 0) {
         return {
           color: "#0066ff",
           weight: 4,
           opacity: 1
         };
-      } else if (feature.properties.fqn_id.indexOf("AER") === 0) {
+      } else if (feature.properties.fqn_id.toLowerCase().indexOf("fib:aer") === 0) {
         return {
           color: "#ff3300",
           weight: 4,
@@ -304,9 +304,9 @@ var gisSegmentsLayer = L.geoJson(null, {
   },
   onEachFeature: function (feature, layer) {
     if (feature.properties.fqn_id) {
-      if (feature.properties.fqn_id.indexOf("BUR") === 0) {
+      if (feature.properties.fqn_id.toLowerCase().indexOf("fib:bur") === 0) {
         layer.bindTooltip(feature.properties.fqn_id + "-- Underground", {sticky: 'true', direction: 'top'});
-      } else if (feature.properties.fqn_id.indexOf("AER") === 0) {
+      } else if (feature.properties.fqn_id.toLowerCase().indexOf("fib:aer") === 0) {
         layer.bindTooltip(feature.properties.fqn_id + "-- Aerial", {sticky: 'true', direction: 'top'});
       };
     } else {

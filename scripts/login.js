@@ -49,7 +49,6 @@ function gisLogin() {
       }
     },
     success: function (data) {
-      console.log(data)
       var body = JSON.parse(data);
 
       if (body.token) {
@@ -72,6 +71,8 @@ function gisLogin() {
 function stLogin() {
   $.ajax({
     type: "POST",
+    async: true,
+    crossDomain: true,
     url: "https://login.salesforce.com/services/oauth2/token",
     contentType: "application/x-www-form-urlencoded",
     data: {
@@ -87,13 +88,14 @@ function stLogin() {
       }
     },
     success: function (data) {
-      console.log(data)
-      if (data.access_token) {
-        sessionStorage.setItem("st_token", data.access_token);
+      var body = JSON.parse(data);
+
+      if (body.access_token) {
+        sessionStorage.setItem("st_token", body.access_token);
         checkAuth();
       } else {
         sessionStorage.setItem("st_token", "ERROR");
-        alert(data.error.details);
+        alert(body.error.details);
         checkAuth();
       }
     },

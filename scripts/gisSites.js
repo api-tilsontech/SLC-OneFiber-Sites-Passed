@@ -524,7 +524,7 @@ function gisSitesBuildTable() {
     return elem.value;
   }).join(",")).split(",");
 
-  var gisSitesTableColumns = array.map(function(e) {return '{title: "' + e + '", data: "properties.' + e + '"},'});
+  var gisSitesTableColumns = array.map(function(e) {return '{data: "properties.' + e + '"},'});
 
   var table = $('#gisSitesTable').DataTable({ // Change table element ID here
     dom: 'Bfrtip', // Add this to enable export buttons
@@ -544,7 +544,7 @@ function gisSitesBuildTable() {
     "searching": true, // Toggle search all columns field
     "stateSave": false, // If true, table will restore to user filtered state when page is reopened     
     "scrollCollapse": true, // If true, the table will be collapsed if the height of the records is < the scrollY option; prevents footer from floating
-    "columns": gisSitesTableColumns, 
+    "columns": gisSitesTableColumns,
     "language": {
       "emptyTable": "Loading..."
     }

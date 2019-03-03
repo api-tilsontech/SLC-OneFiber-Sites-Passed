@@ -3,7 +3,7 @@ bindUIActions();
 
 function bindUIActions() {
   $("#login-btn").click(function() {
-    gisLogin();
+    login();
   });
 
   $("#login-modal").on("shown.bs.modal", function (e) {
@@ -16,7 +16,7 @@ function bindUIActions() {
 };
 
 function checkAuth() {
-  if (!sessionStorage.getItem("st_token") || sessionStorage.getItem("st_token") ===  "ERROR") {
+  if (!sessionStorage.getItem("gis_token") || sessionStorage.getItem("gis_token") ===  "ERROR") {
     $(document).ready(function() {
       $("#login-modal").modal("show");
     });
@@ -26,7 +26,7 @@ function checkAuth() {
   }
 };
 
-function gisLogin() {
+function login() {
   var email = $("#email").val();
   var password = $("#password").val();
 
@@ -53,7 +53,7 @@ function gisLogin() {
 
       if (body.token) {
         sessionStorage.setItem("gis_token", body.token);
-        stLogin();
+        checkAuth();
       } else {
         sessionStorage.setItem("gis_token", "ERROR");
         alert(body.error.details);
@@ -63,43 +63,6 @@ function gisLogin() {
     error: function (data) {
       checkAuth();
       alert("No GIS Token Returned")
-      console.log(data)
-    }
-  });
-};
-
-
-function stLogin() {
-  $.ajax({
-    type: "POST",
-    url: "https://sitetraker-tilson.my.salesforce.com/services/oauth2/token",
-    contentType: "application/x-www-form-urlencoded",
-    data: {
-      "grant_type": "password",
-      "username": "api@tilsontech.com",
-      "password": "T1l$0n-@P1!NGbBJVDK7ITtonlc0hC0Zq6f",
-      "client_id": "3MVG9szVa2RxsqBZK_Iso6j7i51E9Emnc84NfMX6gbmBjacrCizqWKz9AQfHJaRJE2Gk.zkg.sCZZShIEuoWq",
-      "client_secret": "1975582391282376903"
-    },
-    statusCode: {
-      400: function() {
-        alert("Incorrect credentials, please try again.");
-      }
-    },
-    success: function (data) {
-      if (data.access_token) {
-        sessionStorage.setItem("st_token", data.access_token);
-        checkAuth();
-      } else {
-        sessionStorage.setItem("st_token", "ERROR");
-        alert(data.error.details);
-        checkAuth();
-      }
-    },
-    error: function (data) {
-      checkAuth();
-      alert("No ST Token Returned")
-      console.log(data)
     }
   });
 };

@@ -42,6 +42,7 @@ var highlightLayer = L.geoJson(null, {
     layer.on({
       click: function (e) {
         if (feature.properties.sitetracker_id.toLowerCase().indexOf("slc_rou") === 0) {
+          $("#gisRoutesInfo_Title").html(feature.properties.fqn_id);
           gisRoutesHighlightInfo(L.stamp(layer));
           gisSitesSidebar.hide();
           gisSegmentsSidebar.hide();
@@ -180,5 +181,4 @@ $("#map-only").click(function(){
   gisSegmentsDataTable.search("").draw();
   gisRoutesDataTable.search("").draw();
   $(window).resize();
-  map.flyToBounds(gisSitesLayer.getBounds());
 });

@@ -494,7 +494,7 @@ function gisSitesBuildTable() {
   var table = $('#gisSitesTable').DataTable({ // Change table element ID here
     dom: 'Bfrtip', // Add this to enable export buttons
     buttons: [ // Add this to choose which buttons to display
-        'Copy', 'CSV', 'Excel', 'PDF', 'Print'
+        'copy', 'csv', 'excel', 'pdf', 'print'
     ],
     data: gisSitesData.features,
     "autoWidth": false, // Feature control DataTables' smart column width handling

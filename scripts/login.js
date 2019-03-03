@@ -86,14 +86,12 @@ function stLogin() {
       }
     },
     success: function (data) {
-      var body = JSON.parse(data);
-
-      if (body.access_token) {
-        sessionStorage.setItem("st_token", body.access_token);
+      if (data.access_token) {
+        sessionStorage.setItem("st_token", data.access_token);
         checkAuth();
       } else {
         sessionStorage.setItem("st_token", "ERROR");
-        alert(body.error.details);
+        alert(data.error.details);
         checkAuth();
       }
     },

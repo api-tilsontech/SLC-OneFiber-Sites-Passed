@@ -471,19 +471,14 @@ $("#gisRoutesClose-sidebarBTN").click(function(){
 // GIS SEGMENTS TABLE
 
 function gisRoutesBuildTable() {
-
+  var gisData = gisRoutesData.features
   var table = $('#gisRoutesTable').DataTable({ // Change table element ID here
     dom: 'Bfrtip', // Add this to enable export buttons
     buttons: [ // Add this to choose which buttons to display
         'copy', 'csv', 'excel', 'pdf', 'print'
     ],
     colReorder: true,
-    data: gisRoutesData.features,
-    "render": function (data) {
-        var date = new Date(data);
-        var month = date.getMonth() + 1;
-        return (month.length > 1 ? month : "0" + month) + "/" + date.getDate() + "/" + date.getFullYear();
-    },
+    data: gisData,
     "autoWidth": true, // Feature control DataTables' smart column width handling
     "deferRender": false, // Feature control deferred rendering for additional speed of initialisation.
     "info": true, // Display info about table including filtering

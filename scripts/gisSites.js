@@ -170,43 +170,13 @@ function gisSitesBuildConfig() {
     gisSitesTableData += '<tr>';
   });
   */
-  gisSitesTable = [{
-    field: "action",
-    title: "<i class='fa fa-gear'></i>&nbsp;Action",
-    align: "center",
-    valign: "middle",
-    width: "75px",
-    cardVisible: false,
-    switchable: false,
-    formatter: function(value, row, index) {
-      return [
-        '<a class="zoom" href="javascript:void(0)" title="Zoom" style="margin-right: 10px;">',
-          '<i class="fa fa-search-plus"></i>',
-        '</a>',
-        '<a class="identify" href="javascript:void(0)" title="Identify" style="margin-right: 10px;">',
-          '<i class="fa fa-info-circle"></i>',
-        '</a>'
-      ].join("");
-    },
-    events: {
-      "click .zoom": function (e, value, row, index) {
-        map.fitBounds(gisSitesLayer.getLayer(row.leaflet_stamp).getBounds());
-        highlightLayer.clearLayers();
-        highlightLayer.addData(gisSitesLayer.getLayer(row.leaflet_stamp).toGeoJSON());
-      }
-    }
-  }];
+  gisSitesTable = [];
 
   $.each(gisSitesProperties, function(index, value) {
     if (value.table) {
       gisSitesTable.push({
-        field: value.value,
-        title: value.label
-      });
-      $.each(value.table, function(key, val) {
-        if (gisSitesTable[index+1]) {
-          gisSitesTable[index+1][key] = val;
-        }
+        data: "properties." + value.value,
+        name: value.label
       });
     }
   });
@@ -524,7 +494,6 @@ function gisSitesInfo(id) {
 
 
 function gisSitesBuildTable() {
-  /*
 
   var table = $('#gisSitesTable').DataTable({ // Change table element ID here
     dom: 'Bfrtip', // Add this to enable export buttons
@@ -544,41 +513,10 @@ function gisSitesBuildTable() {
     "searching": true, // Toggle search all columns field
     "stateSave": false, // If true, table will restore to user filtered state when page is reopened     
     "scrollCollapse": true, // If true, the table will be collapsed if the height of the records is < the scrollY option; prevents footer from floating
-    "columns": [ // Location within the JSON of each column to pipe into the HTML table, in order of columns. For AGOL items, fields stored within attributes array of JSON.
-      { data: "properties.nfid" },
-
-    ],
+    "columns": gisSitesTable,
     "language": {
       "emptyTable": "Loading..."
     }
-  });
-  */
-
-  $("#gisSitesTable").bootstrapTable({
-    cache: false,
-    height: $("#gisSitesTable-container").height(),
-    undefinedText: "",
-    striped: false,
-    minimumCountColumns: 1,
-    search: true,
-    trimOnSearch: true,
-    showColumns: true,
-    showToggle: true,
-    columns: gisSitesTable,
-    onDblClickRow: function(row, $element) {
-      var layer = gisSitesLayer.getLayer(row.leaflet_stamp);
-      map.setView([layer.getLatLng().lat, layer.getLatLng().lng], 16);
-      highlightLayer.clearLayers();
-      highlightLayer.addData(gisSitesLayer.getLayer(row.leaflet_stamp).toGeoJSON());
-      $("#map-container").show();
-      $("#gisSitesTable-container").hide();
-    }
-  });
-
-  $(window).resize(function () {
-    $("#gisSitesTable").bootstrapTable("resetView", {
-      height: $("#gisSitesTable-container").height()
-    });
   });
 }
 

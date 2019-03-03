@@ -524,7 +524,7 @@ function gisSitesBuildTable() {
     return elem.value;
   }).join(",")).split(",");
 
-  var gisSitesTableColumns = array.map(function(e) {return '{title: "' + e + '", data: "properties.' + e + '"},'});
+  var gisSitesTableColumns = array.map(function(e) {return '{data: "properties.' + e + '"},'});
 
   var table = $('#gisSitesTable').DataTable({ // Change table element ID here
     dom: 'Bfrtip', // Add this to enable export buttons

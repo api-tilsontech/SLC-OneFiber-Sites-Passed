@@ -119,9 +119,11 @@ map.on('dblclick', function(event){
     map.clicked = 0;
     highlightLayer.clearLayers();
     gisSitesSidebar.hide();
-    gisSegmentsSidebar.hide();
     gisSitesSearch.hide();
+    gisSegmentsSidebar.hide();
     gisSegmentsSearch.hide();
+    gisRoutesSidebar.hide();
+    gisRoutesSearch.hide();
 });
 
 

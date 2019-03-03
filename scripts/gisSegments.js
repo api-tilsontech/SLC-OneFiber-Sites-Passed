@@ -445,9 +445,9 @@ $("#gisSegmentsClose-sidebarBTN").click(function(){
 
 function gisSegmentsBuildTable() {
   var gisData = gisSegmentsData.features
-  var table = $('#gisSegmentsTable').DataTable({ // Change table element ID here
-    dom: 'Bfrtip', // Add this to enable export buttons
-    buttons: [ // Add this to choose which buttons to display
+  var table = $('#gisSegmentsTable').DataTable({
+    dom: 'Bfrtip',
+    buttons: [
         'copy', 'csv', 'excel', 'pdf', 'print'
     ],
     colReorder: true,
@@ -456,18 +456,24 @@ function gisSegmentsBuildTable() {
       render: $.fn.dataTable.render.moment('x', 'MM/DD/YYYY')
     }],
     data: gisData,
-    "autoWidth": true, // Feature control DataTables' smart column width handling
-    "deferRender": false, // Feature control deferred rendering for additional speed of initialisation.
-    "info": true, // Display info about table including filtering
-    "lengthChange": false, // If pagination is enabled, allow the page length to be changed by user
-    "ordering": true, // Toggle user ordering of table columns
-    "paging": false, // Toggle table paging
-    "processing": true, // Toggle "processing" indicator useful when loading large table/filter
-    "scrollX": true, // Left/right scrolling option, in pixels or false to disable
-    "scrollY": "500px", // Table height in pixels before up/down scrolling, or false to disable scrolling
-    "searching": true, // Toggle search all columns field
-    "stateSave": true, // If true, table will restore to user filtered state when page is reopened     
-    "scrollCollapse": true, // If true, the table will be collapsed if the height of the records is < the scrollY option; prevents footer from floating
+    drawCallback: function () {
+      var api = this.api();
+      $( api.table().footer() ).html(
+        api.column( [7,8], {page:'current'} ).data().sum()
+      );
+    }
+    "autoWidth": true,
+    "deferRender": false,
+    "info": true,
+    "lengthChange": false,
+    "ordering": true,
+    "paging": false,
+    "processing": true,
+    "scrollX": true,
+    "scrollY": "500px",
+    "searching": true,
+    "stateSave": true,    
+    "scrollCollapse": true,
     "columns": gisSegmentsTable,
     "language": {
       "emptyTable": "Loading..."

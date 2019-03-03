@@ -201,6 +201,7 @@ var gisSitesLayer = L.geoJson(null, {
       content += "<table>";
       layer.on({
         click: function (e) {
+          gisSegmentsSidebar.hide();
           $("#gisSitesInfo_Title").html(feature.properties.nfid);
           gisSitesInfo(L.stamp(layer));
           activeRecord = feature.properties.site_name;

@@ -564,7 +564,7 @@ function gisSitesBuildTable() {
     trimOnSearch: true,
     showColumns: true,
     showToggle: true,
-    columns: table,
+    columns: gisSitesTable,
     onDblClickRow: function(row, $element) {
       var layer = gisSitesLayer.getLayer(row.leaflet_stamp);
       map.setView([layer.getLatLng().lat, layer.getLatLng().lng], 16);

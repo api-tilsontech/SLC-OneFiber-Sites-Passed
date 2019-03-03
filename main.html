@@ -57,7 +57,7 @@
                 <li class="hidden-xs"><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="gisRoutes_list-btn"><i class="fa fa-search black"></i>  Routes</a></li>
                 <li class="hidden-xs"><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="gisStructures_list-btn"><i class="fa fa-search black"></i>  Structures</a></li>
                 <li class="hidden-xs"><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="gisPoles_list-btn"><i class="fa fa-search black"></i>  Poles</a></li>
-                <li class="hidden-xs"><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="gisSplices_list-btn"><i class="fa fa-search black"></i>  Splices</a></li>
+                <li class="hidden-xs"><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="gisSplices_list-btn"><i class="fa fa-search black"></i> Splices</a></li>
               </ul>
             </li>
             <li><a href="#" id="Refresh_BTN" data-toggle="collapse" data-target=".navbar-collapse.in"><i class="fa fa-refresh fa-white"></i>&nbsp;&nbsp;Refresh</a></li> 
@@ -172,15 +172,7 @@
     </div>
 
     <div id="gisSitesTable-container"> 
-      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <i class="fa fa-cloud-download"></i> Export <span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu">
-        <li><a href="#" id="gisSitesTable-download-csv-btn"><i class="fa fa-file-text-o"></i> CSV</a></li>
-        <li><a href="#" id="gisSitesTable-download-excel-btn"><i class="fa fa-file-excel-o"></i> Excel</a></li>
-        <li><a href="#" id="gisSitesTable-download-pdf-btn"><i class="fa fa-file-pdf-o"></i> PDF</a></li>
-      </ul>
-      <table id="gisSitesTable" data-total-field="count" data-data-field="items">></table>
+      <table id="gisSitesTable"></table>
     </div>
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>

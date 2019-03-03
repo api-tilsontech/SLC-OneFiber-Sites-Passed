@@ -445,7 +445,7 @@ $("#gisSegmentsClose-sidebarBTN").click(function(){
 
 function gisSegmentsBuildTable() {
   var gisData = gisSegmentsData.features
-  var gisSegmentsDataTable = $('#gisSegmentsTable').DataTable({
+    gisSegmentsDataTable = $('#gisSegmentsTable').DataTable({
     dom: 'Bfrtip',
     buttons: [
         'copy', 'csv', 'excel', 'pdf', 'print'

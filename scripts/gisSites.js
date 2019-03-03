@@ -170,8 +170,8 @@ function gisSitesBuildConfig() {
         title: value.label
       });
       $.each(value.table, function(key, val) {
-        if (table[index+1]) {
-          table[index+1][key] = val;
+        if (gisSitesTable[index+1]) {
+          gisSitesTable[index+1][key] = val;
         }
       });
     }

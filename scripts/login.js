@@ -63,6 +63,7 @@ function gisLogin() {
     error: function (data) {
       checkAuth();
       alert("No GIS Token Returned")
+      console.log(data)
     }
   });
 };
@@ -71,8 +72,6 @@ function gisLogin() {
 function stLogin() {
   $.ajax({
     type: "POST",
-    async: true,
-    crossDomain: true,
     url: "https://login.salesforce.com/services/oauth2/token",
     contentType: "application/x-www-form-urlencoded",
     data: {
@@ -88,20 +87,19 @@ function stLogin() {
       }
     },
     success: function (data) {
-      var body = JSON.parse(data);
-
-      if (body.access_token) {
-        sessionStorage.setItem("st_token", body.access_token);
+      if (data.access_token) {
+        sessionStorage.setItem("st_token", data.access_token);
         checkAuth();
       } else {
         sessionStorage.setItem("st_token", "ERROR");
-        alert(body.error.details);
+        alert(data.error.details);
         checkAuth();
       }
     },
     error: function (data) {
       checkAuth();
       alert("No ST Token Returned")
+      console.log(data)
     }
   });
 };

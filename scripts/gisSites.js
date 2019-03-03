@@ -166,7 +166,7 @@ function gisSitesBuildConfig() {
   $.each(gisSitesProperties, function(index, value) {
     if (value.table) {
       gisSitesTable.push({
-        data: "properties." + value.value,
+        field: "properties." + value.value,
         title: value.label
       });
       $.each(value.table, function(key, val) {
@@ -491,6 +491,7 @@ function gisSitesInfo(id) {
 
 function gisSitesBuildTable() {
 
+  /*
   var table = $('#gisSitesTable').DataTable({ // Change table element ID here
     dom: 'Bfrtip', // Add this to enable export buttons
     buttons: [ // Add this to choose which buttons to display
@@ -513,6 +514,12 @@ function gisSitesBuildTable() {
     "language": {
       "emptyTable": "Loading..."
     }
+  });
+  */
+
+  var table = new Tabulator("#gisSitesTable", {
+    data: gisSitesData.features,
+    columns: gisSitesTable
   });
 }
 

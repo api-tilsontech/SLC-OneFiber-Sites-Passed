@@ -521,38 +521,7 @@ function gisSitesInfo(id) {
 
 // GIS SITES TABLE
 
-
-
 function gisSitesBuildTable() {
-  /*
-
-  var table = $('#gisSitesTable').DataTable({ // Change table element ID here
-    dom: 'Bfrtip', // Add this to enable export buttons
-    buttons: [ // Add this to choose which buttons to display
-        'copy', 'csv', 'excel', 'pdf', 'print'
-    ],
-    data: gisSitesData.features,
-    "autoWidth": false, // Feature control DataTables' smart column width handling
-    "deferRender": true, // Feature control deferred rendering for additional speed of initialisation.
-    "info": true, // Display info about table including filtering
-    "lengthChange": false, // If pagination is enabled, allow the page length to be changed by user
-    "ordering": true, // Toggle user ordering of table columns
-    "paging": false, // Toggle table paging
-    "processing": true, // Toggle "processing" indicator useful when loading large table/filter
-    "scrollX": false, // Left/right scrolling option, in pixels or false to disable
-    "scrollY": "400px", // Table height in pixels before up/down scrolling, or false to disable scrolling
-    "searching": true, // Toggle search all columns field
-    "stateSave": false, // If true, table will restore to user filtered state when page is reopened     
-    "scrollCollapse": true, // If true, the table will be collapsed if the height of the records is < the scrollY option; prevents footer from floating
-    "columns": [ // Location within the JSON of each column to pipe into the HTML table, in order of columns. For AGOL items, fields stored within attributes array of JSON.
-      { data: "properties.nfid" },
-
-    ],
-    "language": {
-      "emptyTable": "Loading..."
-    }
-  });
-  */
 
   $("#gisSitesTable").bootstrapTable({
     cache: false,
@@ -583,4 +552,68 @@ $("#gisSites_table-btn").click(function(){
   $("#map-container").hide();
   $(window).resize();
   map.flyToBounds(gisSitesLayer.getBounds());
+});
+
+
+// GIS SITES TABLE EXPORT
+
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1;
+var yyyy = today.getFullYear();
+
+if(dd<10) {
+    dd = '0'+dd
+} 
+
+if(mm<10) {
+    mm = '0'+mm
+} 
+
+today = mm + '.' + dd + '.' + yyyy;
+
+
+$("#gisSitesTable-download-csv-btn").click(function() {
+  $("#gisSitesTable").tableExport({
+    headings: true,
+    type: "csv",
+    ignoreColumn: [0],
+    fileName: "SLC_GIS_Sites_"+ today +""
+  });
+  $(".navbar-collapse.in").collapse("hide");
+  return false;
+});
+
+$("#gisSitesTable-download-excel-btn").click(function() {
+  $("#gisSitesTable").tableExport({
+    headings: true,
+    type: "excel",
+    ignoreColumn: [0],
+    fileName: "SLC_GIS_Sites_"+ today +""
+  });
+  $(".navbar-collapse.in").collapse("hide");
+  return false;
+});
+
+$("#gisSitesTable-download-pdf-btn").click(function() {
+  $("#gisSitesTable").tableExport({
+    type: "pdf",
+    ignoreColumn: [0],
+    fileName: "SLC_GIS_Sites_"+ today +"",
+    jspdf: {
+      format: "bestfit",
+      margins: {
+        left: 20,
+        right: 10,
+        top: 20,
+        bottom: 20
+      },
+      autotable: {
+        extendWidth: true,
+        overflow: "linebreak"
+      }
+    }
+  });
+  $(".navbar-collapse.in").collapse("hide");
+  return false;
 });

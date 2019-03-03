@@ -215,7 +215,7 @@ var gisSitesLayer = L.geoJson(null, {
       });
       $("#gisSites_feature-list tbody").append('<tr onclick= "gisSitesSearchClick(' +L.stamp(layer) + ')"><td class="gisSites_feature-name">' + layer.feature.properties.site_name + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
     }
-    if (feature.properties.removesite === "Yes" || feature.properties.removesite === "Y") {
+    if (feature.properties.removesite === "Yes" || feature.properties.removesite === "Y" || feature.properties.clustername === "REMOVE") {
       layer.setIcon(
         L.icon({
           iconUrl: "pictures/demandPoints/removed.png",

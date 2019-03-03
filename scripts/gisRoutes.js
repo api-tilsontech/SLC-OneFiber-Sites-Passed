@@ -314,7 +314,7 @@ function gisRoutesSearchClick(id) {
   var coords = layer.feature.geometry.coordinates
   var geom = coords.map(function (pt) {return [pt[1], pt[0]]})
   var line = L.polyline(geom);
-  map.fitBounds(line.getBounds());
+  map.setView(line,16);
   highlightLayer.clearLayers();
   highlightLayer.addData(layer.toGeoJSON());
   layer.fire("click");

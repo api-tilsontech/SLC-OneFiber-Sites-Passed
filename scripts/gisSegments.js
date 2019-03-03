@@ -339,7 +339,7 @@ function gisSegmentsSearchClick(id) {
   var coords = layer.feature.geometry.coordinates
   var geom = coords.map(function (pt) {return [pt[1], pt[0]]})
   var line = L.polyline(geom);
-  map.fitBounds(line.getBounds());
+  map.fitBounds(line.getBounds(), {maxZoom: 16});
   highlightLayer.clearLayers();
   highlightLayer.addData(layer.toGeoJSON());
   layer.fire("click");

@@ -487,8 +487,6 @@ function gisSitesInfo(id) {
 
 // GIS SITES TABLE
 
-
-
 function gisSitesBuildTable() {
 
   var table = $('#gisSitesTable').DataTable({ // Change table element ID here
@@ -522,6 +520,7 @@ function gisSitesBuildTable() {
 $("#gisSites_table-btn").click(function(){
   $("#gisSitesTable-container").show();
   $("#gisSitesTable-container").css("height", "100%");
+  $("#gisSegmentsTable-container").hide();
   $("#map-container").hide();
   $(window).resize();
   map.flyToBounds(gisSitesLayer.getBounds());

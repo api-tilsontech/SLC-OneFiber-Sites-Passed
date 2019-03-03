@@ -254,46 +254,23 @@ var gisSegmentsConfig = {
 
 
 function gisSegmentsBuildConfig() {
-  table = [{
-    field: "action",
-    title: "<i class='fa fa-gear'></i>&nbsp;Action",
-    align: "center",
-    valign: "middle",
-    width: "75px",
-    cardVisible: false,
-    switchable: false,
-    formatter: function(value, row, index) {
-      return [
-        '<a class="zoom" href="javascript:void(0)" title="Zoom" style="margin-right: 10px;">',
-          '<i class="fa fa-search-plus"></i>',
-        '</a>',
-        '<a class="identify" href="javascript:void(0)" title="Identify" style="margin-right: 10px;">',
-          '<i class="fa fa-info-circle"></i>',
-        '</a>'
-      ].join("");
-    },
-    events: {
-      "click .zoom": function (e, value, row, index) {
-        map.fitBounds(gisSegmentsLayer.getLayer(row.leaflet_stamp).getBounds());
-        highlightLayer.clearLayers();
-        highlightLayer.addData(gisSegmentsLayer.getLayer(row.leaflet_stamp).toGeoJSON());
-      }
-    }
-  }];
+  gisSegmentsTable = [];
 
   $.each(gisSegmentsProperties, function(index, value) {
     if (value.table) {
-      table.push({
-        field: value.value,
+      gisSegmentsTable.push({
+        data: "properties." + value.value,
         title: value.label
       });
       $.each(value.table, function(key, val) {
-        if (table[index+1]) {
-          table[index+1][key] = val;
+        if (gisSegmentsTable[index+1]) {
+          gisSegmentsTable[index+1][key] = val;
         }
       });
     }
   });
+
+  gisSegmentsBuildTable()
 }
 
 
@@ -442,4 +419,45 @@ function gisSegmentsHighlightInfo(id) {
 
 $("#gisSegmentsClose-sidebarBTN").click(function(){
   gisSegmentsSidebar.hide();
+});
+
+
+// GIS SITES TABLE
+
+function gisSitesBuildTable() {
+
+  var table = $('#gisSegmentsTable').DataTable({ // Change table element ID here
+    dom: 'Bfrtip', // Add this to enable export buttons
+    buttons: [ // Add this to choose which buttons to display
+        'copy', 'csv', 'excel', 'pdf', 'print'
+    ],
+    colReorder: true,
+    data: gisSegmentsData.features,
+    "autoWidth": true, // Feature control DataTables' smart column width handling
+    "deferRender": true, // Feature control deferred rendering for additional speed of initialisation.
+    "info": true, // Display info about table including filtering
+    "lengthChange": false, // If pagination is enabled, allow the page length to be changed by user
+    "ordering": true, // Toggle user ordering of table columns
+    "paging": false, // Toggle table paging
+    "processing": true, // Toggle "processing" indicator useful when loading large table/filter
+    "scrollX": false, // Left/right scrolling option, in pixels or false to disable
+    "scrollY": "550px", // Table height in pixels before up/down scrolling, or false to disable scrolling
+    "searching": true, // Toggle search all columns field
+    "stateSave": true, // If true, table will restore to user filtered state when page is reopened     
+    "scrollCollapse": true, // If true, the table will be collapsed if the height of the records is < the scrollY option; prevents footer from floating
+    "columns": gisSegmentsTable,
+    "language": {
+      "emptyTable": "Loading..."
+    }
+  });
+}
+
+// GIS SITES OPEN TABLE
+
+$("#gisSegments_table-btn").click(function(){
+  $("#gisSegmentsTable-container").show();
+  $("#gisSegmentsTable-container").css("height", "100%");
+  $("#gisSitesTable-container").hide();
+  $("#map-container").hide();
+  $(window).resize();
 });

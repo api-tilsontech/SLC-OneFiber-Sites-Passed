@@ -519,16 +519,12 @@ function gisSitesInfo(id) {
 
 
 function gisSitesBuildTable() {
-  /*
-  $('#gisSitesTable').DataTable( {
-    data: gisSitesData.features,
-    columns: [
-      { data: 'objectid' },
-      { data: 'sitetracker_id' },
-      { data: 'site_name' }
-    ]
-  });
-  */
+
+  var array = (gisSitesProperties.map(function(elem) {
+    return elem.value;
+  }).join(",")).split(",");
+
+  var gisSitesTableColumns = array.map(function(e) {return '{title: "' + e + '", data: "properties.' + e + '"},'});
 
   var table = $('#gisSitesTable').DataTable({ // Change table element ID here
     dom: 'Bfrtip', // Add this to enable export buttons
@@ -548,82 +544,13 @@ function gisSitesBuildTable() {
     "searching": true, // Toggle search all columns field
     "stateSave": false, // If true, table will restore to user filtered state when page is reopened     
     "scrollCollapse": true, // If true, the table will be collapsed if the height of the records is < the scrollY option; prevents footer from floating
-    "columns": [ // Location within the JSON of each column to pipe into the HTML table, in order of columns. For AGOL items, fields stored within attributes array of JSON.
-      { data: "properties.nfid" },
-      { data: "properties.site_name"},
-    ],
+    "columns": gisSitesTableColumns,
+    "columnDefs": 
     "language": {
       "emptyTable": "Loading..."
     }
   });
 }
-
-
-// GIS SITES TABLE EXPORT
-
-var today = new Date();
-var dd = today.getDate();
-var mm = today.getMonth()+1;
-var yyyy = today.getFullYear();
-
-if(dd<10) {
-    dd = '0'+dd
-} 
-
-if(mm<10) {
-    mm = '0'+mm
-} 
-
-today = mm + '.' + dd + '.' + yyyy;
-
-
-$("#gisSitesTable-download-csv-btn").click(function() {
-  $("#gisSitesTable").tableExport({
-    headings: true,
-    type: "csv",
-    ignoreColumn: [0],
-    fileName: "SLC_GIS_Sites_"+ today +""
-  });
-  $(".navbar-collapse.in").collapse("hide");
-  return false;
-});
-
-$("#gisSitesTable-download-excel-btn").click(function() {
-  $("#gisSitesTable").tableExport({
-    headings: true,
-    type: "excel",
-    ignoreColumn: [0],
-    fileName: "SLC_GIS_Sites_"+ today +""
-  });
-  $(".navbar-collapse.in").collapse("hide");
-  return false;
-});
-
-$("#gisSitesTable-download-pdf-btn").click(function() {
-  $("#gisSitesTable").tableExport({
-    type: "pdf",
-    ignoreColumn: [0],
-    fileName: "SLC_GIS_Sites_"+ today +"",
-    jspdf: {
-      format: "bestfit",
-      margins: {
-        left: 20,
-        right: 10,
-        top: 20,
-        bottom: 20
-      },
-      autotable: {
-        extendWidth: true,
-        overflow: "linebreak"
-      }
-    }
-  });
-  $(".navbar-collapse.in").collapse("hide");
-  return false;
-});
-
-
-
 
 // GIS SITES OPEN TABLE
 

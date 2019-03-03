@@ -72,7 +72,7 @@ function gisLogin() {
 function stLogin() {
   $.ajax({
     type: "POST",
-    url: "https://login.salesforce.com/services/oauth2/token",
+    url: "https://sitetraker-tilson.my.salesforce.com/services/oauth2/token",
     contentType: "application/x-www-form-urlencoded",
     data: {
       "grant_type": "password",

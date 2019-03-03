@@ -270,7 +270,7 @@ function gisSegmentsBuildConfig() {
     }
   });
 
-  gisSegmentsBuildTable()
+  gisSegmentsBuildTable();
 }
 
 
@@ -424,7 +424,7 @@ $("#gisSegmentsClose-sidebarBTN").click(function(){
 
 // GIS SITES TABLE
 
-function gisSitesBuildTable() {
+function gisSegmentsBuildTable() {
 
   var table = $('#gisSegmentsTable').DataTable({ // Change table element ID here
     dom: 'Bfrtip', // Add this to enable export buttons

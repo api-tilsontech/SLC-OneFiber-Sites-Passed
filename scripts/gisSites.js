@@ -496,6 +496,7 @@ function gisSitesBuildTable() {
     buttons: [ // Add this to choose which buttons to display
         'copy', 'csv', 'excel', 'pdf', 'print'
     ],
+    colReorder: true,
     data: gisSitesData.features,
     "autoWidth": true, // Feature control DataTables' smart column width handling
     "deferRender": true, // Feature control deferred rendering for additional speed of initialisation.

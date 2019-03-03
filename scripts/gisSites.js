@@ -506,9 +506,9 @@ function gisSitesBuildTable() {
     "paging": false, // Toggle table paging
     "processing": true, // Toggle "processing" indicator useful when loading large table/filter
     "scrollX": false, // Left/right scrolling option, in pixels or false to disable
-    "scrollY": "800px", // Table height in pixels before up/down scrolling, or false to disable scrolling
+    "scrollY": "600px", // Table height in pixels before up/down scrolling, or false to disable scrolling
     "searching": true, // Toggle search all columns field
-    "stateSave": false, // If true, table will restore to user filtered state when page is reopened     
+    "stateSave": true, // If true, table will restore to user filtered state when page is reopened     
     "scrollCollapse": true, // If true, the table will be collapsed if the height of the records is < the scrollY option; prevents footer from floating
     "columns": gisSitesTable,
     "language": {

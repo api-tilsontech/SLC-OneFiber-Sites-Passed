@@ -497,7 +497,7 @@ function gisSitesBuildTable() {
         'copy', 'csv', 'excel', 'pdf', 'print'
     ],
     data: gisSitesData.features,
-    "autoWidth": false, // Feature control DataTables' smart column width handling
+    "autoWidth": true, // Feature control DataTables' smart column width handling
     "deferRender": true, // Feature control deferred rendering for additional speed of initialisation.
     "info": true, // Display info about table including filtering
     "lengthChange": false, // If pagination is enabled, allow the page length to be changed by user

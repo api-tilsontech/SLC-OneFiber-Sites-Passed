@@ -213,7 +213,7 @@ var gisSitesLayer = L.geoJson(null, {
           }));
         }
       });
-      $("#gisSites_feature-list tbody").append('<tr onclick= "gisSitesSearchClick(' +L.stamp(layer) + ')"><td class="gisSites_feature-name">' + layer.feature.properties.site_name + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+      $("#gisSites_feature-list tbody").append('<tr onclick= "gisSitesSearchClick(' + L.stamp(layer) + ')"><td class="gisSites_feature-name">' + layer.feature.properties.site_name + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
     }
     if (feature.properties.removesite === "Yes" || feature.properties.removesite === "Y" || feature.properties.clustername === "REMOVE") {
       layer.setIcon(
@@ -488,7 +488,7 @@ function gisSitesInfo(id) {
 
 function gisSitesBuildTable() {
 
-  var table = $('#gisSitesTable').DataTable({ // Change table element ID here
+  var gisSitesDataTable = $('#gisSitesTable').DataTable({ // Change table element ID here
     dom: 'Bfrtip', // Add this to enable export buttons
     buttons: [ // Add this to choose which buttons to display
         'copy', 'csv', 'excel', 'pdf', 'print'
@@ -516,11 +516,10 @@ function gisSitesBuildTable() {
 
 // GIS SITES OPEN TABLE
 
-$("#gisSites_table-btn").click(function(){
-  $("#gisSitesTable-container").show();
-  $("#gisSitesTable-container").css("height", "100%");
-  $("#gisSegmentsTable-container").hide();
+$("#gisSitesTable-btn").click(function(){
   $("#map-container").hide();
+  $("#gisSitesTable-container").show();
+  gisSitesDataTable.search(sessionStorage.getItem("siteSiteTrackerID")).draw();
   $(window).resize();
   map.flyToBounds(gisSitesLayer.getBounds());
 });

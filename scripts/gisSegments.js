@@ -445,7 +445,7 @@ $("#gisSegmentsClose-sidebarBTN").click(function(){
 
 function gisSegmentsBuildTable() {
   var gisData = gisSegmentsData.features
-  var table = $('#gisSegmentsTable').DataTable({
+  var gisSegmentsDataTable = $('#gisSegmentsTable').DataTable({
     dom: 'Bfrtip',
     buttons: [
         'copy', 'csv', 'excel', 'pdf', 'print'
@@ -456,12 +456,6 @@ function gisSegmentsBuildTable() {
       render: $.fn.dataTable.render.moment('x', 'MM/DD/YYYY')
     }],
     data: gisData,
-    drawCallback: function () {
-      var api = this.api();
-      $( api.table().footer() ).html(
-        api.column( 8, {page:'current'} ).data().sum()
-      );
-    },
     "autoWidth": true,
     "deferRender": false,
     "info": true,

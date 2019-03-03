@@ -467,7 +467,7 @@ $("#gisRoutesClose-sidebarBTN").click(function(){
 
 function gisRoutesBuildTable() {
   var gisData = gisRoutesData.features
-  var table = $('#gisRoutesTable').DataTable({ // Change table element ID here
+  var gisRoutesDataTable = $('#gisRoutesTable').DataTable({ // Change table element ID here
     dom: 'Bfrtip', // Add this to enable export buttons
     buttons: [ // Add this to choose which buttons to display
         'copy', 'csv', 'excel', 'pdf', 'print'

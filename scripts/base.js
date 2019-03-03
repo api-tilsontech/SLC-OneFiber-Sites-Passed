@@ -3,7 +3,6 @@
 verifyUser();
 
 function verifyUser() {
-  var owner = "tilson"
   if (!sessionStorage.getItem("gis_token") || sessionStorage.getItem("gis_token") === null || sessionStorage.getItem("gis_token") === "ERROR") {
     $("#map-container").hide();
     $("#about_BTN").hide();
@@ -20,6 +19,7 @@ function verifyUser() {
 // GIS TOKEN
 
 var gis_token = sessionStorage.getItem("gis_token")
+$("#loading-mask").show();
 
 
 // FORMAT CLICKABLE LINKS

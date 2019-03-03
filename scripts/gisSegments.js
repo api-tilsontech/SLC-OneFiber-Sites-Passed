@@ -459,7 +459,7 @@ function gisSegmentsBuildTable() {
     drawCallback: function () {
       var api = this.api();
       $( api.table().footer() ).html(
-        api.column( [7,8], {page:'current'} ).data().sum()
+        api.column( 8, {page:'current'} ).data().sum()
       );
     },
     "autoWidth": true,

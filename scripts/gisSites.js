@@ -522,7 +522,7 @@ function gisSitesBuildTable() {
 
   var columns = [];
   data = gisSitesData.features;
-  columnNames = Object.keys(data.properties[0]);
+  columnNames = Object.keys(data.properties);
   for (var i in columnNames) {
     columns.push({data: columnNames[i], title: columnNames[i]});
   }

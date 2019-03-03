@@ -89,7 +89,8 @@ var baseLayers = {
 
 var overlayLayers = {
   "<span id='layer-name'>Sites</span>": gisSitesLayer,
-  "<span id='layer-name'>Segments</span>": gisSegmentsLayer
+  "<span id='layer-name'>Segments</span>": gisSegmentsLayer,
+  "<span id='layer-name'>Routes</span>": gisRoutesLayer
 };
 
 
@@ -168,7 +169,6 @@ L.control.scale().addTo(map);
 // MAP VIEW
 
 $("#map-only").click(function(){
-  $("#gisSitesTable-container").hide();
   $("#map-container").show();
   $(window).resize();
   map.flyToBounds(gisSitesLayer.getBounds());

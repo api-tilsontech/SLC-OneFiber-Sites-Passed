@@ -124,6 +124,11 @@
       </footer>
     </div>
 
+    <div id="gisSitesTable-container"> 
+      <br>
+      <table id="gisSitesTable" class="stripe" style="width:100%"></table>
+    </div>
+
     <div id="gisSegmentsSearch">
       <div class="sidebar-wrapper">
         <div class="panel panel-default" id="gisSegments_features">
@@ -172,14 +177,62 @@
       </footer>
     </div>
 
-    <div id="gisSitesTable-container"> 
-      <br>
-      <table id="gisSitesTable" class="stripe" style="width:100%"></table>
-    </div>
-
     <div id="gisSegmentsTable-container"> 
       <br>
       <table id="gisSegmentsTable" class="stripe" style="width:100%"></table>
+    </div>
+
+    <div id="gisRoutesSearch">
+      <div class="sidebar-wrapper">
+        <div class="panel panel-default" id="gisRoutes_features">
+          <div class="panel-heading">
+            <h3 class="panel-title">Routes
+            <button type="button" class="btn btn-xs btn-default pull-right" id="gisRoutes_sidebar-hide-btn"><i class="fa fa-chevron-left"></i></button></h3>
+          </div>
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-xs-8 col-md-8">
+                <input type="text" class="form-control search" placeholder="Search" />
+              </div>
+              <div class="col-xs-4 col-md-4">
+                <button type="button" class="btn btn-primary pull-right sort" data-sort="gisRoutes_feature-name" id="gisRoutes_sort-btn"><i class="fa fa-sort"></i>&nbsp;&nbsp;Sort</button>
+              </div>
+            </div>
+          </div>
+          <div class="sidebar-table">
+            <table class="table table-hover" id="gisRoutes_feature-list">
+              <thead class="hidden">
+                <tr>
+                  <th>Icon</th>
+                <tr>
+                <tr>
+                  <th>Name</th>
+                <tr>
+                <tr>
+                  <th>Chevron</th>
+                <tr>
+              </thead>
+              <tbody class="list"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="gisRoutesSidebar">
+      <h1 class="modal-title text-primary" id="gisRoutesInfo_Title"></h1>
+      <div id="gisRoutes-Info_DATA"></div>
+      <br>
+      <footer>
+        <button type="button" class="btn btn-success" id="gisRoutesCreate-btn">Create Record</button>
+        <button type="button" class="btn btn-danger" id="gisRoutesEdit-btn">Edit Record</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal" id="gisRoutesClose-sidebarBTN">Close</button>
+      </footer>
+    </div>
+
+    <div id="gisRoutesTable-container"> 
+      <br>
+      <table id="gisRoutesTable" class="stripe" style="width:100%"></table>
     </div>
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
@@ -201,6 +254,7 @@
     <script src="scripts/base.js"></script>
     <script src="scripts/gisSites.js"></script>
     <script src="scripts/gisSegments.js"></script>
+    <script src="scripts/gisRoutes.js"></script>
     <script src="scripts/layers.js"></script>
     <script src="scripts/sidebar.js"></script>
   </body>

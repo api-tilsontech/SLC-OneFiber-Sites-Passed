@@ -11,26 +11,12 @@ var gisSitesSidebar = L.control.sidebar("gisSitesSidebar", {
 }).addTo(map);
 
 
-
-// GIS SEGMENTS INFO SIDEBAR
-
-$("#gisSegmentsClose-sidebarBTN").click(function(){
-  gisSegmentsSidebar.hide();
-});
-
-
-var gisSegmentsSidebar = L.control.sidebar("gisSegmentsSidebar", {
-    closeButton: false,
-    position: "right"
-}).addTo(map);
-
-
-
 // GIS SITES SEARCH SIDEBAR
 
 $("#gisSites_list-btn").click(function(){
   gisSitesSearch.show();
   gisSegmentsSearch.hide();
+  gisRoutesSearch.hide();
   map.invalidateSize();
 });
 
@@ -48,11 +34,25 @@ var gisSitesSearch = L.control.sidebar("gisSitesSearch", {
 
 
 
+// GIS SEGMENTS INFO SIDEBAR
+
+$("#gisSegmentsClose-sidebarBTN").click(function(){
+  gisSegmentsSidebar.hide();
+});
+
+
+var gisSegmentsSidebar = L.control.sidebar("gisSegmentsSidebar", {
+    closeButton: false,
+    position: "right"
+}).addTo(map);
+
+
 // GIS SEGMENTS SEARCH SIDEBAR
 
 $("#gisSegments_list-btn").click(function(){
   gisSegmentsSearch.show();
   gisSitesSearch.hide();
+  gisRoutesSearch.hide();
   map.invalidateSize();
 });
 
@@ -67,3 +67,40 @@ var gisSegmentsSearch = L.control.sidebar("gisSegmentsSearch", {
     closeButton: false,
     position: "left"
 }).addTo(map);
+
+
+
+// GIS ROUTES INFO SIDEBAR
+
+$("#gisRoutesClose-sidebarBTN").click(function(){
+  gisRoutesSidebar.hide();
+});
+
+
+var gisRoutesSidebar = L.control.sidebar("gisRoutesSidebar", {
+    closeButton: false,
+    position: "right"
+}).addTo(map);
+
+
+// GIS ROUTES SEARCH SIDEBAR
+
+$("#gisRoutes_list-btn").click(function(){
+  gisRoutesSearch.show();
+  gisSegmentsSearch.hide();
+  gisSitesSearch.hide();
+  map.invalidateSize();
+});
+
+
+$("#gisRoutes_sidebar-hide-btn").click(function() {
+  gisRoutesSearch.hide();
+  map.invalidateSize();
+});
+
+
+var gisRoutesSearch = L.control.sidebar("gisRoutesSearch", {
+    closeButton: false,
+    position: "left"
+}).addTo(map);
+

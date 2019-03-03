@@ -193,7 +193,7 @@ var gisSitesLayer = L.geoJson(null, {
     };
   },
   onEachFeature: function (feature, layer) {
-    layer.bindTooltip(feature.properties.nfid + "--" + feature.properties.site_name, {sticky: 'true', direction: 'top'});
+    layer.bindTooltip(feature.properties.nfid + " -- " + feature.properties.site_name, {sticky: 'true', direction: 'top'});
 
     if (feature.properties) {
       var title = feature.properties.site_name;
@@ -429,8 +429,7 @@ function gisSitesSearchClick(id) {
   layer.fire("click");
   /* Hide sidebar and go to the map on small screens */
   if (document.body.clientWidth <= 767) {
-    gisSitesSidebar.show();
-    gisSegmentsSidebar.hide();
+    gisSitesSidebar.hide();
     map.invalidateSize();
   }
 }
@@ -447,7 +446,6 @@ $.getJSON(gisSitesConfig.geojson, function (data) {
   gisSitesList = new List("gisSites_features", {valueNames: ["gisSites_feature-name"]});
   gisSitesList.sort("gisSites_feature-name", {order:"asc"});
   gisSitesBuildConfig()
-  $("#loading-mask").hide();
 }).error(function(jqXHR, textStatus, errorThrown) {
     console.log("error " + textStatus);
     console.log("incoming Text " + jqXHR.responseText);
@@ -468,8 +466,8 @@ function gisSitesInfo(id) {
     if (!value) {
       value = "";
     }
-    if (typeof value == "string" && value.includes('SLC_SIT')) {
-      sessionStorage.setItem("siteID", value);
+    if (key == "sitetracker_id") {
+      sessionStorage.setItem("siteSiteTrackerID", value);
     }
     $.each(gisSitesProperties, function(index, property) {
       if (key == property.value) {

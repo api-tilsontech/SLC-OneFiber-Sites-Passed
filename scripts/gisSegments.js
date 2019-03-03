@@ -245,7 +245,7 @@ var gisSegmentsFields = gisSegmentsProperties.map(function(elem) {
 // GIS SEGMENTS CONFIG
 
 var gisSegmentsConfig = {
-  geojson: "https://gis.tilsontech.com/arcgis/rest/services/SiteTracker/SLC_OneFiber/MapServer/3/query?where=fqn_id+IS+NOT+NULL&outFields=" + gisSegmentsFields + "&f=geojson&token=" + gis_token,
+  geojson: "https://gis.tilsontech.com/arcgis/rest/services/SiteTracker/SLC_OneFiber/MapServer/3/query?where=objectid+IS+NOT+NULL&outFields=" + gisSegmentsFields + "&f=geojson&token=" + gis_token,
   layerName: "Segments",
   hoverProperty: "fqn_id",
   sortProperty: "fqn_id",
@@ -334,13 +334,12 @@ function gisSegmentsSearchClick(id) {
 
   if (document.body.clientWidth <= 767) {
     gisSegmentsSidebar.hide();
-    gisSitesSidebar.hide();
     map.invalidateSize();
   }
 }
 
 
-//GIS SITES DATA
+//GIS SEGMENTS DATA
 
 $.getJSON(gisSegmentsConfig.geojson, function (data) {
   gisSegmentsData = data;
@@ -360,7 +359,7 @@ $.getJSON(gisSegmentsConfig.geojson, function (data) {
 
 
 
-// GIS SITES INFO
+// GIS SEGMENTS INFO
 
 function gisSegmentsInfo(id) {
   
@@ -372,8 +371,8 @@ function gisSegmentsInfo(id) {
     if (!value) {
       value = "";
     }
-    if (typeof value == "string" && value.includes('SLC_SEG')) {
-      sessionStorage.setItem("segmentID", value);
+    if (key == "sitetracker_id") {
+      sessionStorage.setItem("segmentSiteTrackerID", value);
     }
     $.each(gisSegmentsProperties, function(index, property) {
       if (key == property.value) {
@@ -393,7 +392,7 @@ function gisSegmentsInfo(id) {
 };
 
 
-// GIS SITES HIGHLIGHT INFO
+// GIS SEGMENTS HIGHLIGHT INFO
 
 function gisSegmentsHighlightInfo(id) {
   
@@ -431,7 +430,7 @@ $("#gisSegmentsClose-sidebarBTN").click(function(){
 });
 
 
-// GIS SITES TABLE
+// GIS SEGMENTS TABLE
 
 function gisSegmentsBuildTable() {
 
@@ -442,8 +441,13 @@ function gisSegmentsBuildTable() {
     ],
     colReorder: true,
     data: gisSegmentsData.features,
+    "render": function (data) {
+        var date = new Date(data);
+        var month = date.getMonth() + 1;
+        return (month.length > 1 ? month : "0" + month) + "/" + date.getDate() + "/" + date.getFullYear();
+    },
     "autoWidth": true, // Feature control DataTables' smart column width handling
-    "deferRender": true, // Feature control deferred rendering for additional speed of initialisation.
+    "deferRender": false, // Feature control deferred rendering for additional speed of initialisation.
     "info": true, // Display info about table including filtering
     "lengthChange": false, // If pagination is enabled, allow the page length to be changed by user
     "ordering": true, // Toggle user ordering of table columns
@@ -461,7 +465,7 @@ function gisSegmentsBuildTable() {
   });
 }
 
-// GIS SITES OPEN TABLE
+// GIS SEGMENTS OPEN TABLE
 
 $("#gisSegments_table-btn").click(function(){
   $("#gisSegmentsTable-container").show();

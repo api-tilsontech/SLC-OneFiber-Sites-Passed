@@ -453,8 +453,8 @@ function gisSegmentsBuildTable() {
     ],
     colReorder: true,
     columnDefs: [{
-      targets: [11,12,13,14,15],
-      render: $.fn.dataTable.render.moment('X', 'Do MMM YY')
+      targets: [10,11,12,13,14],
+      render: $.fn.dataTable.render.moment('x', 'MM/DD/YYYY')
     }],
     data: gisData,
     "autoWidth": true, // Feature control DataTables' smart column width handling

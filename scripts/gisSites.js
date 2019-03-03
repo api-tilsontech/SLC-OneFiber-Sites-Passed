@@ -520,16 +520,17 @@ function gisSitesInfo(id) {
 
 function gisSitesBuildTable() {
 
-  var array = (gisSitesProperties.map(function(elem) {
-    return elem.value;
-  }).join(",")).split(",");
-
-  var gisSitesTableColumns = array.map(function(e) {return '{data: "properties.' + e + '"},'});
+  var columns = [];
+  data = gisSitesData.features;
+  columnNames = Object.keys(data.properties[0]);
+  for (var i in columnNames) {
+    columns.push({data: columnNames[i], title: columnNames[i]});
+  }
 
   var table = $('#gisSitesTable').DataTable({ // Change table element ID here
     dom: 'Bfrtip', // Add this to enable export buttons
     buttons: [ // Add this to choose which buttons to display
-        'copy', 'csv', 'excel', 'pdf', 'print'
+        'Copy', 'CSV', 'Excel', 'PDF', 'Print'
     ],
     data: gisSitesData.features,
     "autoWidth": false, // Feature control DataTables' smart column width handling
@@ -544,7 +545,7 @@ function gisSitesBuildTable() {
     "searching": true, // Toggle search all columns field
     "stateSave": false, // If true, table will restore to user filtered state when page is reopened     
     "scrollCollapse": true, // If true, the table will be collapsed if the height of the records is < the scrollY option; prevents footer from floating
-    "columns": [gisSitesTableColumns],
+    "columns": columns,
     "language": {
       "emptyTable": "Loading..."
     }

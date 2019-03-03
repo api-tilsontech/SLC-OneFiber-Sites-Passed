@@ -200,7 +200,7 @@ function gisSitesBuildConfig() {
   $.each(gisSitesProperties, function(index, value) {
     if (value.table) {
       gisSitesTable.push({
-        field: value.value,
+        field: "properties." + value.value,
         title: value.label
       });
       $.each(value.table, function(key, val) {

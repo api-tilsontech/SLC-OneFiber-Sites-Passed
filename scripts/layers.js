@@ -176,6 +176,9 @@ L.control.scale().addTo(map);
 
 $("#map-only").click(function(){
   $("#map-container").show();
+  gisSitesDataTable.search("").draw();
+  gisSegmentsDataTable.search("").draw();
+  gisRoutesDataTable.search("").draw();
   $(window).resize();
   map.flyToBounds(gisSitesLayer.getBounds());
 });

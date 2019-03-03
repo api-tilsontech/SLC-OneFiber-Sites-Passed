@@ -479,8 +479,6 @@ function gisSegmentsBuildTable() {
 
 $("#gisSegments_table-btn").click(function(){
   $("#gisSegmentsTable-container").show();
-  $("#gisSegmentsTable-container").css("height", "100%");
-  $("#gisSitesTable-container").hide();
   $("#map-container").hide();
   $(window).resize();
 });

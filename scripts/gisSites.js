@@ -516,10 +516,8 @@ function gisSitesBuildTable() {
 
 // GIS SITES OPEN TABLE
 
-$("#gisSitesTable-btn").click(function(){
+$("#gisSites_table-btn").click(function(){
   $("#map-container").hide();
   $("#gisSitesTable-container").show();
-  gisSitesDataTable.search(sessionStorage.getItem("siteSiteTrackerID")).draw();
   $(window).resize();
-  map.flyToBounds(gisSitesLayer.getBounds());
 });

@@ -497,8 +497,6 @@ function gisRoutesBuildTable() {
 
 $("#gisRoutes_table-btn").click(function(){
   $("#gisRoutesTable-container").show();
-  $("#gisRoutesTable-container").css("height", "100%");
-  $("#gisSitesTable-container").hide();
   $("#map-container").hide();
   $(window).resize();
 });

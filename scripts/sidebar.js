@@ -11,6 +11,14 @@ var gisSitesSidebar = L.control.sidebar("gisSitesSidebar", {
 }).addTo(map);
 
 
+$("#gisSitesTable-btn").click(function(){
+  $("#map-container").hide();
+  $("#gisSitesTable-container").show();
+  gisSitesDataTable.search(sessionStorage.getItem("siteSiteTrackerID")).draw();
+  $(window).resize();
+});
+
+
 // GIS SITES SEARCH SIDEBAR
 
 $("#gisSites_list-btn").click(function(){

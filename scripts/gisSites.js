@@ -176,7 +176,7 @@ function gisSitesBuildConfig() {
     if (value.table) {
       gisSitesTable.push({
         data: "properties." + value.value,
-        name: value.label
+        title: value.label
       });
     }
   });

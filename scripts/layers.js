@@ -100,7 +100,9 @@ var map = L.map("map", {
   layers: [mapboxOSM, gisSitesLayer, highlightLayer],
   minZoom: 5,
   zoomControl: false
-}).fitWorld();
+});
+
+map.setView([40.758, -111.876], 5)
 
 
 // MAP CLICKING

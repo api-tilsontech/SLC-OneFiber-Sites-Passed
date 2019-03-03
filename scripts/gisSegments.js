@@ -280,15 +280,23 @@ function gisSegmentsBuildConfig() {
 
 var gisSegmentsLayer = L.geoJson(null, {
   style: function (feature, layer) {
-    if (feature.properties.fqn_id.indexOf("BUR") === 0) {
+    if (feature.properties.fqn_id) {
+      if (feature.properties.fqn_id.indexOf("BUR") === 0) {
+        return {
+          color: "#0066ff",
+          weight: 4,
+          opacity: 1
+        };
+      } else if (feature.properties.fqn_id.indexOf("AER") === 0) {
+        return {
+          color: "#ff3300",
+          weight: 4,
+          opacity: 1
+        };
+      }
+    } else {
       return {
-        color: "#0066ff",
-        weight: 4,
-        opacity: 1
-      };
-    } else if (feature.properties.fqn_id.indexOf("AER") === 0) {
-      return {
-        color: "#ff3300",
+        color: "#000000",
         weight: 4,
         opacity: 1
       };
@@ -457,7 +465,7 @@ function gisSegmentsBuildTable() {
     "paging": false, // Toggle table paging
     "processing": true, // Toggle "processing" indicator useful when loading large table/filter
     "scrollX": true, // Left/right scrolling option, in pixels or false to disable
-    "scrollY": "550px", // Table height in pixels before up/down scrolling, or false to disable scrolling
+    "scrollY": "500px", // Table height in pixels before up/down scrolling, or false to disable scrolling
     "searching": true, // Toggle search all columns field
     "stateSave": true, // If true, table will restore to user filtered state when page is reopened     
     "scrollCollapse": true, // If true, the table will be collapsed if the height of the records is < the scrollY option; prevents footer from floating

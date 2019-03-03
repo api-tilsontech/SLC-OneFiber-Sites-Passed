@@ -87,6 +87,7 @@ input[type="radio"], input[type="checkbox"] {
 }
 .table {
   margin-bottom: 0px;
+  border-collapse: collapse;
 }
 .legend {
   padding: 5px;

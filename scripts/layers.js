@@ -28,17 +28,19 @@ var highlightLayer = L.geoJson(null, {
     };
   },
   onEachFeature: function (feature, layer) {
-    if (feature.properties.sitetracker_id.toLowerCase().indexOf("slc_rou") === 0) {
-      layer.bindTooltip(feature.properties.fqn_id + " -- " + feature.properties.oofstatus, {sticky: 'true', direction: 'top'});
-    } else if (feature.properties.sitetracker_id.toLowerCase().indexOf("slc_seg") === 0) {
-      if (feature.properties.fqn_id.toLowerCase().indexOf("fib:bur") === 0) {
-        layer.bindTooltip(feature.properties.fqn_id + " -- Underground", {sticky: 'true', direction: 'top'});
-      } else if (feature.properties.fqn_id.toLowerCase().indexOf("fib:aer") === 0) {
-        layer.bindTooltip(feature.properties.fqn_id + " -- Aerial", {sticky: 'true', direction: 'top'});
+    if (feature.properties.sitetracker_id) {
+      if (feature.properties.sitetracker_id.toLowerCase().indexOf("slc_rou") === 0) {
+        layer.bindTooltip(feature.properties.fqn_id + " -- " + feature.properties.oofstatus, {sticky: 'true', direction: 'top'});
+      } else if (feature.properties.sitetracker_id.toLowerCase().indexOf("slc_seg") === 0) {
+        if (feature.properties.fqn_id.toLowerCase().indexOf("fib:bur") === 0) {
+          layer.bindTooltip(feature.properties.fqn_id + " -- Underground", {sticky: 'true', direction: 'top'});
+        } else if (feature.properties.fqn_id.toLowerCase().indexOf("fib:aer") === 0) {
+          layer.bindTooltip(feature.properties.fqn_id + " -- Aerial", {sticky: 'true', direction: 'top'});
+        }
+      } else if (feature.properties.sitetracker_id.toLowerCase().indexOf("slc_sit") === 0) {
+        layer.bindTooltip(feature.properties.nfid + " -- " + feature.properties.site_name, {sticky: 'true', direction: 'top'});
       }
-    } else if (feature.properties.sitetracker_id.toLowerCase().indexOf("slc_sit") === 0) {
-      layer.bindTooltip(feature.properties.nfid + " -- " + feature.properties.site_name, {sticky: 'true', direction: 'top'});
-    } else {
+    } else if (feature.properties.WO_ID) {
       layer.bindTooltip(feature.properties.workordername, {sticky: 'true', direction: 'top'});
     }
     layer.on({

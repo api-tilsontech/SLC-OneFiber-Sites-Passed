@@ -134,12 +134,6 @@ var gisWorkOrdersLayer = L.geoJson(null, {
         click: function (e) {
           $("#gisWorkOrdersInfo_Title").html(feature.properties.WO_ID);
           gisWorkOrdersInfo(L.stamp(layer));
-        },
-        mouseover: function (e) {
-          if (document.body.clientWidth > 767) {
-            highlightLayer.clearLayers();
-            highlightLayer.addData(gisWorkOrdersLayer.getLayer(L.stamp(layer)).toGeoJSON());
-          }
         }
       });
       $("#gisWorkOrders_feature-list tbody").append('<tr onclick= "gisWorkOrdersSearchClick(' +L.stamp(layer) + ')"><td class="gisWorkOrders_feature-name">' + layer.feature.properties.workordername + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
@@ -152,6 +146,8 @@ function gisWorkOrdersSearchClick(id) {
   var layer = gisWorkOrdersLayer.getLayer(id);
   var coords = layer.feature.geometry.coordinates
   var geom = coords.map(function (pt) {return [pt[1], pt[0]]})
+  console.log(coords);
+  console.log(geom);
   var line = L.polygon(geom);
   map.fitBounds(line.getBounds(), {maxZoom: 16});
   highlightLayer.clearLayers();

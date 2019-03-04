@@ -148,7 +148,7 @@ function gisWorkOrdersSearchClick(id) {
   var geom = coords.map(function (pt) {return [pt[1], pt[0]]})
   console.log(coords);
   console.log(geom);
-  var line = L.polygon(geom);
+  var line = L.polyline(geom);
   map.fitBounds(line.getBounds(), {maxZoom: 16});
   highlightLayer.clearLayers();
   highlightLayer.addData(layer.toGeoJSON());

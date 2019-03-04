@@ -77,21 +77,6 @@ var gisSegmentsProperties = [{
   }
 },
 {
-  value: "sitespannfid",
-  label: "NFID",
-  table: {
-    visible: true,
-    sortable: true
-  },
-  filter: {
-    type: "string",
-    vertical: true,
-    multiple: true,
-    operators: ["equal", "not_equal", "contains"],
-    values: []
-  }
-},
-{
   value: "cabletype",
   label: "TYPE",
   table: {

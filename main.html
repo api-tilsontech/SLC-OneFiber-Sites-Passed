@@ -246,6 +246,60 @@
       <table id="gisRoutesTable" class="stripe" style="width:100%"></table>
     </div>
 
+    <div id="gisStructuresSearch">
+      <div class="sidebar-wrapper">
+        <div class="panel panel-default" id="gisStructures_features">
+          <div class="panel-heading">
+            <h3 class="panel-title">Structures
+            <button type="button" class="btn btn-xs btn-default pull-right" id="gisStructures_sidebar-hide-btn"><i class="fa fa-chevron-left"></i></button></h3>
+          </div>
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-xs-8 col-md-8">
+                <input type="text" class="form-control search" placeholder="Search" />
+              </div>
+              <div class="col-xs-4 col-md-4">
+                <button type="button" class="btn btn-primary pull-right sort" data-sort="gisStructures_feature-name" id="gisStructures_sort-btn"><i class="fa fa-sort"></i>&nbsp;&nbsp;Sort</button>
+              </div>
+            </div>
+          </div>
+          <div class="sidebar-table">
+            <table class="table table-hover" id="gisStructures_feature-list">
+              <thead class="hidden">
+                <tr>
+                  <th>Icon</th>
+                <tr>
+                <tr>
+                  <th>Name</th>
+                <tr>
+                <tr>
+                  <th>Chevron</th>
+                <tr>
+              </thead>
+              <tbody class="list"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="gisStructuresSidebar">
+      <h1 class="modal-title text-primary" id="gisStructuresInfo_Title"></h1>
+      <div id="gisStructures-Info_DATA"></div>
+      <br>
+      <footer>
+        <button type="button" class="btn btn-primary" id="gisStructuresTable-btn">View Table</button>
+        <button type="button" class="btn btn-success" id="gisStructuresCreate-btn">Create Record</button>
+        <button type="button" class="btn btn-danger" id="gisStructuresEdit-btn">Edit Record</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal" id="gisStructuresClose-sidebarBTN">Close</button>
+      </footer>
+    </div>
+
+    <div id="gisStructuresTable-container"> 
+      <br>
+      <table id="gisStructuresTable" class="stripe" style="width:100%"></table>
+    </div>
+
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
@@ -267,6 +321,7 @@
     <script src="scripts/gisSites.js"></script>
     <script src="scripts/gisSegments.js"></script>
     <script src="scripts/gisRoutes.js"></script>
+    <script src="scripts/gisStructures.js"></script>
     <script src="scripts/layers.js"></script>
     <script src="scripts/sidebar.js"></script>
   </body>

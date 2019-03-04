@@ -135,3 +135,50 @@ var gisRoutesSearch = L.control.sidebar("gisRoutesSearch", {
     position: "left"
 }).addTo(map);
 
+
+
+// GIS ROUTES INFO SIDEBAR
+
+$("#gisStructuresClose-sidebarBTN").click(function(){
+  gisStructuresSidebar.hide();
+});
+
+
+var gisStructuresSidebar = L.control.sidebar("gisStructuresSidebar", {
+    closeButton: false,
+    position: "right"
+}).addTo(map);
+
+
+$("#gisStructuresTable-btn").click(function(){
+  $("#map-container").hide();
+  $("#gisSitesTable-container").hide();
+  $("#gisSegmentsTable-container").hide();
+  $("#gisRoutesTable-container").hide();
+  $("#gisStructuresTable-container").show();
+  gisStructuresDataTable.search(sessionStorage.getItem("fqn_id")).draw();
+  $(window).resize();
+});
+
+
+// GIS Structures SEARCH SIDEBAR
+
+$("#gisStructures_list-btn").click(function(){
+  gisStructuresSearch.show();
+  gisSegmentsSearch.hide();
+  gisSitesSearch.hide();
+  gisRoutesSearch.hide();
+  map.invalidateSize();
+});
+
+
+$("#gisStructures_sidebar-hide-btn").click(function() {
+  gisStructuresSearch.hide();
+  map.invalidateSize();
+});
+
+
+var gisStructuresSearch = L.control.sidebar("gisStructuresSearch", {
+    closeButton: false,
+    position: "left"
+}).addTo(map);

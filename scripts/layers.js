@@ -91,7 +91,8 @@ var baseLayers = {
 var overlayLayers = {
   "<span id='layer-name'>Sites</span>": gisSitesLayer,
   "<span id='layer-name'>Segments</span>": gisSegmentsLayer,
-  "<span id='layer-name'>Routes</span>": gisRoutesLayer
+  "<span id='layer-name'>Routes</span>": gisRoutesLayer,
+  "<span id='layer-name'>Routes</span>": gisStructuresLayer
 };
 
 
@@ -129,6 +130,8 @@ map.on('dblclick', function(event){
     gisSegmentsSearch.hide();
     gisRoutesSidebar.hide();
     gisRoutesSearch.hide();
+    gisStructuresSidebar.hide();
+    gisStructuresSearch.hide();
 });
 
 
@@ -177,8 +180,5 @@ L.control.scale().addTo(map);
 
 $("#map-only").click(function(){
   $("#map-container").show();
-  gisSitesDataTable.search("").draw();
-  gisSegmentsDataTable.search("").draw();
-  gisRoutesDataTable.search("").draw();
   $(window).resize();
 });

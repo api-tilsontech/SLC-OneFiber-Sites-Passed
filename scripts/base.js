@@ -19,7 +19,6 @@ function verifyUser() {
 // GIS TOKEN
 
 var gis_token = sessionStorage.getItem("gis_token")
-$("#loading-mask").show();
 
 
 // FORMAT CLICKABLE LINKS

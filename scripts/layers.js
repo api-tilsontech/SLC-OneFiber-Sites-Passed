@@ -77,6 +77,7 @@ var highlightLayer = L.geoJson(null, {
           gisStructuresSidebar.hide();
           gisSplicesSidebar.hide();
           gisWorkOrdersSidebar.show();
+        }
       }
     });
   }

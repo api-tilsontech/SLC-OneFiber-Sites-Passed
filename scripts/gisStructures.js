@@ -133,6 +133,21 @@ var gisStructuresProperties = [{
     operators: ["equal", "not_equal"],
     values: []
   }
+},
+{
+  value: "installationdate",
+  label: "INSTALL (A)",
+  table: {
+    visible: true,
+    sortable: true
+  },
+  filter: {
+    type: "date",
+    vertical: true,
+    multiple: true,
+    operators: ["equal", "not_equal"],
+    values: []
+  }
 }];
 
 
@@ -183,7 +198,7 @@ function gisStructuresBuildConfig() {
 
 var gisStructuresLayer = L.geoJson(null, {
   onEachFeature: function (feature, layer) {
-    layer.bindTooltip(feature.properties.fqn_id + " -- " + feature.properties.type, {sticky: 'true', direction: 'top'});
+    layer.bindTooltip(feature.properties.fqn_id + " -- " + feature.properties.label_id_text, {sticky: 'true', direction: 'top'});
 
     if (feature.properties) {
       var title = feature.properties.fqn_id;

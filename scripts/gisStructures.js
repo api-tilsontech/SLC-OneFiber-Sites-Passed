@@ -46,7 +46,7 @@ var gisStructuresProperties = [{
   }
 },
 {
-  value: "nfid",
+  value: "sitespannfid",
   label: "NFID",
   table: {
     visible: true,

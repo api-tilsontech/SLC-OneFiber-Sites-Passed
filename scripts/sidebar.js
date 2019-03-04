@@ -185,7 +185,7 @@ var gisStructuresSearch = L.control.sidebar("gisStructuresSearch", {
 
 
 
-// GIS STRUCTURES INFO SIDEBAR
+// GIS SPLICES INFO SIDEBAR
 
 $("#gisSplicesClose-sidebarBTN").click(function(){
   gisSplicesSidebar.hide();
@@ -210,7 +210,7 @@ $("#gisSplicesTable-btn").click(function(){
 });
 
 
-// GIS Splices SEARCH SIDEBAR
+// GIS SPLICES SEARCH SIDEBAR
 
 $("#gisSplices_list-btn").click(function(){
   gisSplicesSearch.show();
@@ -229,6 +229,57 @@ $("#gisSplices_sidebar-hide-btn").click(function() {
 
 
 var gisSplicesSearch = L.control.sidebar("gisSplicesSearch", {
+    closeButton: false,
+    position: "left"
+}).addTo(map);
+
+
+// GIS WorkOrders INFO SIDEBAR
+
+$("#gisWorkOrdersClose-sidebarBTN").click(function(){
+  gisWorkOrdersSidebar.hide();
+});
+
+
+var gisWorkOrdersSidebar = L.control.sidebar("gisWorkOrdersSidebar", {
+    closeButton: false,
+    position: "right"
+}).addTo(map);
+
+
+$("#gisWorkOrdersTable-btn").click(function(){
+  $("#map-container").hide();
+  $("#gisSitesTable-container").hide();
+  $("#gisSegmentsTable-container").hide();
+  $("#gisRoutesTable-container").hide();
+  $("#gisStructuresTable-container").hide();
+  $("#gisSplicesTable-container").hide();
+  $("#gisWorkOrdersTable-container").show();
+  gisWorkOrdersDataTable.search(sessionStorage.getItem("fqn_id")).draw();
+  $(window).resize();
+});
+
+
+// GIS WorkOrders SEARCH SIDEBAR
+
+$("#gisWorkOrders_list-btn").click(function(){
+  gisWorkOrdersSearch.show();
+  gisSegmentsSearch.hide();
+  gisSitesSearch.hide();
+  gisRoutesSearch.hide();
+  gisStructuresSearch.hide();
+  gisSplicesSearch.hide();
+  map.invalidateSize();
+});
+
+
+$("#gisWorkOrders_sidebar-hide-btn").click(function() {
+  gisWorkOrdersSearch.hide();
+  map.invalidateSize();
+});
+
+
+var gisWorkOrdersSearch = L.control.sidebar("gisWorkOrdersSearch", {
     closeButton: false,
     position: "left"
 }).addTo(map);

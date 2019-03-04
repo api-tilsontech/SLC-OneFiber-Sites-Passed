@@ -48,7 +48,7 @@ var highlightLayer = L.geoJson(null, {
           gisSegmentsSidebar.hide();
           gisRoutesSidebar.show();
           gisStructuresSidebar.hide();
-          gisPolesSidebar.hide();
+          gisWorkOrdersSidebar.hide();
           gisSplicesSidebar.hide();
           fulcrumRoutesSidebar.hide();
         } else if (feature.properties.sitetracker_id.toLowerCase().indexOf("slc_seg") === 0) {
@@ -58,7 +58,7 @@ var highlightLayer = L.geoJson(null, {
           gisSegmentsSidebar.show();
           gisRoutesSidebar.hide();
           gisStructuresSidebar.hide();
-          gisPolesSidebar.hide();
+          gisWorkOrdersSidebar.hide();
           gisSplicesSidebar.hide();
           fulcrumRoutesSidebar.hide();
         } else if (feature.properties.sitetracker_id.toLowerCase().indexOf("slc_sit") === 0) {
@@ -67,7 +67,7 @@ var highlightLayer = L.geoJson(null, {
           gisSegmentsSidebar.hide();
           gisRoutesSidebar.hide();
           gisStructuresSidebar.hide();
-          gisPolesSidebar.hide();
+          gisWorkOrdersSidebar.hide();
           gisSplicesSidebar.hide();
           fulcrumRoutesSidebar.hide();
         }
@@ -93,7 +93,8 @@ var overlayLayers = {
   "<span id='layer-name'>Segments</span>": gisSegmentsLayer,
   "<span id='layer-name'>Routes</span>": gisRoutesLayer,
   "<span id='layer-name'>Structures</span>": gisStructuresLayer,
-  "<span id='layer-name'>Splices</span>": gisSplicesLayer
+  "<span id='layer-name'>Splices</span>": gisSplicesLayer,
+  "<span id='layer-name'>Work Orders</span>": gisWorkOrdersLayer
 };
 
 
@@ -135,6 +136,8 @@ map.on('dblclick', function(event){
     gisStructuresSearch.hide();
     gisSplicesSidebar.hide();
     gisSplicesSearch.hide();
+    gisWorkOrdersSidebar.hide();
+    gisWorkOrdersSearch.hide();
 });
 
 

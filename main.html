@@ -122,7 +122,7 @@
     </div>
 
     <div id="gisSitesSidebar">
-      <h1 class="modal-title text-primary" id="gisSitesInfo_Title"></h1>
+      <h3 class="modal-title text-primary" id="gisSitesInfo_Title"></h3>
       <div id="gisSites-Info_DATA"></div>
       <br>
       <footer>
@@ -176,7 +176,7 @@
     </div>
 
     <div id="gisSegmentsSidebar">
-      <h1 class="modal-title text-primary" id="gisSegmentsInfo_Title"></h1>
+      <h3 class="modal-title text-primary" id="gisSegmentsInfo_Title"></h3>
       <div id="gisSegments-Info_DATA"></div>
       <br>
       <footer>
@@ -230,7 +230,7 @@
     </div>
 
     <div id="gisRoutesSidebar">
-      <h1 class="modal-title text-primary" id="gisRoutesInfo_Title"></h1>
+      <h3 class="modal-title text-primary" id="gisRoutesInfo_Title"></h3>
       <div id="gisRoutes-Info_DATA"></div>
       <br>
       <footer>
@@ -284,7 +284,7 @@
     </div>
 
     <div id="gisStructuresSidebar">
-      <h1 class="modal-title text-primary" id="gisStructuresInfo_Title"></h1>
+      <h3 class="modal-title text-primary" id="gisStructuresInfo_Title"></h3>
       <div id="gisStructures-Info_DATA"></div>
       <br>
       <footer>
@@ -338,7 +338,7 @@
     </div>
 
     <div id="gisSplicesSidebar">
-      <h1 class="modal-title text-primary" id="gisSplicesInfo_Title"></h1>
+      <h3 class="modal-title text-primary" id="gisSplicesInfo_Title"></h3>
       <div id="gisSplices-Info_DATA"></div>
       <br>
       <footer>
@@ -352,6 +352,60 @@
     <div id="gisSplicesTable-container"> 
       <br>
       <table id="gisSplicesTable" class="stripe" style="width:100%"></table>
+    </div>
+
+    <div id="gisWorkOrdersSearch">
+      <div class="sidebar-wrapper">
+        <div class="panel panel-default" id="gisWorkOrders_features">
+          <div class="panel-heading">
+            <h3 class="panel-title">WorkOrders
+            <button type="button" class="btn btn-xs btn-default pull-right" id="gisWorkOrders_sidebar-hide-btn"><i class="fa fa-chevron-left"></i></button></h3>
+          </div>
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-xs-8 col-md-8">
+                <input type="text" class="form-control search" placeholder="Search" />
+              </div>
+              <div class="col-xs-4 col-md-4">
+                <button type="button" class="btn btn-primary pull-right sort" data-sort="gisWorkOrders_feature-name" id="gisWorkOrders_sort-btn"><i class="fa fa-sort"></i>&nbsp;&nbsp;Sort</button>
+              </div>
+            </div>
+          </div>
+          <div class="sidebar-table">
+            <table class="table table-hover" id="gisWorkOrders_feature-list">
+              <thead class="hidden">
+                <tr>
+                  <th>Icon</th>
+                <tr>
+                <tr>
+                  <th>Name</th>
+                <tr>
+                <tr>
+                  <th>Chevron</th>
+                <tr>
+              </thead>
+              <tbody class="list"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="gisWorkOrdersSidebar">
+      <h3 class="modal-title text-primary" id="gisWorkOrdersInfo_Title"></h3>
+      <div id="gisWorkOrders-Info_DATA"></div>
+      <br>
+      <footer>
+        <button type="button" class="btn btn-primary" id="gisWorkOrdersTable-btn">View Table</button>
+        <button type="button" class="btn btn-success" id="gisWorkOrdersCreate-btn">Create Record</button>
+        <button type="button" class="btn btn-danger" id="gisWorkOrdersEdit-btn">Edit Record</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal" id="gisWorkOrdersClose-sidebarBTN">Close</button>
+      </footer>
+    </div>
+
+    <div id="gisWorkOrdersTable-container"> 
+      <br>
+      <table id="gisWorkOrdersTable" class="stripe" style="width:100%"></table>
     </div>
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>

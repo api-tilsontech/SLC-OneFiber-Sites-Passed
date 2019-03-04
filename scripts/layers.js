@@ -133,6 +133,8 @@ map.on('dblclick', function(event){
     gisRoutesSearch.hide();
     gisStructuresSidebar.hide();
     gisStructuresSearch.hide();
+    gisSplicesSidebar.hide();
+    gisSplicesSearch.hide();
 });
 
 

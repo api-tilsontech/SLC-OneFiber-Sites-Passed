@@ -92,7 +92,8 @@ var overlayLayers = {
   "<span id='layer-name'>Sites</span>": gisSitesLayer,
   "<span id='layer-name'>Segments</span>": gisSegmentsLayer,
   "<span id='layer-name'>Routes</span>": gisRoutesLayer,
-  "<span id='layer-name'>Routes</span>": gisStructuresLayer
+  "<span id='layer-name'>Structures</span>": gisStructuresLayer,
+  "<span id='layer-name'>Splices</span>": gisSplicesLayer
 };
 
 

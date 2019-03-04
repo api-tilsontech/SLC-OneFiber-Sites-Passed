@@ -1,20 +1,6 @@
-// GIS Splices PROPERTIES
+// GIS SPLICES PROPERTIES
 
 var gisSplicesProperties = [{
-    value: "sitetracker_id",
-  label: "STID",
-  table: {
-    visible: true
-  },
-  filter: {
-    type: "string",
-    vertical: true,
-    multiple: true,
-    operators: ["equal"],
-    values: []
-  }
-},
-{
   value: "objectid",
   label: "GISID",
   table: {
@@ -45,6 +31,22 @@ var gisSplicesProperties = [{
   }
 },
 {
+  value: "splice_name",
+  label: "NAME",
+  table: {
+    visible: true,
+    sortable: true
+  },
+  filter: {
+    type: "string",
+    input: "radio",
+    vertical: true,
+    multiple: true,
+    operators: ["equal", "not_equal"],
+    values: []
+  }
+},
+{
   value: "workorderid",
   label: "WOID",
   table: {
@@ -53,35 +55,23 @@ var gisSplicesProperties = [{
   },
   filter: {
     type: "string",
+    input: "radio",
     vertical: true,
     multiple: true,
-    operators: ["equal", "not_equal", "contains"],
+    operators: ["equal", "not_equal"],
     values: []
   }
 },
 {
-  value: "nfid",
-  label: "NFID",
-  table: {
-    visible: true,
-    sortable: true
-  },
-  filter: {
-    type: "string",
-    vertical: true,
-    multiple: true,
-    operators: ["equal", "not_equal", "contains"],
-    values: []
-  }
-},
-{
-  value: "label_id_text",
+  value: "splicetype",
   label: "TYPE",
   table: {
     visible: true,
     sortable: true
   },
   filter: {
+    type: "string",
+    input: "radio",
     vertical: true,
     multiple: true,
     operators: ["equal", "not_equal"],
@@ -89,14 +79,15 @@ var gisSplicesProperties = [{
   }
 },
 {
-  value: "vaultsize",
-  label: "SIZE",
+  value: "splicecount",
+  label: "COUNT",
   table: {
     visible: true,
     sortable: true
   },
   filter: {
-    type: "string",
+    type: "integer",
+    input: "radio",
     vertical: true,
     multiple: true,
     operators: ["equal", "not_equal"],
@@ -104,47 +95,18 @@ var gisSplicesProperties = [{
   }
 },
 {
-  value: "material",
-  label: "MATERIAL",
+  value: "splicingcomplete",
+  label: "INSTALL (A)",
   table: {
     visible: true,
     sortable: true
   },
   filter: {
+    value: "date",
     type: "string",
     vertical: true,
     multiple: true,
-    operators: ["equal", "not_equal"],
-    values: []
-  }
-},
-{
-  value: "slack_loop",
-  label: "SLACK",
-  table: {
-    visible: true,
-    sortable: true
-  },
-  filter: {
-    type: "string",
-    vertical: true,
-    multiple: true,
-    operators: ["equal", "not_equal"],
-    values: []
-  }
-},
-{
-  value: "openingtype",
-  label: "LID",
-  table: {
-    visible: true,
-    sortable: true
-  },
-  filter: {
-    type: "string",
-    vertical: true,
-    multiple: true,
-    operators: ["equal", "not_equal"],
+    operators: ["is_not_empty"],
     values: []
   }
 }];
@@ -161,7 +123,7 @@ var gisSplicesFields = gisSplicesProperties.map(function(elem) {
 // GIS Splices REST URL
 
 var gisSplicesConfig = {
-  geojson: "https://gis.tilsontech.com/arcgis/rest/services/SiteTracker/SLC_OneFiber/MapServer/8/query?where=objectid+IS+NOT+NULL&outFields=" + gisSplicesFields + "&f=geojson&token=" + gis_token,
+  geojson: "https://gis.tilsontech.com/arcgis/rest/services/SiteTracker/SLC_OneFiber/MapServer/9/query?where=objectid+IS+NOT+NULL&outFields=" + gisSplicesFields + "&f=geojson&token=" + gis_token,
   layerName: "Splices",
   hoverProperty: "fqn_id"
 };
@@ -196,11 +158,6 @@ function gisSplicesBuildConfig() {
 // GIS Splices LAYER
 
 var gisSplicesLayer = L.geoJson(null, {
-  filter: function (feature) {
-    if (feature.properties.clustername.toLowerCase().indexOf("loop") === -1) {
-      return true
-    };
-  },
   onEachFeature: function (feature, layer) {
     layer.bindTooltip(feature.properties.fqn_id + " -- " + feature.properties.splicetype, {sticky: 'true', direction: 'top'});
 
@@ -213,6 +170,7 @@ var gisSplicesLayer = L.geoJson(null, {
           gisSitesSidebar.hide();
           gisSegmentsSidebar.hide();
           gisRoutesSidebar.hide();
+          gisStructuresSidebar.hide();
           $("#gisSplicesInfo_Title").html(feature.properties.fqn_id);
           gisSplicesInfo(L.stamp(layer));
           activeRecord = feature.properties.fqn_id;
@@ -229,28 +187,28 @@ var gisSplicesLayer = L.geoJson(null, {
     if (feature.properties.splicetype === "MCA") {
       layer.setIcon(
         L.icon({
-          iconUrl: "Pictures/MCA.png",
+          iconUrl: "pictures/MCA.png",
           iconSize: [15, 25],
         })
       );
     } else if (feature.properties.splicetype === "Reel End" && (feature.properties.c510spliceribbon === 864 || feature.properties.c500spliceloose === 864)) {
       layer.setIcon(
         L.icon({
-          iconUrl: "Pictures/Reel-End2.png",
+          iconUrl: "pictures/Reel-End2.png",
           iconSize: [15, 25],
         })
       );
     } else if (feature.properties.splicetype === "Reel End") {
       layer.setIcon(
         L.icon({
-          iconUrl: "Pictures/Reel-End.png",
+          iconUrl: "pictures/Reel-End.png",
           iconSize: [15, 25],
         })
       );
     } else {
       layer.setIcon(
         L.icon({
-          iconUrl: "Pictures/Virtual.png",
+          iconUrl: "pictures/Virtual.png",
           iconSize: [15, 25],
         })
       );
@@ -302,15 +260,16 @@ function gisSplicesInfo(id) {
     if (!value) {
       value = "";
     }
-    if (key == "sitetracker_id") {
-      sessionStorage.setItem("SplicesiteTrackerID", value);
-    }
     if (key == "fqn_id") {
       sessionStorage.setItem("fqn_id", value);
     }
 
     $.each(gisSplicesProperties, function(index, property) {
       if (key == property.value) {
+        if (value && property.filter.value == "date") {
+          date = new Date(value);
+          value = (date.getMonth() + 1) + "/" + date.getDate() + "/" + date.getFullYear();
+        }
         if (property.info !== false) {
           content += "<tr><th>" + property.label + "</th><td>" + value + "</td></tr>";
         }
@@ -362,5 +321,6 @@ $("#gisSplices_table-btn").click(function(){
   $("#gisSitesTable-container").hide();
   $("#gisSegmentsTable-container").hide();
   $("#gisRoutesTable-container").hide();
+  $("#gisStructuresTable-container").hide();
   $(window).resize();
 });

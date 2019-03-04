@@ -10,6 +10,24 @@ $("#Refresh_BTN").click(function() {
 
   $("#loading-mask").show();
 
+  $('#gisSitesTable').DataTable().clear().draw();
+  $('#gisSitesTable').DataTable().destroy();
+
+  $('#gisSegmentsTable').DataTable().clear().draw();
+  $('#gisSegmentsTable').DataTable().destroy();
+
+  $('#gisRoutesTable').DataTable().clear().draw();
+  $('#gisRoutesTable').DataTable().destroy();
+
+  $('#gisStructuresTable').DataTable().clear().draw();
+  $('#gisStructuresTable').DataTable().destroy();
+
+  $('#gisSplicesTable').DataTable().clear().draw();
+  $('#gisSplicesTable').DataTable().destroy();
+
+  $('#gisWorkOrdersTable').DataTable().clear().draw();
+  $('#gisWorkOrdersTable').DataTable().destroy();
+
 	$.getJSON(gisSitesConfig.geojson, function (data) {
 	  gisSitesData = data;
 	  gisSitesFeatures = $.map(gisSitesData.features, function(feature) {

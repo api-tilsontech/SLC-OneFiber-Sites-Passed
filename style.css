@@ -36,6 +36,7 @@ input[type="radio"], input[type="checkbox"] {
 }
 .loading-bar {
   width: 100%;
+  height: 100px;
 }
 #gisSites_features {
   margin: 0px;

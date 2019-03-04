@@ -1,20 +1,6 @@
 // GIS STRUCTURES PROPERTIES
 
 var gisStructuresProperties = [{
-    value: "sitetracker_id",
-  label: "STID",
-  table: {
-    visible: true
-  },
-  filter: {
-    type: "string",
-    vertical: true,
-    multiple: true,
-    operators: ["equal"],
-    values: []
-  }
-},
-{
   value: "objectid",
   label: "GISID",
   table: {

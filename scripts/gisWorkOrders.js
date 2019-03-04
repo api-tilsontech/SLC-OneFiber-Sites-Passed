@@ -132,6 +132,11 @@ var gisWorkOrdersLayer = L.geoJson(null, {
     if (feature.properties) {
       layer.on({
         click: function (e) {
+          gisSegmentsSidebar.hide();
+          gisRoutesSidebar.hide();
+          gisStructuresSidebar.hide();
+          gisSplicesSidebar.hide();
+          gisSitesSidebar.hide();
           $("#gisWorkOrdersInfo_Title").html(feature.properties.WO_ID);
           gisWorkOrdersInfo(L.stamp(layer));
         }
@@ -145,10 +150,7 @@ var gisWorkOrdersLayer = L.geoJson(null, {
 function gisWorkOrdersSearchClick(id) {
   var layer = gisWorkOrdersLayer.getLayer(id);
   var coords = layer.feature.geometry.coordinates
-  var geom = coords.map(function (pt) {return [pt[1], pt[0]]})
-  console.log(coords);
-  console.log(geom);
-  var line = L.polyline(geom);
+  var line = L.polygon(coords);
   map.fitBounds(line.getBounds(), {maxZoom: 16});
   highlightLayer.clearLayers();
   highlightLayer.addData(layer.toGeoJSON());

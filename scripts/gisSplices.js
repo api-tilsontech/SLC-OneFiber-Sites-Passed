@@ -167,10 +167,11 @@ var gisSplicesLayer = L.geoJson(null, {
       content += "<table>";
       layer.on({
         click: function (e) {
-          gisSitesSidebar.hide();
           gisSegmentsSidebar.hide();
           gisRoutesSidebar.hide();
           gisStructuresSidebar.hide();
+          gisSitesSidebar.hide();
+          gisWorkOrdersSidebar.hide();
           $("#gisSplicesInfo_Title").html(feature.properties.fqn_id);
           gisSplicesInfo(L.stamp(layer));
           activeRecord = feature.properties.fqn_id;

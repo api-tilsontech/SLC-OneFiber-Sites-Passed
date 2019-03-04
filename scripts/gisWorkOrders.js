@@ -132,7 +132,7 @@ var gisWorkOrdersLayer = L.geoJson(null, {
     if (feature.properties) {
       layer.on({
         click: function (e) {
-          $("#gisWorkOrdersInfo_Title").html(feature.properties.workordername);
+          $("#gisWorkOrdersInfo_Title").html(feature.properties.WO_ID);
           gisWorkOrdersInfo(L.stamp(layer));
         },
         mouseover: function (e) {

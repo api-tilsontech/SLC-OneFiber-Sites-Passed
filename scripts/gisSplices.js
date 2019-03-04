@@ -1,6 +1,6 @@
-// GIS STRUCTURES PROPERTIES
+// GIS Splices PROPERTIES
 
-var gisStructuresProperties = [{
+var gisSplicesProperties = [{
     value: "sitetracker_id",
   label: "STID",
   table: {
@@ -151,53 +151,58 @@ var gisStructuresProperties = [{
 
 
 
-// GIS Structures FIELDS
+// GIS Splices FIELDS
 
-var gisStructuresFields = gisStructuresProperties.map(function(elem) {
+var gisSplicesFields = gisSplicesProperties.map(function(elem) {
   return elem.value;
 }).join("%2C");
 
 
-// GIS Structures REST URL
+// GIS Splices REST URL
 
-var gisStructuresConfig = {
-  geojson: "https://gis.tilsontech.com/arcgis/rest/services/SiteTracker/SLC_OneFiber/MapServer/8/query?where=objectid+IS+NOT+NULL&outFields=" + gisStructuresFields + "&f=geojson&token=" + gis_token,
-  layerName: "Structures",
+var gisSplicesConfig = {
+  geojson: "https://gis.tilsontech.com/arcgis/rest/services/SiteTracker/SLC_OneFiber/MapServer/8/query?where=objectid+IS+NOT+NULL&outFields=" + gisSplicesFields + "&f=geojson&token=" + gis_token,
+  layerName: "Splices",
   hoverProperty: "fqn_id"
 };
 
 
-// GIS Structures BUILD CONFIG
+// GIS Splices BUILD CONFIG
 
 
-function gisStructuresBuildConfig() {
-  gisStructuresTable = [];
+function gisSplicesBuildConfig() {
+  gisSplicesTable = [];
 
-  $.each(gisStructuresProperties, function(index, value) {
+  $.each(gisSplicesProperties, function(index, value) {
     if (value.table) {
-      gisStructuresTable.push({
+      gisSplicesTable.push({
         data: "properties." + value.value,
         title: value.label
       });
       $.each(value.table, function(key, val) {
-        if (gisStructuresTable[index+1]) {
-          gisStructuresTable[index+1][key] = val;
+        if (gisSplicesTable[index+1]) {
+          gisSplicesTable[index+1][key] = val;
         }
       });
     }
   });
 
-  gisStructuresBuildTable()
+  gisSplicesBuildTable()
 }
 
 
 
 
-// GIS Structures LAYER
+// GIS Splices LAYER
 
-var gisStructuresLayer = L.geoJson(null, {
+var gisSplicesLayer = L.geoJson(null, {
+  filter: function (feature) {
+    if (feature.properties.clustername.toLowerCase().indexOf("loop") === -1) {
+      return true
+    };
+  },
   onEachFeature: function (feature, layer) {
-    layer.bindTooltip(feature.properties.fqn_id + " -- " + feature.properties.type, {sticky: 'true', direction: 'top'});
+    layer.bindTooltip(feature.properties.fqn_id + " -- " + feature.properties.splicetype, {sticky: 'true', direction: 'top'});
 
     if (feature.properties) {
       var title = feature.properties.fqn_id;
@@ -208,8 +213,8 @@ var gisStructuresLayer = L.geoJson(null, {
           gisSitesSidebar.hide();
           gisSegmentsSidebar.hide();
           gisRoutesSidebar.hide();
-          $("#gisStructuresInfo_Title").html(feature.properties.fqn_id);
-          gisStructuresInfo(L.stamp(layer));
+          $("#gisSplicesInfo_Title").html(feature.properties.fqn_id);
+          gisSplicesInfo(L.stamp(layer));
           activeRecord = feature.properties.fqn_id;
           highlightLayer.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], {
             stroke: false,
@@ -219,20 +224,34 @@ var gisStructuresLayer = L.geoJson(null, {
           }));
         }
       });
-      $("#gisStructures_feature-list tbody").append('<tr onclick= "gisStructuresSearchClick(' + L.stamp(layer) + ')"><td class="gisStructures_feature-name">' + layer.feature.properties.fqn_id + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+      $("#gisSplices_feature-list tbody").append('<tr onclick= "gisSplicesSearchClick(' + L.stamp(layer) + ')"><td class="gisSplices_feature-name">' + layer.feature.properties.fqn_id + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
     }
-    if (feature.properties.label_id_text !== "EXISTING") {
+    if (feature.properties.splicetype === "MCA") {
       layer.setIcon(
         L.icon({
-          iconUrl: "pictures/structures/place.png",
-          iconSize: [14, 14],
+          iconUrl: "Pictures/MCA.png",
+          iconSize: [15, 25],
         })
       );
-    } else if (feature.properties.label_id_text === "EXISTING") {
+    } else if (feature.properties.splicetype === "Reel End" && (feature.properties.c510spliceribbon === 864 || feature.properties.c500spliceloose === 864)) {
       layer.setIcon(
         L.icon({
-          iconUrl: "pictures/structures/existing.png",
-          iconSize: [14, 14],
+          iconUrl: "Pictures/Reel-End2.png",
+          iconSize: [15, 25],
+        })
+      );
+    } else if (feature.properties.splicetype === "Reel End") {
+      layer.setIcon(
+        L.icon({
+          iconUrl: "Pictures/Reel-End.png",
+          iconSize: [15, 25],
+        })
+      );
+    } else {
+      layer.setIcon(
+        L.icon({
+          iconUrl: "Pictures/Virtual.png",
+          iconSize: [15, 25],
         })
       );
     } 
@@ -240,29 +259,29 @@ var gisStructuresLayer = L.geoJson(null, {
 });
 
 
-function gisStructuresSearchClick(id) {
-  var layer = gisStructuresLayer.getLayer(id);
+function gisSplicesSearchClick(id) {
+  var layer = gisSplicesLayer.getLayer(id);
   map.setView([layer.getLatLng().lat, layer.getLatLng().lng], 16);
   layer.fire("click");
   /* Hide sidebar and go to the map on small screens */
   if (document.body.clientWidth <= 767) {
-    gisStructuresSidebar.hide();
+    gisSplicesSidebar.hide();
     map.invalidateSize();
   }
 }
 
 
-//GIS Structures DATA
+//GIS Splices DATA
 
-$.getJSON(gisStructuresConfig.geojson, function (data) {
-  gisStructuresData = data;
-  gisStructuresFeatures = $.map(gisStructuresData.features, function(feature) {
+$.getJSON(gisSplicesConfig.geojson, function (data) {
+  gisSplicesData = data;
+  gisSplicesFeatures = $.map(gisSplicesData.features, function(feature) {
     return feature.properties;
   });
-  gisStructuresLayer.addData(data);
-  gisStructuresList = new List("gisStructures_features", {valueNames: ["gisStructures_feature-name"]});
-  gisStructuresList.sort("gisStructures_feature-name", {order:"asc"});
-  gisStructuresBuildConfig()
+  gisSplicesLayer.addData(data);
+  gisSplicesList = new List("gisSplices_features", {valueNames: ["gisSplices_feature-name"]});
+  gisSplicesList.sort("gisSplices_feature-name", {order:"asc"});
+  gisSplicesBuildConfig()
 }).error(function(jqXHR, textStatus, errorThrown) {
     console.log("error " + textStatus);
     console.log("incoming Text " + jqXHR.responseText);
@@ -271,11 +290,11 @@ $.getJSON(gisStructuresConfig.geojson, function (data) {
 
 
 
-// GIS Structures INFO
+// GIS Splices INFO
 
-function gisStructuresInfo(id) {
+function gisSplicesInfo(id) {
   
-  var featureProperties = gisStructuresLayer.getLayer(id).feature.properties;
+  var featureProperties = gisSplicesLayer.getLayer(id).feature.properties;
 
   var content = "<table class='table table-striped table-bordered table-condensed'>";
 
@@ -284,13 +303,13 @@ function gisStructuresInfo(id) {
       value = "";
     }
     if (key == "sitetracker_id") {
-      sessionStorage.setItem("structuresiteTrackerID", value);
+      sessionStorage.setItem("SplicesiteTrackerID", value);
     }
     if (key == "fqn_id") {
       sessionStorage.setItem("fqn_id", value);
     }
 
-    $.each(gisStructuresProperties, function(index, property) {
+    $.each(gisSplicesProperties, function(index, property) {
       if (key == property.value) {
         if (property.info !== false) {
           content += "<tr><th>" + property.label + "</th><td>" + value + "</td></tr>";
@@ -299,23 +318,23 @@ function gisStructuresInfo(id) {
     });
   });
   content += "<table>";
-  $("#gisStructures-Info_DATA").html(content);
-  gisStructuresSidebar.show();
+  $("#gisSplices-Info_DATA").html(content);
+  gisSplicesSidebar.show();
 };
 
 
 
-// GIS Structures TABLE
+// GIS Splices TABLE
 
-function gisStructuresBuildTable() {
+function gisSplicesBuildTable() {
 
-    gisStructuresDataTable = $('#gisStructuresTable').DataTable({ // Change table element ID here
+    gisSplicesDataTable = $('#gisSplicesTable').DataTable({ // Change table element ID here
     dom: 'Bfrtip', // Add this to enable export buttons
     buttons: [ // Add this to choose which buttons to display
         'copy', 'csv', 'excel', 'pdf', 'print'
     ],
     colReorder: true,
-    data: gisStructuresData.features,
+    data: gisSplicesData.features,
     "autoWidth": true, // Feature control DataTables' smart column width handling
     "deferRender": true, // Feature control deferred rendering for additional speed of initialisation.
     "info": true, // Display info about table including filtering
@@ -328,18 +347,18 @@ function gisStructuresBuildTable() {
     "searching": true, // Toggle search all columns field
     "stateSave": true, // If true, table will restore to user filtered state when page is reopened     
     "scrollCollapse": true, // If true, the table will be collapsed if the height of the records is < the scrollY option; prevents footer from floating
-    "columns": gisStructuresTable,
+    "columns": gisSplicesTable,
     "language": {
       "emptyTable": "Loading..."
     }
   });
 }
 
-// GIS Structures OPEN TABLE
+// GIS Splices OPEN TABLE
 
-$("#gisStructures_table-btn").click(function(){
+$("#gisSplices_table-btn").click(function(){
   $("#map-container").hide();
-  $("#gisStructuresTable-container").show();
+  $("#gisSplicesTable-container").show();
   $("#gisSitesTable-container").hide();
   $("#gisSegmentsTable-container").hide();
   $("#gisRoutesTable-container").hide();

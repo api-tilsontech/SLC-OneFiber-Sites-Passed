@@ -38,6 +38,8 @@ var highlightLayer = L.geoJson(null, {
       }
     } else if (feature.properties.sitetracker_id.toLowerCase().indexOf("slc_sit") === 0) {
       layer.bindTooltip(feature.properties.nfid + " -- " + feature.properties.site_name, {sticky: 'true', direction: 'top'});
+    } else {
+      layer.bindTooltip(feature.properties.workordername, {sticky: 'true', direction: 'top'});
     }
     layer.on({
       click: function (e) {
@@ -48,9 +50,8 @@ var highlightLayer = L.geoJson(null, {
           gisSegmentsSidebar.hide();
           gisRoutesSidebar.show();
           gisStructuresSidebar.hide();
-          gisWorkOrdersSidebar.hide();
           gisSplicesSidebar.hide();
-          fulcrumRoutesSidebar.hide();
+          gisWorkOrdersSidebar.hide();
         } else if (feature.properties.sitetracker_id.toLowerCase().indexOf("slc_seg") === 0) {
           $("#gisSegmentsInfo_Title").html(feature.properties.fqn_id);
           gisSegmentsHighlightInfo(L.stamp(layer));
@@ -58,19 +59,24 @@ var highlightLayer = L.geoJson(null, {
           gisSegmentsSidebar.show();
           gisRoutesSidebar.hide();
           gisStructuresSidebar.hide();
-          gisWorkOrdersSidebar.hide();
           gisSplicesSidebar.hide();
-          fulcrumRoutesSidebar.hide();
+          gisWorkOrdersSidebar.hide();
         } else if (feature.properties.sitetracker_id.toLowerCase().indexOf("slc_sit") === 0) {
           gisSitesHighlightInfo(L.stamp(layer));
           gisSitesSidebar.show();
           gisSegmentsSidebar.hide();
           gisRoutesSidebar.hide();
           gisStructuresSidebar.hide();
-          gisWorkOrdersSidebar.hide();
           gisSplicesSidebar.hide();
-          fulcrumRoutesSidebar.hide();
-        }
+          gisWorkOrdersSidebar.hide();
+        } else if (feature.properties.WO_ID.toLowerCase().indexOf("wo_slc") === 0) {
+          gisWorkOrdersHighlightInfo(L.stamp(layer));
+          gisSitesSidebar.hide();
+          gisSegmentsSidebar.hide();
+          gisRoutesSidebar.hide();
+          gisStructuresSidebar.hide();
+          gisSplicesSidebar.hide();
+          gisWorkOrdersSidebar.show();
       }
     });
   }

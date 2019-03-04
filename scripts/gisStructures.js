@@ -344,9 +344,11 @@ function gisStructuresBuildTable() {
 
 $("#gisStructures_table-btn").click(function(){
   $("#map-container").hide();
-  $("#gisStructuresTable-container").show();
   $("#gisSitesTable-container").hide();
   $("#gisSegmentsTable-container").hide();
   $("#gisRoutesTable-container").hide();
+  $("#gisStructuresTable-container").show();
+  $("#gisSplicesTable-container").hide();
+  $("#gisWorkOrdersTable-container").hide();
   $(window).resize();
 });

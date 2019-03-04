@@ -511,5 +511,8 @@ $("#gisSites_table-btn").click(function(){
   $("#gisSitesTable-container").show();
   $("#gisSegmentsTable-container").hide();
   $("#gisRoutesTable-container").hide();
+  $("#gisStructuresTable-container").hide();
+  $("#gisSplicesTable-container").hide();
+  $("#gisWorkOrdersTable-container").hide();
   $(window).resize();
 });

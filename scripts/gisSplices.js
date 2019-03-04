@@ -317,10 +317,11 @@ function gisSplicesBuildTable() {
 
 $("#gisSplices_table-btn").click(function(){
   $("#map-container").hide();
-  $("#gisSplicesTable-container").show();
   $("#gisSitesTable-container").hide();
   $("#gisSegmentsTable-container").hide();
   $("#gisRoutesTable-container").hide();
   $("#gisStructuresTable-container").hide();
+  $("#gisSplicesTable-container").show();
+  $("#gisWorkOrdersTable-container").hide();
   $(window).resize();
 });

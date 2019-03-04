@@ -496,9 +496,12 @@ function gisRoutesBuildTable() {
 // GIS SEGMENTS OPEN TABLE
 
 $("#gisRoutes_table-btn").click(function(){
-  $("#gisRoutesTable-container").show();
-  $("#gisSegmentsTable-container").hide();
-  $("#gisSitesTable-container").hide();
   $("#map-container").hide();
+  $("#gisSitesTable-container").hide();
+  $("#gisSegmentsTable-container").hide();
+  $("#gisRoutesTable-container").show();
+  $("#gisStructuresTable-container").hide();
+  $("#gisSplicesTable-container").hide();
+  $("#gisWorkOrdersTable-container").hide();
   $(window).resize();
 });

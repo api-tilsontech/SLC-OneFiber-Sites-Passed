@@ -16,6 +16,9 @@ $("#gisSitesTable-btn").click(function(){
   $("#gisSitesTable-container").show();
   $("#gisSegmentsTable-container").hide();
   $("#gisRoutesTable-container").hide();
+  $("#gisStructuresTable-container").hide();
+  $("#gisSplicesTable-container").hide();
+  $("#gisWorkOrdersTable-container").hide();
   gisSitesDataTable.search(sessionStorage.getItem("site_name")).draw();
   $(window).resize();
 });
@@ -27,6 +30,9 @@ $("#gisSites_list-btn").click(function(){
   gisSitesSearch.show();
   gisSegmentsSearch.hide();
   gisRoutesSearch.hide();
+  gisStructuresSearch.hide();
+  gisSplicesSearch.hide();
+  gisWorkOrdersSearch.hide();
   map.invalidateSize();
 });
 
@@ -62,6 +68,9 @@ $("#gisSegmentsTable-btn").click(function(){
   $("#gisSitesTable-container").hide();
   $("#gisSegmentsTable-container").show();
   $("#gisRoutesTable-container").hide();
+  $("#gisStructuresTable-container").hide();
+  $("#gisSplicesTable-container").hide();
+  $("#gisWorkOrdersTable-container").hide();
   gisSegmentsDataTable.search(sessionStorage.getItem("fqn_id")).draw();
   $(window).resize();
 });
@@ -71,9 +80,12 @@ $("#gisSegmentsTable-btn").click(function(){
 // GIS SEGMENTS SEARCH SIDEBAR
 
 $("#gisSegments_list-btn").click(function(){
-  gisSegmentsSearch.show();
   gisSitesSearch.hide();
+  gisSegmentsSearch.show();
   gisRoutesSearch.hide();
+  gisStructuresSearch.hide();
+  gisSplicesSearch.hide();
+  gisWorkOrdersSearch.hide();
   map.invalidateSize();
 });
 
@@ -109,6 +121,9 @@ $("#gisRoutesTable-btn").click(function(){
   $("#gisSitesTable-container").hide();
   $("#gisSegmentsTable-container").hide();
   $("#gisRoutesTable-container").show();
+  $("#gisStructuresTable-container").hide();
+  $("#gisSplicesTable-container").hide();
+  $("#gisWorkOrdersTable-container").hide();
   gisRoutesDataTable.search(sessionStorage.getItem("fqn_id")).draw();
   $(window).resize();
 });
@@ -117,9 +132,12 @@ $("#gisRoutesTable-btn").click(function(){
 // GIS ROUTES SEARCH SIDEBAR
 
 $("#gisRoutes_list-btn").click(function(){
-  gisRoutesSearch.show();
-  gisSegmentsSearch.hide();
   gisSitesSearch.hide();
+  gisSegmentsSearch.hide();
+  gisRoutesSearch.show();
+  gisStructuresSearch.hide();
+  gisSplicesSearch.hide();
+  gisWorkOrdersSearch.hide();
   map.invalidateSize();
 });
 
@@ -156,6 +174,8 @@ $("#gisStructuresTable-btn").click(function(){
   $("#gisSegmentsTable-container").hide();
   $("#gisRoutesTable-container").hide();
   $("#gisStructuresTable-container").show();
+  $("#gisSplicesTable-container").hide();
+  $("#gisWorkOrdersTable-container").hide();
   gisStructuresDataTable.search(sessionStorage.getItem("fqn_id")).draw();
   $(window).resize();
 });
@@ -164,10 +184,12 @@ $("#gisStructuresTable-btn").click(function(){
 // GIS STRUCTURES SEARCH SIDEBAR
 
 $("#gisStructures_list-btn").click(function(){
-  gisStructuresSearch.show();
-  gisSegmentsSearch.hide();
   gisSitesSearch.hide();
+  gisSegmentsSearch.hide();
   gisRoutesSearch.hide();
+  gisStructuresSearch.show();
+  gisSplicesSearch.hide();
+  gisWorkOrdersSearch.hide();
   map.invalidateSize();
 });
 
@@ -205,6 +227,7 @@ $("#gisSplicesTable-btn").click(function(){
   $("#gisRoutesTable-container").hide();
   $("#gisStructuresTable-container").hide();
   $("#gisSplicesTable-container").show();
+  $("#gisWorkOrdersTable-container").hide();
   gisSplicesDataTable.search(sessionStorage.getItem("fqn_id")).draw();
   $(window).resize();
 });
@@ -213,11 +236,12 @@ $("#gisSplicesTable-btn").click(function(){
 // GIS SPLICES SEARCH SIDEBAR
 
 $("#gisSplices_list-btn").click(function(){
-  gisSplicesSearch.show();
-  gisSegmentsSearch.hide();
   gisSitesSearch.hide();
+  gisSegmentsSearch.hide();
   gisRoutesSearch.hide();
   gisStructuresSearch.hide();
+  gisSplicesSearch.show();
+  gisWorkOrdersSearch.hide()
   map.invalidateSize();
 });
 
@@ -255,7 +279,7 @@ $("#gisWorkOrdersTable-btn").click(function(){
   $("#gisStructuresTable-container").hide();
   $("#gisSplicesTable-container").hide();
   $("#gisWorkOrdersTable-container").show();
-  gisWorkOrdersDataTable.search(sessionStorage.getItem("fqn_id")).draw();
+  gisWorkOrdersDataTable.search(sessionStorage.getItem("WO_ID")).draw();
   $(window).resize();
 });
 
@@ -263,12 +287,12 @@ $("#gisWorkOrdersTable-btn").click(function(){
 // GIS WorkOrders SEARCH SIDEBAR
 
 $("#gisWorkOrders_list-btn").click(function(){
-  gisWorkOrdersSearch.show();
-  gisSegmentsSearch.hide();
   gisSitesSearch.hide();
+  gisSegmentsSearch.hide();
   gisRoutesSearch.hide();
   gisStructuresSearch.hide();
   gisSplicesSearch.hide();
+  gisWorkOrdersSearch.show()
   map.invalidateSize();
 });
 

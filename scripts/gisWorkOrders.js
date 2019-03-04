@@ -288,12 +288,12 @@ function gisWorkOrdersBuildTable() {
 // GIS WorkOrders OPEN TABLE
 
 $("#gisWorkOrders_table-btn").click(function(){
-  $("#gisWorkOrdersTable-container").show();
+  $("#map-container").hide();
   $("#gisSitesTable-container").hide();
-  $("#gisRoutesTable-container").hide();
   $("#gisSegmentsTable-container").hide();
+  $("#gisRoutesTable-container").hide();
   $("#gisStructuresTable-container").hide();
   $("#gisSplicesTable-container").hide();
-  $("#map-container").hide();
+  $("#gisWorkOrdersTable-container").show();
   $(window).resize();
 });

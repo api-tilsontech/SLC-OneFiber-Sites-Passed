@@ -137,6 +137,7 @@ var gisWorkOrdersLayer = L.geoJson(null, {
           gisStructuresSidebar.hide();
           gisSplicesSidebar.hide();
           gisSitesSidebar.hide();
+          fulcrumRoutesSidebar.hide();
           $("#gisWorkOrdersInfo_Title").html(feature.properties.WO_ID);
           gisWorkOrdersInfo(L.stamp(layer));
         }

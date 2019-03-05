@@ -206,12 +206,12 @@ var gisStructuresLayer = L.geoJson(null, {
       content += "<table>";
       layer.on({
         click: function (e) {
-          gisSegmentsSidebar.close();
-          gisRoutesSidebar.close();
-          gisSitesSidebar.close();
-          gisSplicesSidebar.close();
-          gisWorkOrdersSidebar.close();
-          fulcrumRoutesSidebar.close();
+          gisSegmentsSidebar.hide();
+          gisRoutesSidebar.hide();
+          gisSitesSidebar.hide();
+          gisSplicesSidebar.hide();
+          gisWorkOrdersSidebar.hide();
+          fulcrumRoutesSidebar.hide();
           $("#gisStructuresInfo_Title").html(feature.properties.fqn_id);
           gisStructuresInfo(L.stamp(layer));
           activeRecord = feature.properties.fqn_id;

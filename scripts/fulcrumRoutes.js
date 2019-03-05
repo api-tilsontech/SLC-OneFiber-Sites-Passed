@@ -255,6 +255,15 @@ var fulcrumRoutesLayer = L.geoJson(null, {
           gisSplicesSidebar.hide();
         }
       });
+      if (feature.properties["marker-color"]) {
+        layer.setIcon(
+          L.icon({
+            iconUrl: "pictures/markers/" + feature.properties["marker-color"].replace("#",'').toLowerCase() + ".png",
+            iconSize: [30, 40],
+            iconAnchor: [15, 32]
+          })
+        );
+      }
       $("#fulcrumRoutes_feature-list tbody").append('<tr onclick= "fulcrumRoutesSearchClick(' +L.stamp(layer) + ')"><td class="fulcrumRoutes_feature-name">' + layer.feature.properties.fqnid + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
     }
   }
@@ -302,6 +311,10 @@ function fulcrumRoutesInfo(id) {
     if (!value) {
       value = "";
     }
+    if (key == "fqnid") {
+      sessionStorage.setItem("fqnid", value);
+    }
+
     $.each(fulcrumRoutesProperties, function(index, property) {
       if (key == property.value) {
         if (property.info !== false) {

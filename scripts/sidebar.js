@@ -331,7 +331,7 @@ $("#fulcrumRoutesTable-btn").click(function(){
   $("#gisSplicesTable-container").hide();
   $("#gisWorkOrdersTable-container").hide();
   $("#fulcrumRoutesTable-container").show();
-  fulcrumRoutesDataTable.search(sessionStorage.getItem("WO_ID")).draw();
+  fulcrumRoutesDataTable.search(sessionStorage.getItem("fqnid")).draw();
   $(window).resize();
 });
 

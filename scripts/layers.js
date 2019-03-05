@@ -104,7 +104,6 @@ var overlayLayers = {
   "<span id='layer-name'>Structures</span>": gisStructuresLayer,
   "<span id='layer-name'>Splices</span>": gisSplicesLayer,
   "<span id='layer-name'>Work Orders</span>": gisWorkOrdersLayer,
-  "<span id='layer-name'></span>":,
   "<span id='layer-name'>Fulcrum Routes</span>": fulcrumRoutesLayer
 };
 

@@ -366,7 +366,7 @@ $("#fulcrumRoutes_table-btn").click(function(){
   $("#map-container").hide();
   $("#gisSitesTable-container").hide();
   $("#gisSegmentsTable-container").hide();
-  $("#gisRoutessTable-container").hide();
+  $("#gisRoutesTable-container").hide();
   $("#fulcrumRoutesTable-container").show();
   $("#gisStructuresTable-container").hide();
   $("#gisSplicesTable-container").hide();

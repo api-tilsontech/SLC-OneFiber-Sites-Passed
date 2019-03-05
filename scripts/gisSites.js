@@ -190,6 +190,7 @@ var gisSitesLayer = L.geoJson(null, {
           gisStructuresSidebar.hide();
           gisSplicesSidebar.hide();
           gisWorkOrdersSidebar.hide();
+          fulcrumRoutesSidebar.hide();
           $("#gisSitesInfo_Title").html(feature.properties.nfid);
           gisSitesInfo(L.stamp(layer));
           activeRecord = feature.properties.site_name;

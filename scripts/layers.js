@@ -48,37 +48,41 @@ var highlightLayer = L.geoJson(null, {
         if (feature.properties.sitetracker_id.toLowerCase().indexOf("slc_rou") === 0) {
           $("#gisRoutesInfo_Title").html(feature.properties.fqn_id);
           gisRoutesHighlightInfo(L.stamp(layer));
-          gisSitesSidebar.hide();
-          gisSegmentsSidebar.hide();
+          gisSitesSidebar.close();
+          gisSegmentsSidebar.close();
           gisRoutesSidebar.show();
-          gisStructuresSidebar.hide();
-          gisSplicesSidebar.hide();
-          gisWorkOrdersSidebar.hide();
+          gisStructuresSidebar.close();
+          gisSplicesSidebar.close();
+          gisWorkOrdersSidebar.close();
+          fulcrumRoutesSidebar.close();
         } else if (feature.properties.sitetracker_id.toLowerCase().indexOf("slc_seg") === 0) {
           $("#gisSegmentsInfo_Title").html(feature.properties.fqn_id);
           gisSegmentsHighlightInfo(L.stamp(layer));
-          gisSitesSidebar.hide();
+          gisSitesSidebar.close();
           gisSegmentsSidebar.show();
-          gisRoutesSidebar.hide();
-          gisStructuresSidebar.hide();
-          gisSplicesSidebar.hide();
-          gisWorkOrdersSidebar.hide();
+          gisRoutesSidebar.close();
+          gisStructuresSidebar.close();
+          gisSplicesSidebar.close();
+          gisWorkOrdersSidebar.close();
+          fulcrumRoutesSidebar.close();
         } else if (feature.properties.sitetracker_id.toLowerCase().indexOf("slc_sit") === 0) {
           gisSitesHighlightInfo(L.stamp(layer));
           gisSitesSidebar.show();
-          gisSegmentsSidebar.hide();
-          gisRoutesSidebar.hide();
-          gisStructuresSidebar.hide();
-          gisSplicesSidebar.hide();
-          gisWorkOrdersSidebar.hide();
+          gisSegmentsSidebar.close();
+          gisRoutesSidebar.close();
+          gisStructuresSidebar.close();
+          gisSplicesSidebar.close();
+          gisWorkOrdersSidebar.close();
+          fulcrumRoutesSidebar.close();
         } else if (feature.properties.WO_ID.toLowerCase().indexOf("wo_slc") === 0) {
           gisWorkOrdersHighlightInfo(L.stamp(layer));
-          gisSitesSidebar.hide();
-          gisSegmentsSidebar.hide();
-          gisRoutesSidebar.hide();
-          gisStructuresSidebar.hide();
-          gisSplicesSidebar.hide();
+          gisSitesSidebar.close();
+          gisSegmentsSidebar.close();
+          gisRoutesSidebar.close();
+          gisStructuresSidebar.close();
+          gisSplicesSidebar.close();
           gisWorkOrdersSidebar.show();
+          fulcrumRoutesSidebar.close();
         }
       }
     });
@@ -136,20 +140,20 @@ map.on('click', function(event){
 map.on('dblclick', function(event){
     map.clicked = 0;
     highlightLayer.clearLayers();
-    gisSitesSidebar.hide();
-    gisSitesSearch.hide();
-    gisSegmentsSidebar.hide();
-    gisSegmentsSearch.hide();
-    gisRoutesSidebar.hide();
-    gisRoutesSearch.hide();
-    gisStructuresSidebar.hide();
-    gisStructuresSearch.hide();
-    gisSplicesSidebar.hide();
-    gisSplicesSearch.hide();
-    gisWorkOrdersSidebar.hide();
-    gisWorkOrdersSearch.hide();
-    fulcrumRoutesSidebar.hide();
-    fulcrumRoutesSearch.hide();
+    gisSitesSidebar.close();
+    gisSitesSearch.close();
+    gisSegmentsSidebar.close();
+    gisSegmentsSearch.close();
+    gisRoutesSidebar.close();
+    gisRoutesSearch.close();
+    gisStructuresSidebar.close();
+    gisStructuresSearch.close();
+    gisSplicesSidebar.close();
+    gisSplicesSearch.close();
+    gisWorkOrdersSidebar.close();
+    gisWorkOrdersSearch.close();
+    fulcrumRoutesSidebar.close();
+    fulcrumRoutesSearch.close();
 });
 
 

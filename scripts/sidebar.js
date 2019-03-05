@@ -307,3 +307,56 @@ var gisWorkOrdersSearch = L.control.sidebar("gisWorkOrdersSearch", {
     closeButton: false,
     position: "left"
 }).addTo(map);
+
+
+// FULCRUM ROUTES INFO SIDEBAR
+
+$("#fulcrumRoutesClose-sidebarBTN").click(function(){
+  fulcrumRoutesSidebar.hide();
+});
+
+
+var fulcrumRoutesSidebar = L.control.sidebar("fulcrumRoutesSidebar", {
+    closeButton: false,
+    position: "right"
+}).addTo(map);
+
+
+$("#fulcrumRoutesTable-btn").click(function(){
+  $("#map-container").hide();
+  $("#gisSitesTable-container").hide();
+  $("#gisSegmentsTable-container").hide();
+  $("#gisRoutesTable-container").hide();
+  $("#gisStructuresTable-container").hide();
+  $("#gisSplicesTable-container").hide();
+  $("#gisWorkOrdersTable-container").hide();
+  $("#fulcrumRoutesTable-container").show();
+  fulcrumRoutesDataTable.search(sessionStorage.getItem("WO_ID")).draw();
+  $(window).resize();
+});
+
+
+// FULCRUM ROUTES SEARCH SIDEBAR
+
+$("#fulcrumRoutes_list-btn").click(function(){
+  gisSitesSearch.hide();
+  gisSegmentsSearch.hide();
+  gisRoutesSearch.hide();
+  gisStructuresSearch.hide();
+  gisSplicesSearch.hide();
+  gisWorkOrdersSearch.hide();
+  fulcrumRoutesSearch.show()
+  map.invalidateSize();
+});
+
+
+$("#fulcrumRoutes_sidebar-hide-btn").click(function() {
+  fulcrumRoutesSearch.hide();
+  map.invalidateSize();
+});
+
+
+var fulcrumRoutesSearch = L.control.sidebar("fulcrumRoutesSearch", {
+    closeButton: false,
+    position: "left"
+}).addTo(map);

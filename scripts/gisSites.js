@@ -121,6 +121,186 @@ var gisSitesProperties = [{
     operators: ["equal", "not_equal", "contains"],
     values: []
   }
+},
+{
+  value: "site_survey_est",
+  label: "SITE SURVEY (F)",
+  table: {
+    visible: true,
+    sortable: true
+  },
+  filter: {
+    type: "date",
+    vertical: true,
+    multiple: true,
+    operators: ["equal", "not_equal", "contains"],
+    values: []
+  }
+},
+{
+  value: "site_survey_actual",
+  label: "SITE SURVEY (A)",
+  table: {
+    visible: true,
+    sortable: true
+  },
+  filter: {
+    type: "date",
+    vertical: true,
+    multiple: true,
+    operators: ["equal", "not_equal", "contains"],
+    values: []
+  }
+},
+{
+  value: "permit_submitted_estimated",
+  label: "PERMIT SBMT (F)",
+  table: {
+    visible: true,
+    sortable: true
+  },
+  filter: {
+    type: "date",
+    vertical: true,
+    multiple: true,
+    operators: ["equal", "not_equal", "contains"],
+    values: []
+  }
+},
+{
+  value: "permit_submitted_actual",
+  label: "PERMIT SBMT (A)",
+  table: {
+    visible: true,
+    sortable: true
+  },
+  filter: {
+    type: "date",
+    vertical: true,
+    multiple: true,
+    operators: ["equal", "not_equal", "contains"],
+    values: []
+  }
+},
+{
+  value: "permit_received_estimated",
+  label: "PERMIT RCVD (F)",
+  table: {
+    visible: true,
+    sortable: true
+  },
+  filter: {
+    type: "date",
+    vertical: true,
+    multiple: true,
+    operators: ["equal", "not_equal", "contains"],
+    values: []
+  }
+},
+{
+  value: "permit_received_actual",
+  label: "PERMIT RCVD (A)",
+  table: {
+    visible: true,
+    sortable: true
+  },
+  filter: {
+    type: "date",
+    vertical: true,
+    multiple: true,
+    operators: ["equal", "not_equal", "contains"],
+    values: []
+  }
+},
+{
+  value: "construction_start_estimated",
+  label: "CONST START (F)",
+  table: {
+    visible: true,
+    sortable: true
+  },
+  filter: {
+    type: "date",
+    vertical: true,
+    multiple: true,
+    operators: ["equal", "not_equal", "contains"],
+    values: []
+  }
+},
+{
+  value: "construction_start_actual",
+  label: "CONST START (A)",
+  table: {
+    visible: true,
+    sortable: true
+  },
+  filter: {
+    type: "date",
+    vertical: true,
+    multiple: true,
+    operators: ["equal", "not_equal", "contains"],
+    values: []
+  }
+},
+{
+  value: "cable_placed_estimated",
+  label: "CABLE PLACED (F)",
+  table: {
+    visible: true,
+    sortable: true
+  },
+  filter: {
+    type: "date",
+    vertical: true,
+    multiple: true,
+    operators: ["equal", "not_equal", "contains"],
+    values: []
+  }
+},
+{
+  value: "cable_placed_actual",
+  label: "CABLE PLACED (A)",
+  table: {
+    visible: true,
+    sortable: true
+  },
+  filter: {
+    type: "date",
+    vertical: true,
+    multiple: true,
+    operators: ["equal", "not_equal", "contains"],
+    values: []
+  }
+},
+{
+  value: "splicingtestingcompleteestimate",
+  label: "SPLICE/TEST (F)",
+  table: {
+    visible: true,
+    sortable: true
+  },
+  filter: {
+    type: "date",
+    vertical: true,
+    multiple: true,
+    operators: ["equal", "not_equal", "contains"],
+    values: []
+  }
+},
+{
+  value: "splicingtestingcompleteactual",
+  label: "SPLICE/TEST (A)",
+  table: {
+    visible: true,
+    sortable: true
+  },
+  filter: {
+    type: "date",
+    vertical: true,
+    multiple: true,
+    operators: ["equal", "not_equal", "contains"],
+    values: []
+  }
 }];
 
 
@@ -464,6 +644,10 @@ function gisSitesInfo(id) {
 
     $.each(gisSitesProperties, function(index, property) {
       if (key == property.value) {
+        if (value && property.filter.value == "date") {
+          date = new Date(value);
+          value = (date.getMonth() + 1) + "/" + date.getDate() + "/" + date.getFullYear();
+        }
         if (property.info !== false) {
           content += "<tr><th>" + property.label + "</th><td>" + value + "</td></tr>";
         }
@@ -487,6 +671,10 @@ function gisSitesBuildTable() {
         'copy', 'csv', 'excel', 'pdf', 'print'
     ],
     colReorder: true,
+    columnDefs: [{
+      targets: [8,9,10,11,12,13,14,15,16,17,18,19],
+      render: $.fn.dataTable.render.moment('x', 'MM/DD/YYYY')
+    }],
     data: gisSitesData.features,
     "autoWidth": true, // Feature control DataTables' smart column width handling
     "deferRender": true, // Feature control deferred rendering for additional speed of initialisation.

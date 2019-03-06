@@ -296,8 +296,6 @@ var gisRoutesLayer = L.geoJson(null, {
         },
         mouseover: function (e) {
           if (document.body.clientWidth > 767) {
-            $(".info-control").html(feature.properties[gisRoutesConfig.hoverProperty]);
-            $(".info-control").show();
             highlightLayer.clearLayers();
             highlightLayer.addData(gisRoutesLayer.getLayer(L.stamp(layer)).toGeoJSON());
           }

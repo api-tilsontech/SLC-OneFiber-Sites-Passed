@@ -130,6 +130,7 @@ var gisSitesProperties = [{
     sortable: true
   },
   filter: {
+    value: "date",
     type: "date",
     vertical: true,
     multiple: true,
@@ -145,6 +146,7 @@ var gisSitesProperties = [{
     sortable: true
   },
   filter: {
+    value: "date",
     type: "date",
     vertical: true,
     multiple: true,
@@ -160,6 +162,7 @@ var gisSitesProperties = [{
     sortable: true
   },
   filter: {
+    value: "date",
     type: "date",
     vertical: true,
     multiple: true,
@@ -175,6 +178,7 @@ var gisSitesProperties = [{
     sortable: true
   },
   filter: {
+    value: "date",
     type: "date",
     vertical: true,
     multiple: true,
@@ -190,6 +194,7 @@ var gisSitesProperties = [{
     sortable: true
   },
   filter: {
+    value: "date",
     type: "date",
     vertical: true,
     multiple: true,
@@ -205,6 +210,7 @@ var gisSitesProperties = [{
     sortable: true
   },
   filter: {
+    value: "date",
     type: "date",
     vertical: true,
     multiple: true,
@@ -220,6 +226,7 @@ var gisSitesProperties = [{
     sortable: true
   },
   filter: {
+    value: "date",
     type: "date",
     vertical: true,
     multiple: true,
@@ -235,6 +242,7 @@ var gisSitesProperties = [{
     sortable: true
   },
   filter: {
+    value: "date",
     type: "date",
     vertical: true,
     multiple: true,
@@ -250,6 +258,7 @@ var gisSitesProperties = [{
     sortable: true
   },
   filter: {
+    value: "date",
     type: "date",
     vertical: true,
     multiple: true,
@@ -265,6 +274,7 @@ var gisSitesProperties = [{
     sortable: true
   },
   filter: {
+    value: "date",
     type: "date",
     vertical: true,
     multiple: true,
@@ -280,6 +290,7 @@ var gisSitesProperties = [{
     sortable: true
   },
   filter: {
+    value: "date",
     type: "date",
     vertical: true,
     multiple: true,
@@ -295,6 +306,7 @@ var gisSitesProperties = [{
     sortable: true
   },
   filter: {
+    value: "date",
     type: "date",
     vertical: true,
     multiple: true,

@@ -233,8 +233,8 @@ var fulcrumRoutesLayer = L.geoJson(null, {
       riseOnHover: true,
       icon: L.icon({
         iconUrl: "pictures/markers/cb0d0c.png",
-        iconSize: [15, 25],
-        iconAnchor: [0, 0]
+        iconSize: [30, 40],
+        iconAnchor: [15, 32]
       })
     });
   },
@@ -259,8 +259,8 @@ var fulcrumRoutesLayer = L.geoJson(null, {
         layer.setIcon(
           L.icon({
             iconUrl: "pictures/markers/" + feature.properties["marker-color"].replace("#",'').toLowerCase() + ".png",
-            iconSize: [15, 25],
-            iconAnchor: [0, 0]
+            iconSize: [30, 40],
+            iconAnchor: [15, 32]
           })
         );
       }

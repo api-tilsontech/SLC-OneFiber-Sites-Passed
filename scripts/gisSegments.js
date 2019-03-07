@@ -187,6 +187,22 @@ var gisSegmentsProperties = [{
   }
 },
 {
+  value: "oofdateconstructionstarted",
+  label: "CONST STARTED (A)",
+  table: {
+    visible: true,
+    sortable: true
+  },
+  filter: {
+    value: "date",
+    type: "string",
+    vertical: true,
+    multiple: true,
+    operators: ["is_not_null"],
+    values: []
+  }
+},
+{
   value: "oofdatecableplaced",
   label: "CABLE PLACED (A)",
   table: {

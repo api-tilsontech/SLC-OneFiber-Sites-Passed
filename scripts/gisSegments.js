@@ -265,25 +265,47 @@ function gisSegmentsBuildConfig() {
 
 var gisSegmentsLayer = L.geoJson(null, {
   style: function (feature, layer) {
-    if (feature.properties.fqn_id) {
-      if (feature.properties.fqn_id.toLowerCase().indexOf("fib:bur") === 0) {
-        return {
-          color: "#0066ff",
-          weight: 4,
-          opacity: 1
-        };
-      } else if (feature.properties.fqn_id.toLowerCase().indexOf("fib:aer") === 0) {
-        return {
-          color: "#ff3300",
-          weight: 4,
-          opacity: 1
-        };
-      }
+    if (feature.properties.oofstatus == "Cable Placed") {
+      return {
+        color: "#87d30f",
+        weight: 4,
+        opacity: 1.0
+      };
+    } else if (feature.properties.oofstatus == "Construction Completed") {
+      return {
+        color: "#ffd300",
+        weight: 4,
+        opacity: 1.0
+      };
+    } else if (feature.properties.oofstatus == "Construction Underway") {
+      return {
+        color: "#da0796",
+        weight: 4,
+        opacity: 1.0
+      };
+    } else if (feature.properties.oofstatus == "Proofing Completed") {
+      return {
+        color: "#da0796",
+        weight: 4,
+        opacity: 1.0
+      };
+    } else if (feature.properties.oofstatus == "Permits Received") {
+      return {
+        color: "#1891c9",
+        weight: 4,
+        opacity: 1.0
+      };
+    } else if (feature.properties.oofstatus == "Permits Submitted") {
+      return {
+        color: "#cb0d0c",
+        weight: 4,
+        opacity: 1.0
+      };
     } else {
       return {
-        color: "#000000",
+        color: "#242424",
         weight: 4,
-        opacity: 1
+        opacity: 1.0
       };
     }
   },

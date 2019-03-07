@@ -277,7 +277,7 @@ var gisRoutesLayer = L.geoJson(null, {
         weight: 4,
         opacity: 1.0
       };
-    } else if (feature.properties.oofstatus == "Construction Completed") {
+    } else if (feature.properties.oofstatus == "Construction Completed (Un-Signed)" || feature.properties.oofstatus == "Construction Completed (Signed)") {
       return {
         color: "#ffd300",
         weight: 4,

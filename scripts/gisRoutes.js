@@ -193,6 +193,36 @@ var gisRoutesProperties = [{
     operators: ["equal", "not_equal", "contains"],
     values: []
   }
+},
+{
+  value: "centroid_x",
+  label: "LAT",
+  table: {
+    visible: true,
+    sortable: true
+  },
+  filter: {
+    type: "string",
+    vertical: true,
+    multiple: true,
+    operators: ["equal", "not_equal", "contains"],
+    values: []
+  }
+},
+{
+  value: "centroid_y",
+  label: "LONG",
+  table: {
+    visible: true,
+    sortable: true
+  },
+  filter: {
+    type: "string",
+    vertical: true,
+    multiple: true,
+    operators: ["equal", "not_equal", "contains"],
+    values: []
+  }
 }];
 
 
@@ -502,4 +532,54 @@ $("#gisRoutes_table-btn").click(function(){
   $("#gisSplicesTable-container").hide();
   $("#gisWorkOrdersTable-container").hide();
   $(window).resize();
+});
+
+
+
+// FULCRUM ROUTES PRODUCTION
+
+function gisRoutesEdit() {
+  var routeFQNID = sessionStorage.getItem("fqn_id");
+  var routeSiteTrackerID = sessionStorage.getItem("routeSiteTrackerID");
+  var routeLat = sessionStorage.getItem("routeLat");
+  var routeLong = sessionStorage.getItem("routeLong");
+  var routeSegmentFQNID1 = sessionStorage.getItem("routeSegmentFQNID1");
+  var routeSegmentFQNID2 = sessionStorage.getItem("routeSegmentFQNID2");
+  var routeSegmentFQNID3 = sessionStorage.getItem("routeSegmentFQNID3");
+  var routeSegmentFQNID4 = sessionStorage.getItem("routeSegmentFQNID4");
+
+  $.ajax({
+    type: "GET",
+    url: 'https://api.fulcrumapp.com/api/v2/query/?token=d34d8164e635540faf1e1e2c7d2c8bc70d4fdeb7d4cee2a8eabe498800e5850c&format=json&q=SELECT%20fqnid,_record_id%20FROM%20%22SLC%20OneFiber%20Construction%22%20WHERE%20fqnid=%27' + routeFQNID + '%27',
+    success: function (data) {
+      var recordID = data.rows[0]._record_id;
+      if (recordID) {
+        var url = "'https://www.fulcrumapp.com/action/#edit-record?form_id=5904bbea-bf3f-4c79-8275-23f30d96f407d&record_id=" + recordID + "&fqnid=" + routeFQNID + "&sitetracker_id=" + routeSiteTrackerID + "&latitude=" + routeLat + "&longitude=" + routeLong + "&fiber_fqnid_1=" + routeSegmentFQNID1 + "&fiber_fqnid_2=" + routeSegmentFQNID2 + "&fiber_fqnid_3=" + routeSegmentFQNID3 + "&fiber_fqnid_4=" + routeSegmentFQNID4 + "'"
+        if (document.body.clientWidth > 767) {
+          var content = '<object width="850" height="450" type="text/html" data=' + url + '></object>';
+          $("#gisRoutesProduction_FULCRUM").html(content);
+          $("#gisRoutesProductionSidebar").modal("show");
+          gisRoutesSidebar.hide();
+          $(".navbar-collapse.in").collapse("hide");
+        } else {
+          window.open(url);
+        }
+        } else {
+          alert("No Record Found");
+        }
+    }
+  });
+};
+
+
+$("#gisRoutesEdit-btn").click(function() {
+  gisRoutesEdit();
+});
+
+
+$("#gisRoutesProductionSidebarClose").click(function(){
+  $("#gisRoutesProductionSidebar").modal("hide");
+  gisRoutesSidebar.show();
+  $(".navbar-collapse.in").collapse("hide");
+  return false;
 });

@@ -7,7 +7,8 @@ $("#gisSitesClose-sidebarBTN").click(function(){
 
 var gisSitesSidebar = L.control.sidebar("gisSitesSidebar", {
     closeButton: false,
-    position: "right"
+    position: "right",
+    autoPan: false
 }).addTo(map);
 
 
@@ -47,7 +48,8 @@ $("#gisSites_sidebar-hide-btn").click(function() {
 
 var gisSitesSearch = L.control.sidebar("gisSitesSearch", {
     closeButton: false,
-    position: "left"
+    position: "left",
+    autoPan: false
 }).addTo(map);
 
 
@@ -61,7 +63,8 @@ $("#gisSegmentsClose-sidebarBTN").click(function(){
 
 var gisSegmentsSidebar = L.control.sidebar("gisSegmentsSidebar", {
     closeButton: false,
-    position: "right"
+    position: "right",
+    autoPan: false
 }).addTo(map);
 
 
@@ -102,7 +105,8 @@ $("#gisSegments_sidebar-hide-btn").click(function() {
 
 var gisSegmentsSearch = L.control.sidebar("gisSegmentsSearch", {
     closeButton: false,
-    position: "left"
+    position: "left",
+    autoPan: false
 }).addTo(map);
 
 
@@ -116,7 +120,8 @@ $("#gisRoutesClose-sidebarBTN").click(function(){
 
 var gisRoutesSidebar = L.control.sidebar("gisRoutesSidebar", {
     closeButton: false,
-    position: "right"
+    position: "right",
+    autoPan: false
 }).addTo(map);
 
 
@@ -156,7 +161,8 @@ $("#gisRoutes_sidebar-hide-btn").click(function() {
 
 var gisRoutesSearch = L.control.sidebar("gisRoutesSearch", {
     closeButton: false,
-    position: "left"
+    position: "left",
+    autoPan: false
 }).addTo(map);
 
 
@@ -170,7 +176,8 @@ $("#gisStructuresClose-sidebarBTN").click(function(){
 
 var gisStructuresSidebar = L.control.sidebar("gisStructuresSidebar", {
     closeButton: false,
-    position: "right"
+    position: "right",
+    autoPan: false
 }).addTo(map);
 
 
@@ -210,7 +217,8 @@ $("#gisStructures_sidebar-hide-btn").click(function() {
 
 var gisStructuresSearch = L.control.sidebar("gisStructuresSearch", {
     closeButton: false,
-    position: "left"
+    position: "left",
+    autoPan: false
 }).addTo(map);
 
 
@@ -224,7 +232,8 @@ $("#gisSplicesClose-sidebarBTN").click(function(){
 
 var gisSplicesSidebar = L.control.sidebar("gisSplicesSidebar", {
     closeButton: false,
-    position: "right"
+    position: "right",
+    autoPan: false
 }).addTo(map);
 
 
@@ -264,7 +273,8 @@ $("#gisSplices_sidebar-hide-btn").click(function() {
 
 var gisSplicesSearch = L.control.sidebar("gisSplicesSearch", {
     closeButton: false,
-    position: "left"
+    position: "left",
+    autoPan: false
 }).addTo(map);
 
 
@@ -277,7 +287,8 @@ $("#gisWorkOrdersClose-sidebarBTN").click(function(){
 
 var gisWorkOrdersSidebar = L.control.sidebar("gisWorkOrdersSidebar", {
     closeButton: false,
-    position: "right"
+    position: "right",
+    autoPan: false
 }).addTo(map);
 
 
@@ -317,7 +328,8 @@ $("#gisWorkOrders_sidebar-hide-btn").click(function() {
 
 var gisWorkOrdersSearch = L.control.sidebar("gisWorkOrdersSearch", {
     closeButton: false,
-    position: "left"
+    position: "left",
+    autoPan: false
 }).addTo(map);
 
 
@@ -330,7 +342,8 @@ $("#fulcrumRoutesClose-sidebarBTN").click(function(){
 
 var fulcrumRoutesSidebar = L.control.sidebar("fulcrumRoutesSidebar", {
     closeButton: false,
-    position: "right"
+    position: "right",
+    autoPan: false
 }).addTo(map);
 
 
@@ -370,5 +383,6 @@ $("#fulcrumRoutes_sidebar-hide-btn").click(function() {
 
 var fulcrumRoutesSearch = L.control.sidebar("fulcrumRoutesSearch", {
     closeButton: false,
-    position: "left"
+    position: "left",
+    autoPan: false
 }).addTo(map);

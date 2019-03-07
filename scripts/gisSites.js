@@ -327,7 +327,7 @@ var gisSitesFields = gisSitesProperties.map(function(elem) {
 // GIS SITES REST URL
 
 var gisSitesConfig = {
-  geojson: "geojson/sites",
+  geojson: "https://gis.tilsontech.com/arcgis/rest/services/SiteTracker/SLC_OneFiber/MapServer/2/query?where=objectid+IS+NOT+NULL&outFields=" + gisSitesFields + "&f=geojson&token=" + gis_token,
   layerName: "Sites",
   hoverProperty: "site_name"
 };
@@ -364,15 +364,15 @@ function gisSitesBuildConfig() {
 
 var gisSitesLayer = L.geoJson(null, {
   filter: function (feature) {
-    if (properties.clustername.toLowerCase().indexOf("loop") === -1) {
+    if (feature.properties.clustername.toLowerCase().indexOf("loop") === -1) {
       return true
     };
   },
   onEachFeature: function (feature, layer) {
-    layer.bindTooltip(properties.nfid + " -- " + properties.site_name, {sticky: 'true', direction: 'top'});
+    layer.bindTooltip(feature.properties.nfid + " -- " + feature.properties.site_name, {sticky: 'true', direction: 'top'});
 
-    if (properties) {
-      var title = properties.site_name;
+    if (feature.properties) {
+      var title = feature.properties.site_name;
       var content = "<table class='table table-striped table-bordered table-condensed'>";
       content += "<table>";
       layer.on({
@@ -383,10 +383,10 @@ var gisSitesLayer = L.geoJson(null, {
           gisSplicesSidebar.hide();
           gisWorkOrdersSidebar.hide();
           fulcrumRoutesSidebar.hide();
-          $("#gisSitesInfo_Title").html(properties.nfid);
+          $("#gisSitesInfo_Title").html(feature.properties.nfid);
           gisSitesInfo(L.stamp(layer));
-          activeRecord = properties.site_name;
-          highlightLayer.clearLayers().addLayer(L.circleMarker([geometry.coordinates[1], geometry.coordinates[0]], {
+          activeRecord = feature.properties.site_name;
+          highlightLayer.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], {
             stroke: false,
             fillColor: "#FF0000",
             fillOpacity: 1,
@@ -394,205 +394,205 @@ var gisSitesLayer = L.geoJson(null, {
           }));
         }
       });
-      $("#gisSites_feature-list tbody").append('<tr onclick= "gisSitesSearchClick(' + L.stamp(layer) + ')"><td class="gisSites_feature-name">' + layer.properties.site_name + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+      $("#gisSites_feature-list tbody").append('<tr onclick= "gisSitesSearchClick(' + L.stamp(layer) + ')"><td class="gisSites_feature-name">' + layer.feature.properties.site_name + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
     }
-    if (properties.removesite === "Yes" || properties.removesite === "Y" || properties.clustername === "REMOVE") {
+    if (feature.properties.removesite === "Yes" || feature.properties.removesite === "Y" || feature.properties.clustername === "REMOVE") {
       layer.setIcon(
         L.icon({
           iconUrl: "pictures/demandPoints/removed.png",
           iconSize: [20, 20],
         })
       );
-    } else if (properties.clustername === "SAL BROADWAY" && properties.site_name === "SAL BROADWAY") {
+    } else if (feature.properties.clustername === "SAL BROADWAY" && feature.properties.site_name === "SAL BROADWAY") {
       layer.setIcon(
         L.icon({
           iconUrl: "pictures/hubs/SAL%20BROADWAY.png",
           iconSize: [30, 30],
         })
       );
-    } else if (properties.clustername === "SAL BROADWAY") {
+    } else if (feature.properties.clustername === "SAL BROADWAY") {
       layer.setIcon(
         L.icon({
           iconUrl: "pictures/demandPoints/SAL%20BROADWAY.png",
           iconSize: [20, 20],
         })
       );
-    } else if (properties.clustername === "XO 90TH" && properties.site_name === "XO 90TH") {
+    } else if (feature.properties.clustername === "XO 90TH" && feature.properties.site_name === "XO 90TH") {
       layer.setIcon(
         L.icon({
           iconUrl: "pictures/hubs/SAL%20CRESCENT.png",
           iconSize: [30, 30],
         })
       );
-    } else if (properties.clustername === "XO 90TH") {
+    } else if (feature.properties.clustername === "XO 90TH") {
       layer.setIcon(
         L.icon({
           iconUrl: "pictures/demandPoints/SAL%20CRESCENT.png",
           iconSize: [20, 20],
         })
       );
-    } else if (properties.clustername === "SAL HOLLADAY" && properties.site_name === "SAL HOLLADAY") {
+    } else if (feature.properties.clustername === "SAL HOLLADAY" && feature.properties.site_name === "SAL HOLLADAY") {
       layer.setIcon(
         L.icon({
           iconUrl: "pictures/hubs/SAL%20HOLLADAY.png",
           iconSize: [30, 30],
         })
       );
-    } else if (properties.clustername === "SAL HOLLADAY") {
+    } else if (feature.properties.clustername === "SAL HOLLADAY") {
       layer.setIcon(
         L.icon({
           iconUrl: "pictures/demandPoints/SAL%20HOLLADAY.png",
           iconSize: [20, 20],
         })
       );
-    } else if (properties.clustername === "SAL HONEY" && properties.site_name === "SAL HONEY") {
+    } else if (feature.properties.clustername === "SAL HONEY" && feature.properties.site_name === "SAL HONEY") {
       layer.setIcon(
         L.icon({
           iconUrl: "pictures/hubs/SAL%20HONEY.png",
           iconSize: [30, 30],
         })
       );
-    } else if (properties.clustername === "SAL HONEY") {
+    } else if (feature.properties.clustername === "SAL HONEY") {
       layer.setIcon(
         L.icon({
           iconUrl: "pictures/demandPoints/SAL%20HONEY.png",
           iconSize: [20, 20],
         })
       );
-    } else if (properties.clustername === "SAL RED HANGER" && properties.site_name === "SAL RED HANGER") {
+    } else if (feature.properties.clustername === "SAL RED HANGER" && feature.properties.site_name === "SAL RED HANGER") {
       layer.setIcon(
         L.icon({
           iconUrl: "pictures/hubs/SAL%20RED%20HANGER.png",
           iconSize: [30, 30],
         })
       );
-    } else if (properties.clustername === "SAL RED HANGER") {
+    } else if (feature.properties.clustername === "SAL RED HANGER") {
       layer.setIcon(
         L.icon({
           iconUrl: "pictures/demandPoints/SAL%20RED%20HANGER.png",
           iconSize: [20, 20],
         })
       );
-    } else if (properties.clustername === "SAL RELIEVER" && properties.site_name === "SAL RELIEVER") {
+    } else if (feature.properties.clustername === "SAL RELIEVER" && feature.properties.site_name === "SAL RELIEVER") {
       layer.setIcon(
         L.icon({
           iconUrl: "pictures/hubs/SAL%20RELIEVER.png",
           iconSize: [30, 30],
         })
       );
-    } else if (properties.clustername === "SAL RELIEVER") {
+    } else if (feature.properties.clustername === "SAL RELIEVER") {
       layer.setIcon(
         L.icon({
           iconUrl: "pictures/demandPoints/SAL%20RELIEVER.png",
           iconSize: [20, 20],
         })
       );
-    } else if (properties.clustername === "SAL ROXANNE" && properties.site_name === "SAL ROXANNE") {
+    } else if (feature.properties.clustername === "SAL ROXANNE" && feature.properties.site_name === "SAL ROXANNE") {
       layer.setIcon(
         L.icon({
           iconUrl: "pictures/hubs/SAL%20ROXANNE.png",
           iconSize: [30, 30],
         })
       );
-    } else if (properties.clustername === "SAL ROXANNE") {
+    } else if (feature.properties.clustername === "SAL ROXANNE") {
       layer.setIcon(
         L.icon({
           iconUrl: "pictures/demandPoints/SAL%20ROXANNE.png",
           iconSize: [20, 20],
         })
       );
-    } else if (properties.clustername === "SAL SAND JUMP" && properties.site_name === "SAL SAND JUMP") {
+    } else if (feature.properties.clustername === "SAL SAND JUMP" && feature.properties.site_name === "SAL SAND JUMP") {
       layer.setIcon(
         L.icon({
           iconUrl: "pictures/hubs/SAL%20SAND%20JUMP.png",
           iconSize: [30, 30],
         })
       );
-    } else if (properties.clustername === "SAL SAND JUMP") {
+    } else if (feature.properties.clustername === "SAL SAND JUMP") {
       layer.setIcon(
         L.icon({
           iconUrl: "pictures/demandPoints/SAL%20SAND%20JUMP.png",
           iconSize: [20, 20],
         })
       );
-    } else if (properties.clustername === "SAL SANDY" && properties.site_name === "SAL SANDY") {
+    } else if (feature.properties.clustername === "SAL SANDY" && feature.properties.site_name === "SAL SANDY") {
       layer.setIcon(
         L.icon({
           iconUrl: "pictures/hubs/SAL%20SANDY.png",
           iconSize: [30, 30],
         })
       );
-    } else if (properties.clustername === "SAL SANDY") {
+    } else if (feature.properties.clustername === "SAL SANDY") {
       layer.setIcon(
         L.icon({
           iconUrl: "pictures/demandPoints/SAL%20SANDY.png",
           iconSize: [20, 20],
         })
       );
-    } else if (properties.clustername === "SAL SHERWOOD PARK" && properties.site_name === "SAL SHERWOOD PARK") {
+    } else if (feature.properties.clustername === "SAL SHERWOOD PARK" && feature.properties.site_name === "SAL SHERWOOD PARK") {
       layer.setIcon(
         L.icon({
           iconUrl: "pictures/hubs/SAL%20SHERWOOD%20PARK.png",
           iconSize: [30, 30],
         })
       );
-    } else if (properties.clustername === "SAL SHERWOOD PARK") {
+    } else if (feature.properties.clustername === "SAL SHERWOOD PARK") {
       layer.setIcon(
         L.icon({
           iconUrl: "pictures/demandPoints/SAL%20SHERWOOD%20PARK.png",
           iconSize: [20, 20],
         })
       );
-    } else if (properties.clustername === "SAL SOUTH JORDAN" && properties.site_name === "SAL SOUTH JORDAN") {
+    } else if (feature.properties.clustername === "SAL SOUTH JORDAN" && feature.properties.site_name === "SAL SOUTH JORDAN") {
       layer.setIcon(
         L.icon({
           iconUrl: "pictures/hubs/SAL%20SOUTH%20JORDAN.png",
           iconSize: [30, 30],
         })
       );
-    } else if (properties.clustername === "SAL SOUTH JORDAN") {
+    } else if (feature.properties.clustername === "SAL SOUTH JORDAN") {
       layer.setIcon(
         L.icon({
           iconUrl: "pictures/demandPoints/SAL%20SOUTH%20JORDAN.png",
           iconSize: [20, 20],
         })
       );
-    } else if (properties.clustername === "SAL SOUTH SALT LAKE CITY" && properties.site_name === "SAL SOUTH SALT LAKE CITY") {
+    } else if (feature.properties.clustername === "SAL SOUTH SALT LAKE CITY" && feature.properties.site_name === "SAL SOUTH SALT LAKE CITY") {
       layer.setIcon(
         L.icon({
           iconUrl: "pictures/hubs/SAL%20SOUTH%20SALT%20LAKE.png",
           iconSize: [30, 30],
         })
       );
-    } else if (properties.clustername === "SAL SOUTH SALT LAKE CITY") {
+    } else if (feature.properties.clustername === "SAL SOUTH SALT LAKE CITY") {
       layer.setIcon(
         L.icon({
           iconUrl: "pictures/demandPoints/SAL%20SOUTH%20SALT%20LAKE.png",
           iconSize: [20, 20],
         })
       );
-    } else if (properties.clustername === "SAL SUGARHOUSE" && properties.site_name === "SAL SUGARHOUSE") {
+    } else if (feature.properties.clustername === "SAL SUGARHOUSE" && feature.properties.site_name === "SAL SUGARHOUSE") {
       layer.setIcon(
         L.icon({
           iconUrl: "pictures/hubs/SAL%20SUGARHOUSE.png",
           iconSize: [30, 30],
         })
       );
-    } else if (properties.clustername === "SAL SUGARHOUSE") {
+    } else if (feature.properties.clustername === "SAL SUGARHOUSE") {
       layer.setIcon(
         L.icon({
           iconUrl: "pictures/demandPoints/SAL%20SUGARHOUSE.png",
           iconSize: [20, 20],
         })
       );
-    } else if (properties.clustername === "UTSL-KEARNS MTSO" && properties.site_name === "UTSL-KEARNS MTSO") {
+    } else if (feature.properties.clustername === "UTSL-KEARNS MTSO" && feature.properties.site_name === "UTSL-KEARNS MTSO") {
       layer.setIcon(
         L.icon({
           iconUrl: "pictures/hubs/SAL%20KEARNS.png",
           iconSize: [30, 30],
         })
       );
-    } else if (properties.clustername === "UTSL-KEARNS MTSO") {
+    } else if (feature.properties.clustername === "UTSL-KEARNS MTSO") {
       layer.setIcon(
         L.icon({
           iconUrl: "pictures/demandPoints/SAL%20KEARNS.png",
@@ -620,8 +620,8 @@ function gisSitesSearchClick(id) {
 
 $.getJSON(gisSitesConfig.geojson, function (data) {
   gisSitesData = data;
-  gisSitesFeatures = $.map(gisSitesData, function(feature) {
-    return properties;
+  gisSitesFeatures = $.map(gisSitesData.features, function(feature) {
+    return feature.properties;
   });
   gisSitesLayer.addData(data);
   gisSitesList = new List("gisSites_features", {valueNames: ["gisSites_feature-name"]});
@@ -639,7 +639,7 @@ $.getJSON(gisSitesConfig.geojson, function (data) {
 
 function gisSitesInfo(id) {
   
-  var featureProperties = gisSitesLayer.getLayer(id).properties;
+  var featureProperties = gisSitesLayer.getLayer(id).feature.properties;
 
   var content = "<table class='table table-striped table-bordered table-condensed'>";
 
@@ -687,7 +687,7 @@ function gisSitesBuildTable() {
       targets: [8,9,10,11,12,13,14,15,16,17,18,19],
       render: $.fn.dataTable.render.moment('x', 'MM/DD/YYYY')
     }],
-    data: gisSitesData,
+    data: gisSitesData.features,
     "autoWidth": true, // Feature control DataTables' smart column width handling
     "deferRender": true, // Feature control deferred rendering for additional speed of initialisation.
     "info": true, // Display info about table including filtering

@@ -390,7 +390,7 @@ var gisSitesLayer = L.geoJson(null, {
             stroke: false,
             fillColor: "#FF0000",
             fillOpacity: 1,
-            radius: 10
+            radius: 5
           }));
         }
       });

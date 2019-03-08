@@ -368,57 +368,6 @@ var gisSitesLayer = L.geoJson(null, {
       return true
     };
   },
-  style: function (feature, layer) {
-    if (feature.properties.removesite === "Yes" || feature.properties.removesite === "Y" || feature.properties.clustername === "REMOVE") {
-      return {
-        color: "#ff0000",
-        weight: 3,
-        opacity: 1.0
-      };
-    } else if (feature.properties.splicingtestingcompleteactual !== "") {
-      return {
-        color: "#ffffff",
-        weight: 3,
-        opacity: 1.0
-      };
-    } else if (feature.properties.cable_placed_actual !== "") {
-      return {
-        color: "#87d30f",
-        weight: 3,
-        opacity: 1.0
-      };
-    } else if (feature.properties.construction_start_actual !== "") {
-      return {
-        color: "#da0796",
-        weight: 3,
-        opacity: 1.0
-      };
-    } else if (feature.properties.permit_received_actual !== "") {
-      return {
-        color: "#1891c9",
-        weight: 3,
-        opacity: 1.0
-      };
-    } else if (feature.properties.permit_submitted_actual !== "") {
-      return {
-        color: "#cb0d0c",
-        weight: 3,
-        opacity: 1.0
-      };
-    } else if (feature.properties.site_survey_actual !== "") {
-      return {
-        color: "#242424",
-        weight: 3,
-        opacity: 1.0
-      };
-    } else {
-      return {
-        color: "#9f6934",
-        weight: 3,
-        opacity: 1.0
-      };
-    }
-  },
   onEachFeature: function (feature, layer) {
     layer.bindTooltip(feature.properties.nfid + " -- " + feature.properties.site_name, {sticky: 'true', direction: 'top'});
 
@@ -446,7 +395,72 @@ var gisSitesLayer = L.geoJson(null, {
         }
       });
       $("#gisSites_feature-list tbody").append('<tr onclick= "gisSitesSearchClick(' + L.stamp(layer) + ')"><td class="gisSites_feature-name">' + layer.feature.properties.site_name + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
-    } 
+    }
+    if (feature.properties.removesite === "Yes" || feature.properties.removesite === "Y" || feature.properties.clustername === "REMOVE") {
+      layer.setIcon(
+        L.icon({
+          iconUrl: "pictures/markers/cb0d0c.png",
+          iconSize: [30, 40],
+          iconAnchor: [15, 32]
+        })
+      );
+    } else if (feature.properties.splicingtestingcompleteactual !== "") {
+      layer.setIcon(
+        L.icon({
+          iconUrl: "pictures/markers/ffffff.png",
+          iconSize: [30, 40],
+          iconAnchor: [15, 32]
+        })
+      );
+    } else if (feature.properties.cable_placed_actual !== "") {
+      layer.setIcon(
+        L.icon({
+          iconUrl: "pictures/markers/87d30f.png",
+          iconSize: [30, 40],
+          iconAnchor: [15, 32]
+        })
+      );
+    } else if (feature.properties.construction_start_actual !== "") {
+      layer.setIcon(
+        L.icon({
+          iconUrl: "pictures/markers/da0796.png",
+          iconSize: [30, 40],
+          iconAnchor: [15, 32]
+        })
+      );
+    } else if (feature.properties.permit_received_actual !== "") {
+      layer.setIcon(
+        L.icon({
+          iconUrl: "pictures/markers/1891c9.png",
+          iconSize: [30, 40],
+          iconAnchor: [15, 32]
+        })
+      );
+    } else if (feature.properties.permit_submitted_actual !== "") {
+      layer.setIcon(
+        L.icon({
+          iconUrl: "pictures/markers/ff8819.png",
+          iconSize: [30, 40],
+          iconAnchor: [15, 32]
+        })
+      );
+    } else if (feature.properties.site_survey_actual !== "") {
+      layer.setIcon(
+        L.icon({
+          iconUrl: "pictures/markers/242424.png",
+          iconSize: [30, 40],
+          iconAnchor: [15, 32]
+        })
+      );
+    } else {
+      layer.setIcon(
+        L.icon({
+          iconUrl: "pictures/markers/704b10.png",
+          iconSize: [30, 40],
+          iconAnchor: [15, 32]
+        })
+      );
+    }
   }
 });
 

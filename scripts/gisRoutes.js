@@ -303,7 +303,7 @@ var gisRoutesLayer = L.geoJson(null, {
       };
     } else if (feature.properties.oofstatus == "Permits Submitted") {
       return {
-        color: "#cb0d0c",
+        color: "#ff8819",
         weight: 4,
         opacity: 1.0
       };

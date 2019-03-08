@@ -281,7 +281,13 @@ function gisSegmentsBuildConfig() {
 
 var gisSegmentsLayer = L.geoJson(null, {
   style: function (feature, layer) {
-    if (feature.properties.oofstatus == "Cable Placed") {
+    if (feature.properties.oofstatus == "Spliced & Tested") {
+      return {
+        color: "#ffffff",
+        weight: 4,
+        opacity: 1.0
+      };
+    } else if (feature.properties.oofstatus == "Cable Placed") {
       return {
         color: "#87d30f",
         weight: 4,
@@ -313,7 +319,7 @@ var gisSegmentsLayer = L.geoJson(null, {
       };
     } else if (feature.properties.oofstatus == "Permits Submitted") {
       return {
-        color: "#cb0d0c",
+        color: "#ff8819",
         weight: 4,
         opacity: 1.0
       };

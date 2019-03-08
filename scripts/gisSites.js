@@ -404,7 +404,7 @@ var gisSitesLayer = L.geoJson(null, {
           iconAnchor: [15, 32]
         })
       );
-    } else if (feature.properties.splicingtestingcompleteactual !== "") {
+    } else if (feature.properties.splicingtestingcompleteactual > 0) {
       layer.setIcon(
         L.icon({
           iconUrl: "pictures/markers/ffffff.png",
@@ -412,7 +412,7 @@ var gisSitesLayer = L.geoJson(null, {
           iconAnchor: [15, 32]
         })
       );
-    } else if (feature.properties.cable_placed_actual !== "") {
+    } else if (feature.properties.cable_placed_actual > 0) {
       layer.setIcon(
         L.icon({
           iconUrl: "pictures/markers/87d30f.png",
@@ -420,7 +420,7 @@ var gisSitesLayer = L.geoJson(null, {
           iconAnchor: [15, 32]
         })
       );
-    } else if (feature.properties.construction_start_actual !== "") {
+    } else if (feature.properties.construction_start_actual > 0) {
       layer.setIcon(
         L.icon({
           iconUrl: "pictures/markers/da0796.png",
@@ -428,7 +428,7 @@ var gisSitesLayer = L.geoJson(null, {
           iconAnchor: [15, 32]
         })
       );
-    } else if (feature.properties.permit_received_actual !== "") {
+    } else if (feature.properties.permit_received_actual > 0) {
       layer.setIcon(
         L.icon({
           iconUrl: "pictures/markers/1891c9.png",
@@ -436,7 +436,7 @@ var gisSitesLayer = L.geoJson(null, {
           iconAnchor: [15, 32]
         })
       );
-    } else if (feature.properties.permit_submitted_actual !== "") {
+    } else if (feature.properties.permit_submitted_actual > 0) {
       layer.setIcon(
         L.icon({
           iconUrl: "pictures/markers/ff8819.png",
@@ -444,7 +444,7 @@ var gisSitesLayer = L.geoJson(null, {
           iconAnchor: [15, 32]
         })
       );
-    } else if (feature.properties.site_survey_actual !== "") {
+    } else if (feature.properties.site_survey_actual > 0) {
       layer.setIcon(
         L.icon({
           iconUrl: "pictures/markers/242424.png",

@@ -388,7 +388,7 @@ var gisSitesLayer = L.geoJson(null, {
           activeRecord = feature.properties.site_name;
           highlightLayer.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], {
             stroke: false,
-            fillColor: "#FF0000",
+            fillColor: "#00d0ff",
             fillOpacity: 1,
             radius: 5
           }));

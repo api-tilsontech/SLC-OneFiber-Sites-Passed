@@ -139,6 +139,38 @@ var gisSegmentsProperties = [{
   }
 },
 {
+  value: "cableplacedplanned",
+  label: "CABLE PLACED (F)",
+  table: {
+    visible: true,
+    sortable: true
+  },
+  filter: {
+    value: "date",
+    type: "string",
+    vertical: true,
+    multiple: true,
+    operators: ["is_not_null"],
+    values: []
+  }
+},
+{
+  value: "splicetestplanned",
+  label: "SPLICED/TESTED (F)",
+  table: {
+    visible: true,
+    sortable: true
+  },
+  filter: {
+    value: "date",
+    type: "string",
+    vertical: true,
+    multiple: true,
+    operators: ["is_not_null"],
+    values: []
+  }
+},
+{
   value: "oofdateindesign",
   label: "IN DESIGN (A)",
   table: {

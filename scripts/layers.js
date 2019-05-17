@@ -1,6 +1,6 @@
 // STREET MAP LAYER
 
-var mapboxOSM = L.tileLayer('http://{s}.tiles.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiZWNvdHJ1c3QiLCJhIjoibGo4TG5nOCJ9.QJnT2dgjL4_4EA7WlK8Zkw', {
+var mapboxOSM = L.tileLayer('http://{s}.tiles.mapbox.com/v4/mapbox.light-v9/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiZWNvdHJ1c3QiLCJhIjoibGo4TG5nOCJ9.QJnT2dgjL4_4EA7WlK8Zkw', {
     maxZoom: 22,
     opacity: 0.7
 });
@@ -45,17 +45,7 @@ var highlightLayer = L.geoJson(null, {
     }
     layer.on({
       click: function (e) {
-        if (feature.properties.sitetracker_id.toLowerCase().indexOf("slc_rou") === 0) {
-          $("#gisRoutesInfo_Title").html(feature.properties.fqn_id);
-          gisRoutesHighlightInfo(L.stamp(layer));
-          gisSitesSidebar.hide();
-          gisSegmentsSidebar.hide();
-          gisRoutesSidebar.show();
-          gisStructuresSidebar.hide();
-          gisSplicesSidebar.hide();
-          gisWorkOrdersSidebar.hide();
-          fulcrumRoutesSidebar.hide();
-        } else if (feature.properties.sitetracker_id.toLowerCase().indexOf("slc_seg") === 0) {
+        if (feature.properties.sitetracker_id.toLowerCase().indexOf("slc_seg") === 0) {
           $("#gisSegmentsInfo_Title").html(feature.properties.fqn_id);
           gisSegmentsHighlightInfo(L.stamp(layer));
           gisSitesSidebar.hide();
@@ -73,15 +63,6 @@ var highlightLayer = L.geoJson(null, {
           gisStructuresSidebar.hide();
           gisSplicesSidebar.hide();
           gisWorkOrdersSidebar.hide();
-          fulcrumRoutesSidebar.hide();
-        } else if (feature.properties.WO_ID.toLowerCase().indexOf("wo_slc") === 0) {
-          gisWorkOrdersHighlightInfo(L.stamp(layer));
-          gisSitesSidebar.hide();
-          gisSegmentsSidebar.hide();
-          gisRoutesSidebar.hide();
-          gisStructuresSidebar.hide();
-          gisSplicesSidebar.hide();
-          gisWorkOrdersSidebar.show();
           fulcrumRoutesSidebar.hide();
         }
       }
@@ -104,11 +85,6 @@ var baseLayers = {
 var overlayLayers = {
   "<span id='layer-name'>Sites</span>": gisSitesLayer,
   "<span id='layer-name'>Segments</span>": gisSegmentsLayer,
-  "<span id='layer-name'>Routes</span>": gisRoutesLayer,
-  "<span id='layer-name'>Structures</span>": gisStructuresLayer,
-  "<span id='layer-name'>Splices</span>": gisSplicesLayer,
-  "<span id='layer-name'>Work Orders</span>": gisWorkOrdersLayer,
-  "<span id='layer-name'>Fulcrum Routes</span>": fulcrumRoutesLayer
 };
 
 
@@ -144,16 +120,6 @@ map.on('dblclick', function(event){
     gisSitesSearch.hide();
     gisSegmentsSidebar.hide();
     gisSegmentsSearch.hide();
-    gisRoutesSidebar.hide();
-    gisRoutesSearch.hide();
-    gisStructuresSidebar.hide();
-    gisStructuresSearch.hide();
-    gisSplicesSidebar.hide();
-    gisSplicesSearch.hide();
-    gisWorkOrdersSidebar.hide();
-    gisWorkOrdersSearch.hide();
-    fulcrumRoutesSidebar.hide();
-    fulcrumRoutesSearch.hide();
 });
 
 

@@ -30,17 +30,18 @@ var gisSitesProperties = [{
   }
 },
 {
-  value: "nfid",
-  label: "NFID",
+  value: "clustername",
+  label: "HUB",
   table: {
     visible: true,
     sortable: true
   },
   filter: {
     type: "string",
+    input: "radio",
     vertical: true,
     multiple: true,
-    operators: ["equal", "not_equal", "contains"],
+    operators: ["equal", "not_equal"],
     values: []
   }
 },
@@ -60,18 +61,17 @@ var gisSitesProperties = [{
   }
 },
 {
-  value: "clustername",
-  label: "HUB",
+  value: "nfid",
+  label: "NFID",
   table: {
     visible: true,
     sortable: true
   },
   filter: {
     type: "string",
-    input: "radio",
     vertical: true,
     multiple: true,
-    operators: ["equal", "not_equal"],
+    operators: ["equal", "not_equal", "contains"],
     values: []
   }
 },
@@ -88,165 +88,6 @@ var gisSitesProperties = [{
     vertical: true,
     multiple: true,
     operators: ["equal", "not_equal"],
-    values: []
-  }
-},
-{
-  value: "spoke",
-  label: "SPOKE",
-  table: {
-    visible: true,
-    sortable: true
-  },
-  filter: {
-    type: "integer",
-    input: "radio",
-    vertical: true,
-    multiple: true,
-    operators: ["equal", "not_equal"],
-    values: []
-  }
-},
-{
-  value: "city",
-  label: "CITY",
-  table: {
-    visible: true,
-    sortable: true
-  },
-  filter: {
-    type: "string",
-    vertical: true,
-    multiple: true,
-    operators: ["equal", "not_equal", "contains"],
-    values: []
-  }
-},
-{
-  value: "site_survey_est",
-  label: "SITE SURVEY (F)",
-  table: {
-    visible: true,
-    sortable: true
-  },
-  filter: {
-    value: "date",
-    type: "date",
-    vertical: true,
-    multiple: true,
-    operators: ["equal", "not_equal", "contains"],
-    values: []
-  }
-},
-{
-  value: "site_survey_actual",
-  label: "SITE SURVEY (A)",
-  table: {
-    visible: true,
-    sortable: true
-  },
-  filter: {
-    value: "date",
-    type: "date",
-    vertical: true,
-    multiple: true,
-    operators: ["equal", "not_equal", "contains"],
-    values: []
-  }
-},
-{
-  value: "permit_submitted_estimated",
-  label: "PERMIT SBMT (F)",
-  table: {
-    visible: true,
-    sortable: true
-  },
-  filter: {
-    value: "date",
-    type: "date",
-    vertical: true,
-    multiple: true,
-    operators: ["equal", "not_equal", "contains"],
-    values: []
-  }
-},
-{
-  value: "permit_submitted_actual",
-  label: "PERMIT SBMT (A)",
-  table: {
-    visible: true,
-    sortable: true
-  },
-  filter: {
-    value: "date",
-    type: "date",
-    vertical: true,
-    multiple: true,
-    operators: ["equal", "not_equal", "contains"],
-    values: []
-  }
-},
-{
-  value: "permit_received_estimated",
-  label: "PERMIT RCVD (F)",
-  table: {
-    visible: true,
-    sortable: true
-  },
-  filter: {
-    value: "date",
-    type: "date",
-    vertical: true,
-    multiple: true,
-    operators: ["equal", "not_equal", "contains"],
-    values: []
-  }
-},
-{
-  value: "permit_received_actual",
-  label: "PERMIT RCVD (A)",
-  table: {
-    visible: true,
-    sortable: true
-  },
-  filter: {
-    value: "date",
-    type: "date",
-    vertical: true,
-    multiple: true,
-    operators: ["equal", "not_equal", "contains"],
-    values: []
-  }
-},
-{
-  value: "construction_start_estimated",
-  label: "CONST START (F)",
-  table: {
-    visible: true,
-    sortable: true
-  },
-  filter: {
-    value: "date",
-    type: "date",
-    vertical: true,
-    multiple: true,
-    operators: ["equal", "not_equal", "contains"],
-    values: []
-  }
-},
-{
-  value: "construction_start_actual",
-  label: "CONST START (A)",
-  table: {
-    visible: true,
-    sortable: true
-  },
-  filter: {
-    value: "date",
-    type: "date",
-    vertical: true,
-    multiple: true,
-    operators: ["equal", "not_equal", "contains"],
     values: []
   }
 },
@@ -269,38 +110,6 @@ var gisSitesProperties = [{
 {
   value: "cable_placed_actual",
   label: "CABLE PLACED (A)",
-  table: {
-    visible: true,
-    sortable: true
-  },
-  filter: {
-    value: "date",
-    type: "date",
-    vertical: true,
-    multiple: true,
-    operators: ["equal", "not_equal", "contains"],
-    values: []
-  }
-},
-{
-  value: "splicingtestingcompleteestimate",
-  label: "SPLICE/TEST (F)",
-  table: {
-    visible: true,
-    sortable: true
-  },
-  filter: {
-    value: "date",
-    type: "date",
-    vertical: true,
-    multiple: true,
-    operators: ["equal", "not_equal", "contains"],
-    values: []
-  }
-},
-{
-  value: "splicingtestingcompleteactual",
-  label: "SPLICE/TEST (A)",
   table: {
     visible: true,
     sortable: true
@@ -396,23 +205,7 @@ var gisSitesLayer = L.geoJson(null, {
       });
       $("#gisSites_feature-list tbody").append('<tr onclick= "gisSitesSearchClick(' + L.stamp(layer) + ')"><td class="gisSites_feature-name">' + layer.feature.properties.site_name + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
     }
-    if (feature.properties.removesite === "Yes" || feature.properties.removesite === "Y" || feature.properties.clustername === "REMOVE") {
-      layer.setIcon(
-        L.icon({
-          iconUrl: "pictures/markers/cb0d0c.png",
-          iconSize: [30, 40],
-          iconAnchor: [15, 32]
-        })
-      );
-    } else if (feature.properties.splicingtestingcompleteactual > 0) {
-      layer.setIcon(
-        L.icon({
-          iconUrl: "pictures/markers/ffffff.png",
-          iconSize: [30, 40],
-          iconAnchor: [15, 32]
-        })
-      );
-    } else if (feature.properties.cable_placed_actual > 0) {
+    if (feature.properties.cable_placed_actual > 0) {
       layer.setIcon(
         L.icon({
           iconUrl: "pictures/markers/87d30f.png",
@@ -420,42 +213,10 @@ var gisSitesLayer = L.geoJson(null, {
           iconAnchor: [15, 32]
         })
       );
-    } else if (feature.properties.construction_start_actual > 0) {
-      layer.setIcon(
-        L.icon({
-          iconUrl: "pictures/markers/da0796.png",
-          iconSize: [30, 40],
-          iconAnchor: [15, 32]
-        })
-      );
-    } else if (feature.properties.permit_received_actual > 0) {
-      layer.setIcon(
-        L.icon({
-          iconUrl: "pictures/markers/1891c9.png",
-          iconSize: [30, 40],
-          iconAnchor: [15, 32]
-        })
-      );
-    } else if (feature.properties.permit_submitted_actual > 0) {
-      layer.setIcon(
-        L.icon({
-          iconUrl: "pictures/markers/ff8819.png",
-          iconSize: [30, 40],
-          iconAnchor: [15, 32]
-        })
-      );
-    } else if (feature.properties.site_survey_actual > 0) {
-      layer.setIcon(
-        L.icon({
-          iconUrl: "pictures/markers/242424.png",
-          iconSize: [30, 40],
-          iconAnchor: [15, 32]
-        })
-      );
     } else {
       layer.setIcon(
         L.icon({
-          iconUrl: "pictures/markers/704b10.png",
+          iconUrl: "pictures/markers/242424.png",
           iconSize: [30, 40],
           iconAnchor: [15, 32]
         })
@@ -545,7 +306,7 @@ function gisSitesBuildTable() {
     ],
     colReorder: true,
     columnDefs: [{
-      targets: [8,9,10,11,12,13,14,15,16,17,18,19],
+      targets: [6,7],
       render: $.fn.dataTable.render.moment('x', 'MM/DD/YYYY')
     }],
     data: gisSitesData.features,
@@ -574,9 +335,5 @@ $("#gisSites_table-btn").click(function(){
   $("#map-container").hide();
   $("#gisSitesTable-container").show();
   $("#gisSegmentsTable-container").hide();
-  $("#gisRoutesTable-container").hide();
-  $("#gisStructuresTable-container").hide();
-  $("#gisSplicesTable-container").hide();
-  $("#gisWorkOrdersTable-container").hide();
   $(window).resize();
 });

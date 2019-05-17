@@ -196,10 +196,18 @@ var gisSitesLayer = L.geoJson(null, {
       });
       $("#gisSites_feature-list tbody").append('<tr onclick= "gisSitesSearchClick(' + L.stamp(layer) + ')"><td class="gisSites_feature-name">' + layer.feature.properties.site_name + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
     }
-    if (feature.properties.cable_placed_actual > 0) {
+    if (feature.properties.cable_placed_actual > 0 && feature.properties.clustername != feature.properties.site_name) {
       layer.setIcon(
         L.icon({
           iconUrl: "pictures/markers/87d30f.png",
+          iconSize: [30, 40],
+          iconAnchor: [15, 32]
+        })
+      );
+    } else if (feature.properties.clustername != feature.properties.site_name) {
+      layer.setIcon(
+        L.icon({
+          iconUrl: "pictures/markers/cb0d0c.png",
           iconSize: [30, 40],
           iconAnchor: [15, 32]
         })

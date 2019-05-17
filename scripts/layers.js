@@ -1,6 +1,6 @@
 // STREET MAP LAYER
 
-var mapboxOSM = L.tileLayer('http://{s}.tiles.mapbox.com/v4/mapbox.light-v9/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiZWNvdHJ1c3QiLCJhIjoibGo4TG5nOCJ9.QJnT2dgjL4_4EA7WlK8Zkw', {
+var mapboxOSM = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}{r}.{ext}', {
     maxZoom: 22,
     opacity: 0.7
 });

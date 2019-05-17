@@ -172,11 +172,6 @@ function gisSitesBuildConfig() {
 // GIS SITES LAYER
 
 var gisSitesLayer = L.geoJson(null, {
-  filter: function (feature) {
-    if (feature.properties.clustername.toLowerCase().indexOf("loop") === -1) {
-      return true
-    };
-  },
   onEachFeature: function (feature, layer) {
     layer.bindTooltip(feature.properties.nfid + " -- " + feature.properties.site_name, {sticky: 'true', direction: 'top'});
 

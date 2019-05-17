@@ -387,7 +387,7 @@ function gisSegmentsBuildTable() {
     ],
     colReorder: true,
     columnDefs: [{
-      targets: [10,11],
+      targets: [9,10],
       render: $.fn.dataTable.render.moment('x', 'MM/DD/YYYY')
     }],
     data: gisData,

@@ -1,6 +1,6 @@
 // STREET MAP LAYER
 
-var mapboxOSM = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}{r}.{ext}', {
+var mapboxOSM = L.tileLayer('http://{s}.tiles.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiZWNvdHJ1c3QiLCJhIjoibGo4TG5nOCJ9.QJnT2dgjL4_4EA7WlK8Zkw', {
     maxZoom: 22,
     opacity: 0.7
 });
@@ -50,20 +50,10 @@ var highlightLayer = L.geoJson(null, {
           gisSegmentsHighlightInfo(L.stamp(layer));
           gisSitesSidebar.hide();
           gisSegmentsSidebar.show();
-          gisRoutesSidebar.hide();
-          gisStructuresSidebar.hide();
-          gisSplicesSidebar.hide();
-          gisWorkOrdersSidebar.hide();
-          fulcrumRoutesSidebar.hide();
         } else if (feature.properties.sitetracker_id.toLowerCase().indexOf("slc_sit") === 0) {
           gisSitesHighlightInfo(L.stamp(layer));
           gisSitesSidebar.show();
           gisSegmentsSidebar.hide();
-          gisRoutesSidebar.hide();
-          gisStructuresSidebar.hide();
-          gisSplicesSidebar.hide();
-          gisWorkOrdersSidebar.hide();
-          fulcrumRoutesSidebar.hide();
         }
       }
     });
@@ -84,7 +74,7 @@ var baseLayers = {
 
 var overlayLayers = {
   "<span id='layer-name'>Sites</span>": gisSitesLayer,
-  "<span id='layer-name'>Segments</span>": gisSegmentsLayer,
+  "<span id='layer-name'>Segments</span>": gisSegmentsLayer
 };
 
 

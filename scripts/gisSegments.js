@@ -155,104 +155,8 @@ var gisSegmentsProperties = [{
   }
 },
 {
-  value: "splicetestplanned",
-  label: "SPLICED/TESTED (F)",
-  table: {
-    visible: true,
-    sortable: true
-  },
-  filter: {
-    value: "date",
-    type: "string",
-    vertical: true,
-    multiple: true,
-    operators: ["is_not_null"],
-    values: []
-  }
-},
-{
-  value: "oofdateindesign",
-  label: "IN DESIGN (A)",
-  table: {
-    visible: true,
-    sortable: true
-  },
-  filter: {
-    value: "date",
-    type: "string",
-    vertical: true,
-    multiple: true,
-    operators: ["is_not_null"],
-    values: []
-  }
-},
-{
-  value: "oofdatepermitsubmitted",
-  label: "PERMIT SBMT (A)",
-  table: {
-    visible: true,
-    sortable: true
-  },
-  filter: {
-    value: "date",
-    type: "string",
-    vertical: true,
-    multiple: true,
-    operators: ["is_not_null"],
-    values: []
-  }
-},
-{
-  value: "permit_received",
-  label: "PERMIT RCVD (A)",
-  table: {
-    visible: true,
-    sortable: true
-  },
-  filter: {
-    value: "date",
-    type: "string",
-    vertical: true,
-    multiple: true,
-    operators: ["is_not_null"],
-    values: []
-  }
-},
-{
-  value: "oofdateconstructionstarted",
-  label: "CONST STARTED (A)",
-  table: {
-    visible: true,
-    sortable: true
-  },
-  filter: {
-    value: "date",
-    type: "string",
-    vertical: true,
-    multiple: true,
-    operators: ["is_not_null"],
-    values: []
-  }
-},
-{
   value: "oofdatecableplaced",
   label: "CABLE PLACED (A)",
-  table: {
-    visible: true,
-    sortable: true
-  },
-  filter: {
-    value: "date",
-    type: "string",
-    vertical: true,
-    multiple: true,
-    operators: ["is_not_null"],
-    values: []
-  }
-},
-{
-  value: "oofdatesplicedandtested",
-  label: "SPLICED/TESTED (A)",
   table: {
     visible: true,
     sortable: true
@@ -313,46 +217,10 @@ function gisSegmentsBuildConfig() {
 
 var gisSegmentsLayer = L.geoJson(null, {
   style: function (feature, layer) {
-    if (feature.properties.oofstatus == "Spliced & Tested") {
-      return {
-        color: "#ffffff",
-        weight: 4,
-        opacity: 1.0
-      };
-    } else if (feature.properties.oofstatus == "Cable Placed") {
+    if (feature.properties.oofstatus == "Spliced & Tested" || feature.properties.oofstatus == "Cable Placed") {
       return {
         color: "#87d30f",
-        weight: 4,
-        opacity: 1.0
-      };
-    } else if (feature.properties.oofstatus == "Construction Completed") {
-      return {
-        color: "#ffd300",
-        weight: 4,
-        opacity: 1.0
-      };
-    } else if (feature.properties.oofstatus == "Construction Underway") {
-      return {
-        color: "#da0796",
-        weight: 4,
-        opacity: 1.0
-      };
-    } else if (feature.properties.oofstatus == "Proofing Completed") {
-      return {
-        color: "#da0796",
-        weight: 4,
-        opacity: 1.0
-      };
-    } else if (feature.properties.oofstatus == "Permits Received") {
-      return {
-        color: "#1891c9",
-        weight: 4,
-        opacity: 1.0
-      };
-    } else if (feature.properties.oofstatus == "Permits Submitted") {
-      return {
-        color: "#ff8819",
-        weight: 4,
+        weight: 5,
         opacity: 1.0
       };
     } else {
@@ -519,7 +387,7 @@ function gisSegmentsBuildTable() {
     ],
     colReorder: true,
     columnDefs: [{
-      targets: [9,10,11,12,13,14,15],
+      targets: [10,11],
       render: $.fn.dataTable.render.moment('x', 'MM/DD/YYYY')
     }],
     data: gisData,
@@ -548,9 +416,5 @@ $("#gisSegments_table-btn").click(function(){
   $("#map-container").hide();
   $("#gisSitesTable-container").hide();
   $("#gisSegmentsTable-container").show();
-  $("#gisRoutesTable-container").hide();
-  $("#gisStructuresTable-container").hide();
-  $("#gisSplicesTable-container").hide();
-  $("#gisWorkOrdersTable-container").hide();
   $(window).resize();
 });

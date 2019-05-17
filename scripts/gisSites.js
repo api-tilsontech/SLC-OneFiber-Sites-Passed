@@ -164,6 +164,7 @@ function gisSitesBuildConfig() {
 
   gisSitesBuildTable()
   map.flyToBounds(gisSitesLayer.getBounds());
+  $("#loading-mask").hide();
 }
 
 

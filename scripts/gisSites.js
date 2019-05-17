@@ -204,7 +204,7 @@ var gisSitesLayer = L.geoJson(null, {
           iconAnchor: [15, 32]
         })
       );
-    } else if (feature.properties.clustername != feature.properties.site_name) {
+    } else if (feature.properties.clustername === feature.properties.site_name) {
       layer.setIcon(
         L.icon({
           iconUrl: "pictures/markers/cb0d0c.png",

@@ -53,6 +53,7 @@ function login() {
 
       if (body.token) {
         sessionStorage.setItem("gis_token", body.token);
+        sessionStorage.setItem("user", email);
         checkAuth();
       } else {
         sessionStorage.setItem("gis_token", "ERROR");

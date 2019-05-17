@@ -81,7 +81,7 @@ var overlayLayers = {
 // ADD LAYERS TO MAP
 
 var map = L.map("map", {
-  layers: [mapboxOSM, gisSitesLayer, highlightLayer],
+  layers: [mapboxOSM, gisSitesLayer, gisSegmentsLayer, highlightLayer],
   minZoom: 5,
   zoomControl: false
 });

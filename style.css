@@ -70,6 +70,11 @@ input[type="radio"], input[type="checkbox"] {
   -webkit-hyphens: auto;
     hyphens: auto;
 }
+.lorem {
+    font-style: italic;
+    text-align: justify;
+    color: #AAA;
+}
 #aboutTabsContent {
   padding-top: 10px;
 }

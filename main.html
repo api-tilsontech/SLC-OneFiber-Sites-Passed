@@ -30,6 +30,53 @@
 
   <body>
 
+    <div id="gisSitesSidebar" class="leaflet-sidebar collapsed">
+
+        <!-- nav tabs -->
+        <div class="leaflet-sidebar-tabs">
+            <!-- top aligned tabs -->
+            <ul role="tablist">
+                <li><a href="#home" role="tab"><i class="fa fa-bars active"></i></a></li>
+                <li><a href="#autopan" role="tab"><i class="fa fa-arrows"></i></a></li>
+            </ul>
+
+            <!-- bottom aligned tabs -->
+            <ul role="tablist">
+                <li><a href="https://github.com/nickpeihl/leaflet-sidebar-v2"><i class="fa fa-github"></i></a></li>
+            </ul>
+        </div>
+
+        <!-- panel content -->
+        <div class="leaflet-sidebar-content">
+            <div class="leaflet-sidebar-pane" id="home">
+                  <h3 class="modal-title text-primary" id="gisSitesInfo_Title"></h3>
+                  <div id="gisSites-Info_DATA" class="sidebar-table"></div>
+                    <button type="button" class="btn btn-primary" id="gisSitesTable-btn">View </button>
+                    <button type="button" class="btn btn-danger" id="gisSitesEdit-btn">Edit </button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="gisSitesClose-sidebarBTN">Close</button>
+            </div>
+
+            <div class="leaflet-sidebar-pane" id="autopan">
+                <h1 class="leaflet-sidebar-header">
+                    autopan
+                    <span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span>
+                </h1>
+                <p>
+                    <code>Leaflet.control.sidebar({ autopan: true })</code>
+                    makes shure that the map center always stays visible.
+                </p>
+                <p>
+                    The autopan behviour is responsive as well.
+                    Try opening and closing the sidebar from this pane!
+                </p>
+            </div>
+
+            <div class="leaflet-sidebar-pane" id="messages">
+                <h1 class="leaflet-sidebar-header">Messages<span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+            </div>
+        </div>
+    </div>
+
     <div class="modal" id="refreshModal" tabindex="-1" role="dialog">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -131,17 +178,6 @@
           </div>
         </div>
       </div>
-    </div>
-
-    <div id="gisSitesSidebar">
-      <h3 class="modal-title text-primary" id="gisSitesInfo_Title"></h3>
-      <div id="gisSites-Info_DATA" class="sidebar-table"></div>
-      <br>
-      <footer>
-        <button type="button" class="btn btn-primary" id="gisSitesTable-btn">View </button>
-        <button type="button" class="btn btn-danger" id="gisSitesEdit-btn">Edit </button>
-        <button type="button" class="btn btn-default" data-dismiss="modal" id="gisSitesClose-sidebarBTN">Close</button>
-      </footer>
     </div>
 
     <div id="gisSitesTable-container"> 

@@ -182,7 +182,7 @@ var gisSitesLayer = L.geoJson(null, {
       layer.on({
         click: function (e) {
           gisSegmentsSidebar.hide();
-          $("#gisSitesInfo_Title").html(feature.properties.nfid);
+          $("#gisSitesInfo_Title").html(feature.properties.site_name);
           gisSitesInfo(L.stamp(layer));
           activeRecord = feature.properties.site_name;
           highlightLayer.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], {

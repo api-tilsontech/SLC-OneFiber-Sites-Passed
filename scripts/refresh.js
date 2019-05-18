@@ -52,7 +52,7 @@ $("#RefreshInterval_BTN").click(function() {
 
 		$(".navbar-collapse.in").collapse("hide");
 		return false;
-	}, (10*60000);
+	}, 10*60000);
 });
 
 // REFRESH GIS DATA CLICK

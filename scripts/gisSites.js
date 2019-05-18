@@ -173,7 +173,7 @@ function gisSitesBuildConfig() {
 
 var gisSitesLayer = L.geoJson(null, {
   onEachFeature: function (feature, layer) {
-    layer.bindTooltip(feature.properties.nfid + " -- " + feature.properties.site_name, {sticky: 'false', direction: 'top', offset: (0,-2)});
+    layer.bindTooltip(feature.properties.nfid + " -- " + feature.properties.site_name, {sticky: 'false', direction: 'top'});
 
     if (feature.properties) {
       var title = feature.properties.site_name;

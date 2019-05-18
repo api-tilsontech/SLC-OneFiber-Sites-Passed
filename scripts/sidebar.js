@@ -27,6 +27,7 @@ $("#gisSitesEdit-btn").click(function(){
 $("#gisSitesPassed-Submit").click(function(){
   var ST_ID = sessionStorage.getItem("siteSiteTrackerID")
   var GIS_ID = sessionStorage.getItem("objectid")
+  var CF = sessionStorage.getItem("current_forecast")
   var SITE = sessionStorage.getItem("site_name")
   var SP_F = document.getElementById('sitePassedF').value
   var SP_A = document.getElementById('sitePassedA').value
@@ -36,12 +37,13 @@ $("#gisSitesPassed-Submit").click(function(){
     url: "https://hook.integromat.com/9r2patwgnkzyzvywg2y6bht89zalos6x",
     contentType: "application/x-www-form-urlencoded",
     data: {
-        "Forecast": SP_F,
-        "Actual": SP_A,
-        "API": ST_ID,
-        "Email": sessionStorage.getItem("user"),
-        "ObjectID": GIS_ID,
-        "Name": SITE
+      "Current Forecast": CF,
+      "Forecast": SP_F,
+      "Actual": SP_A,
+      "API": ST_ID,
+      "Email": sessionStorage.getItem("user"),
+      "ObjectID": GIS_ID,
+      "Name": SITE
     }
   });
 
@@ -55,9 +57,6 @@ $("#gisSitesPassed-Submit").click(function(){
       });
       gisSitesLayer.clearLayers();
       gisSitesLayer.addData(data);
-      gisSitesList = new List("gisSites_features", {valueNames: ["gisSites_feature-name"]});
-      gisSitesList.sort("gisSites_feature-name", {order:"asc"});
-      gisSitesBuildConfig()
     }).error(function(jqXHR, textStatus, errorThrown) {
         console.log("error " + textStatus);
         console.log("incoming Text " + jqXHR.responseText);

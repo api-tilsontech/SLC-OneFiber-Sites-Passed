@@ -277,6 +277,9 @@ function gisSitesInfo(id) {
     if (key == "objectid") {
       sessionStorage.setItem("objectid", value);
     }
+    if (key == "cable_placed_estimated") {
+      sessionStorage.setItem("current_forecast", value);
+    }
 
     $.each(gisSitesProperties, function(index, property) {
       if (key == property.value) {

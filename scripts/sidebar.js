@@ -42,11 +42,7 @@ $("#gisSitesPassed-Submit").click(function(){
   });
 
   $('#gisSitesPassed').modal('hide');
-
-  alert("Success!!");
-
   gisSitesLayer.clearLayers();
-
   $('#gisSitesTable').DataTable().clear().draw();
 
   setTimeout(function(){
@@ -65,6 +61,9 @@ $("#gisSitesPassed-Submit").click(function(){
         alert("error " + textStatus);
     });
   }, 5000);
+
+  document.getElementById('sitePassedF').value = "";
+  document.getElementById('sitePassedA').value = "";
 });
 
 

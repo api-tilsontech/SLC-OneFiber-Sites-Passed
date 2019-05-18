@@ -34,14 +34,15 @@ $("#gisSitesPassed-Submit").click(function(){
     url: "https://hook.integromat.com/9r2patwgnkzyzvywg2y6bht89zalos6x",
     contentType: "application/x-www-form-urlencoded",
     data: {
-        "data": SP_F,
-        "key": ST_ID,
-        "user": sessionStorage.getItem("user"),
-        "url": SP_A
+        "Forecast": SP_F,
+        "Actual": SP_A,
+        "API": ST_ID,
+        "Email": sessionStorage.getItem("user")
     }
   });
 
-  $('#gisSitesPassed').modal('hide')
+  $('#gisSitesPassed').modal('hide');
+  alert("Success!!");
 });
 
 

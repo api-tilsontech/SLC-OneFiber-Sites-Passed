@@ -46,8 +46,6 @@ $("#gisSitesPassed-Submit").click(function(){
   });
 
   $('#gisSitesPassed').modal('hide');
-  gisSitesLayer.clearLayers();
-  $('#gisSitesTable').DataTable().clear().draw();
 
   setTimeout(function(){
     $.getJSON(gisSitesConfig.geojson, function (data) {
@@ -55,6 +53,7 @@ $("#gisSitesPassed-Submit").click(function(){
       gisSitesFeatures = $.map(gisSitesData.features, function(feature) {
         return feature.properties;
       });
+      gisSitesLayer.clearLayers();
       gisSitesLayer.addData(data);
       gisSitesList = new List("gisSites_features", {valueNames: ["gisSites_feature-name"]});
       gisSitesList.sort("gisSites_feature-name", {order:"asc"});

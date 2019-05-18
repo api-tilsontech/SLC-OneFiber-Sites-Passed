@@ -163,7 +163,6 @@ function gisSitesBuildConfig() {
   });
 
   gisSitesBuildTable()
-  map.flyToBounds(gisSitesLayer.getBounds());
   $("#loading-mask").hide();
 }
 
@@ -247,6 +246,7 @@ $.getJSON(gisSitesConfig.geojson, function (data) {
   gisSitesLayer.addData(data);
   gisSitesList = new List("gisSites_features", {valueNames: ["gisSites_feature-name"]});
   gisSitesList.sort("gisSites_feature-name", {order:"asc"});
+  map.flyToBounds(gisSitesLayer.getBounds());
   gisSitesBuildConfig()
 }).error(function(jqXHR, textStatus, errorThrown) {
     console.log("error " + textStatus);

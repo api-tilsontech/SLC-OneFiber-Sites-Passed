@@ -1,56 +1,60 @@
-function refreshData() {
-	var d = new Date(),
-	    h = new Date(d.getFullYear(), d.getMonth(), d.getDate(), d.getHours() + 1, 0, 0, 0),
-	    e = h - d;
-	if (e > 100) { // some arbitrary time period
-	    window.setTimeout(refreshData, e);
-	}
-  gisSitesLayer.clearLayers();
-  gisSegmentsLayer.clearLayers();
+$("#RefreshInterval_BTN").click(function() {	
+	setInterval(function() { 
 
-  $("#loading-mask").show();
-  alert("Data is being refreshed");
+		var currentDate = new Date();
 
-  $('#gisSitesTable').DataTable().clear().draw();
-  $('#gisSitesTable').DataTable().destroy();
+		var date = currentDate.getDate();
+		var month = currentDate.getMonth(); //Be careful! January is 0 not 1
+		var year = currentDate.getFullYear();
 
-  $('#gisSegmentsTable').DataTable().clear().draw();
-  $('#gisSegmentsTable').DataTable().destroy();
+		var dateString = date + "-" +(month + 1) + "-" + year;
 
-	$.getJSON(gisSitesConfig.geojson, function (data) {
-	  gisSitesData = data;
-	  gisSitesFeatures = $.map(gisSitesData.features, function(feature) {
-	    return feature.properties;
-	  });
-	  gisSitesLayer.addData(data);
-	  gisSitesList = new List("gisSites_features", {valueNames: ["gisSites_feature-name"]});
-	  gisSitesList.sort("gisSites_feature-name", {order:"asc"});
-	  gisSitesBuildConfig()
-	}).error(function(jqXHR, textStatus, errorThrown) {
-	    console.log("error " + textStatus);
-	    console.log("incoming Text " + jqXHR.responseText);
-	    alert("error " + textStatus);
-	});
+		gisSitesLayer.clearLayers();
+		gisSegmentsLayer.clearLayers();
 
-	$.getJSON(gisSegmentsConfig.geojson, function (data) {
-	  gisSegmentsData = data;
-	  gisSegmentsFeatures = $.map(gisSegmentsData.features, function(feature) {
-	    return feature.properties;
-	  });
-	  gisSegmentsLayer.addData(data);
-	  gisSegmentsList = new List("gisSegments_features", {valueNames: ["gisSegments_feature-name"]});
-	  gisSegmentsList.sort("gisSegments_feature-name", {order:"asc"});
-	  gisSegmentsBuildConfig()
-	}).error(function(jqXHR, textStatus, errorThrown) {
-	    console.log("error " + textStatus);
-	    console.log("incoming Text " + jqXHR.responseText);
-	    alert("error " + textStatus);
-	});
+		$("#loading-mask").show();
+		alert("Data is being refreshed  (" + dateString + ")");
 
-  $(".navbar-collapse.in").collapse("hide");
-  return false;
-}
+		$('#gisSitesTable').DataTable().clear().draw();
+		$('#gisSitesTable').DataTable().destroy();
 
+		$('#gisSegmentsTable').DataTable().clear().draw();
+		$('#gisSegmentsTable').DataTable().destroy();
+
+		$.getJSON(gisSitesConfig.geojson, function (data) {
+		  gisSitesData = data;
+		  gisSitesFeatures = $.map(gisSitesData.features, function(feature) {
+		    return feature.properties;
+		  });
+		  gisSitesLayer.addData(data);
+		  gisSitesList = new List("gisSites_features", {valueNames: ["gisSites_feature-name"]});
+		  gisSitesList.sort("gisSites_feature-name", {order:"asc"});
+		  gisSitesBuildConfig()
+		}).error(function(jqXHR, textStatus, errorThrown) {
+		    console.log("error " + textStatus);
+		    console.log("incoming Text " + jqXHR.responseText);
+		    alert("error " + textStatus);
+		});
+
+		$.getJSON(gisSegmentsConfig.geojson, function (data) {
+		  gisSegmentsData = data;
+		  gisSegmentsFeatures = $.map(gisSegmentsData.features, function(feature) {
+		    return feature.properties;
+		  });
+		  gisSegmentsLayer.addData(data);
+		  gisSegmentsList = new List("gisSegments_features", {valueNames: ["gisSegments_feature-name"]});
+		  gisSegmentsList.sort("gisSegments_feature-name", {order:"asc"});
+		  gisSegmentsBuildConfig()
+		}).error(function(jqXHR, textStatus, errorThrown) {
+		    console.log("error " + textStatus);
+		    console.log("incoming Text " + jqXHR.responseText);
+		    alert("error " + textStatus);
+		});
+
+		$(".navbar-collapse.in").collapse("hide");
+		return false;
+	}, 15000);
+});
 
 // REFRESH GIS DATA CLICK
 

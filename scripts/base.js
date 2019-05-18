@@ -34,3 +34,7 @@ function urlFormatter (value, row, index) {
 $('.datepicker').datepicker({
     format: 'mm/dd/yyyy'
 });
+
+$(window).on('load',function(){
+  $('#refreshModal').modal('show');
+});

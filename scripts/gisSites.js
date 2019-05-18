@@ -335,8 +335,6 @@ function gisSitesBuildTable() {
       "emptyTable": "Loading..."
     }
   });
-
-  refreshData()
 }
 
 // GIS SITES OPEN TABLE

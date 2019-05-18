@@ -280,6 +280,9 @@ function gisSitesInfo(id) {
     if (key == "cable_placed_estimated") {
       sessionStorage.setItem("current_forecast", value);
     }
+    if (key == "cable_placed_actual") {
+      sessionStorage.setItem("current_actual", value);
+    }
 
     $.each(gisSitesProperties, function(index, property) {
       if (key == property.value) {

@@ -28,6 +28,7 @@ $("#gisSitesPassed-Submit").click(function(){
   var ST_ID = sessionStorage.getItem("siteSiteTrackerID")
   var GIS_ID = sessionStorage.getItem("objectid")
   var CF = sessionStorage.getItem("current_forecast")
+  var CA = sessionStorage.getItem("current_actual")
   var SITE = sessionStorage.getItem("site_name")
   var SP_F = document.getElementById('sitePassedF').value
   var SP_A = document.getElementById('sitePassedA').value
@@ -38,6 +39,7 @@ $("#gisSitesPassed-Submit").click(function(){
     contentType: "application/x-www-form-urlencoded",
     data: {
       "Current Forecast": CF,
+      "Current Actual": CA,
       "Forecast": SP_F,
       "Actual": SP_A,
       "API": ST_ID,

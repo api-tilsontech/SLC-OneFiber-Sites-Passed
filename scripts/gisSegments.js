@@ -234,12 +234,12 @@ var gisSegmentsLayer = L.geoJson(null, {
   onEachFeature: function (feature, layer) {
     if (feature.properties.fqn_id) {
       if (feature.properties.fqn_id.toLowerCase().indexOf("fib:bur") === 0) {
-        layer.bindTooltip(feature.properties.fqn_id + "-- Underground", {sticky: 'true', direction: 'top'});
+        layer.bindTooltip(feature.properties.fqn_id + "-- Underground", {sticky: 'false', direction: 'top', offset: (0,-2)});
       } else if (feature.properties.fqn_id.toLowerCase().indexOf("fib:aer") === 0) {
-        layer.bindTooltip(feature.properties.fqn_id + "-- Aerial", {sticky: 'true', direction: 'top'});
+        layer.bindTooltip(feature.properties.fqn_id + "-- Aerial", {sticky: 'false', direction: 'top', offset: (0,-2)});
       };
     } else {
-      layer.bindTooltip("NO FQNID -- Aerial", {sticky: 'true', direction: 'top'});
+      layer.bindTooltip("NO FQNID -- Aerial", {sticky: 'false', direction: 'top', offset: (0,-2)});
     }
     
     if (feature.properties) {

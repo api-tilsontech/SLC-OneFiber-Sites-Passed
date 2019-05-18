@@ -20,7 +20,7 @@ var highlightLayer = L.geoJson(null, {
   style: function (feature) {
     return {
       color: "#00d0ff",
-      weight: 10,
+      weight: 6,
       opacity: 1,
       fillColor: "#00d0ff",
       fillOpacity: 1,
@@ -28,6 +28,19 @@ var highlightLayer = L.geoJson(null, {
     };
   },
   onEachFeature: function (feature, layer) {
+    if (feature.properties.sitetracker_id) {
+      if (feature.properties.sitetracker_id.toLowerCase().indexOf("slc_seg") === 0) {
+        if (feature.properties.fqn_id.toLowerCase().indexOf("fib:bur") === 0) {
+          layer.bindTooltip(feature.properties.fqn_id + " -- Underground", {sticky: 'false', direction: 'top'});
+        } else if (feature.properties.fqn_id.toLowerCase().indexOf("fib:aer") === 0) {
+          layer.bindTooltip(feature.properties.fqn_id + " -- Aerial", {sticky: 'false', direction: 'top'});
+        }
+      } else if (feature.properties.sitetracker_id.toLowerCase().indexOf("slc_sit") === 0) {
+        layer.bindTooltip(feature.properties.nfid + " -- " + feature.properties.site_name, {sticky: 'false', direction: 'top'});
+      }
+    } else if (feature.properties.WO_ID) {
+      layer.bindTooltip(feature.properties.workordername, {sticky: 'false', direction: 'top'});
+    }
     layer.on({
       click: function (e) {
         if (feature.properties.sitetracker_id.toLowerCase().indexOf("slc_seg") === 0) {

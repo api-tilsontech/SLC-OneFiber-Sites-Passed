@@ -274,6 +274,9 @@ function gisSitesInfo(id) {
     if (key == "site_name") {
       sessionStorage.setItem("site_name", value);
     }
+    if (key == "objectid") {
+      sessionStorage.setItem("objectid", value);
+    }
 
     $.each(gisSitesProperties, function(index, property) {
       if (key == property.value) {

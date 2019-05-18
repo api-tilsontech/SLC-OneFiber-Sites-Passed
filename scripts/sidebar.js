@@ -26,6 +26,8 @@ $("#gisSitesEdit-btn").click(function(){
 
 $("#gisSitesPassed-Submit").click(function(){
   var ST_ID = sessionStorage.getItem("siteSiteTrackerID")
+  var GIS_ID = sessionStorage.getItem("objectid")
+  var SITE = sessionStorage.getItem("site_name")
   var SP_F = document.getElementById('sitePassedF').value
   var SP_A = document.getElementById('sitePassedA').value
 
@@ -37,7 +39,9 @@ $("#gisSitesPassed-Submit").click(function(){
         "Forecast": SP_F,
         "Actual": SP_A,
         "API": ST_ID,
-        "Email": sessionStorage.getItem("user")
+        "Email": sessionStorage.getItem("user"),
+        "ObjectID": GIS_ID,
+        "Name": SITE
     }
   });
 

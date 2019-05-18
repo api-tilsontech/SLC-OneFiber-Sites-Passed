@@ -248,6 +248,7 @@ $.getJSON(gisSitesConfig.geojson, function (data) {
   gisSitesList.sort("gisSites_feature-name", {order:"asc"});
   map.flyToBounds(gisSitesLayer.getBounds());
   gisSitesBuildConfig()
+  $('#refreshModal').modal('show');
 }).error(function(jqXHR, textStatus, errorThrown) {
     console.log("error " + textStatus);
     console.log("incoming Text " + jqXHR.responseText);

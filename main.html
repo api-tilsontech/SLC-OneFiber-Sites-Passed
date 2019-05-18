@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="//unpkg.com/tabulator-tables@4.2.1/dist/css/tabulator.min.css">
     <link rel="stylesheet" href="//cdn.datatables.net/buttons/1.5.2/css/buttons.dataTables.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css" />
     <link rel="stylesheet" href="plugins/leaflet/leaflet-sidebar/L.Control.Sidebar.css" />
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/x-icon" href="pictures/tilson%20icon.ico" />
@@ -142,26 +143,17 @@
             <div class="container">
                 <div class="row">
                     <div class='col-sm-6'>
-                        <input type='text' class="form-control" id='sitePassedF' />
+                        <input type='text' class="form-control" id='sitePassedF' data-provide="datepicker" />
                     </div>
-                    <script type="text/javascript">
-                        $(function () {
-                            $('#sitePassedF').datetimepicker();
-                        });
-                    </script>
                 </div>
             </div>
+            <br>
             <p>Site Passed (A)</p>
             <div class="container">
                 <div class="row">
                     <div class='col-sm-6'>
-                        <input type='text' class="form-control" id='sitePassedA' />
+                        <input type='text' class="form-control" id='sitePassedA' data-provide="datepicker" />
                     </div>
-                    <script type="text/javascript">
-                        $(function () {
-                            $('#sitePassedA').datetimepicker();
-                        });
-                    </script>
                 </div>
             </div>
           </div>
@@ -241,6 +233,7 @@
     <script src="plugins/leaflet/leaflet-sidebar/L.Control.Sidebar.js"></script>
     <script src="//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/leaflet.markercluster.js"></script>
     <script src="//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.24.0/L.Control.Locate.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
     
     <script src="scripts/base.js"></script>
     <script src="scripts/gisSites.js"></script>

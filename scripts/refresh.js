@@ -13,7 +13,6 @@ $("#RefreshInterval_BTN").click(function() {
 		gisSegmentsLayer.clearLayers();
 
 		$("#loading-mask").show();
-		alert("Data is being refreshed  (" + dateString + ")");
 
 		$('#gisSitesTable').DataTable().clear().draw();
 		$('#gisSitesTable').DataTable().destroy();
@@ -53,7 +52,7 @@ $("#RefreshInterval_BTN").click(function() {
 
 		$(".navbar-collapse.in").collapse("hide");
 		return false;
-	}, 15000);
+	}, (10*60000);
 });
 
 // REFRESH GIS DATA CLICK

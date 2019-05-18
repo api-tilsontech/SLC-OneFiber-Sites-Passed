@@ -64,7 +64,7 @@ $("#gisSitesPassed-Submit").click(function(){
         console.log("incoming Text " + jqXHR.responseText);
         alert("error " + textStatus);
     });
-  }, 5000);
+  }, 7000);
 
   document.getElementById('sitePassedF').value = "";
   document.getElementById('sitePassedA').value = "";

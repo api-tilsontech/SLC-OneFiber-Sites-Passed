@@ -42,7 +42,29 @@ $("#gisSitesPassed-Submit").click(function(){
   });
 
   $('#gisSitesPassed').modal('hide');
+
   alert("Success!!");
+
+  gisSitesLayer.clearLayers();
+
+  $('#gisSitesTable').DataTable().clear().draw();
+
+  setTimeout(function(){
+    $.getJSON(gisSitesConfig.geojson, function (data) {
+      gisSitesData = data;
+      gisSitesFeatures = $.map(gisSitesData.features, function(feature) {
+        return feature.properties;
+      });
+      gisSitesLayer.addData(data);
+      gisSitesList = new List("gisSites_features", {valueNames: ["gisSites_feature-name"]});
+      gisSitesList.sort("gisSites_feature-name", {order:"asc"});
+      gisSitesBuildConfig()
+    }).error(function(jqXHR, textStatus, errorThrown) {
+        console.log("error " + textStatus);
+        console.log("incoming Text " + jqXHR.responseText);
+        alert("error " + textStatus);
+    });
+  }, 5000);
 });
 
 

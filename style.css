@@ -3,9 +3,6 @@ html, body {
   width: 100%;
   overflow: hidden;
 }
-body {
-  padding-top: 50px;
-}
 input[type="radio"], input[type="checkbox"] {
   margin: 0;
 }

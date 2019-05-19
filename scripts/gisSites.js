@@ -336,8 +336,6 @@ function gisSitesBuildTable() {
       "emptyTable": "Loading..."
     }
   });
-
-  $("#progress_bar-section").hide();
 }
 
 // GIS SITES OPEN TABLE

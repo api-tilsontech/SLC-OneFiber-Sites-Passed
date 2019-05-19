@@ -158,6 +158,12 @@ input[type="radio"], input[type="checkbox"] {
   .dropdown-input {
     color: #777;
   }
+  .navbar-nav{
+    float:none;
+    margin: 0 auto;
+    display: table;
+    table-layout: fixed;
+  }
 }
 /* Print Handling */
 @media print {

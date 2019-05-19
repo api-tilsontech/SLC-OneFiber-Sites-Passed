@@ -29,6 +29,17 @@
   </head>
 
   <body>
+    <div class="py-1" id="progress_bar-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="progress progress-bar-animated" id="progress-bar">
+              <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width:100%" id="progress_bar">100%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <div class="modal" id="refreshModal" tabindex="-1" role="dialog">
       <div class="modal-dialog" role="document">
@@ -57,10 +68,8 @@
             <a href="#" class="navbar-icon pull-right visible-xs" id="nav-btn"><i class="fa fa-bars fa-lg white"></i></a>
           </div>
         </div>
-        <div class="navbar-collapse collapse">
+        <div class="navbar-collapse collapse text-center justify-content-center">
           <ul class="nav navbar-nav">
-            <!-- <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="refresh-btn"><i class="fa fa-refresh white"></i>&nbsp;&nbsp;Refresh</a></li> -->
-             <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" name="view" id="map-only"><i class="fa fa-globe"></i> Map</a></li>
             <li class="dropdown">
               <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-table"></i> <span id="table-only">Table </span><b class="caret"></b></a>
               <ul class="dropdown-menu">
@@ -68,6 +77,8 @@
                 <li class="hidden-xs"><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="gisSegments_table-btn"><i class="fa fa-table black"></i>  Segments</a></li>
               </ul>
             </li>
+            <li class="nav-item mx-2"> <a role="button" class="nav-link navbar-brand mr-0 text-white" href="#" name="view" id="map-only"><i class="fa d-inline fa-lg fa-globe"></i>
+            <b> DataMap</b></a> </li>
             <li class="dropdown">
               <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-search"></i> <span id="view">Search </span><b class="caret"></b></a>
               <ul class="dropdown-menu">
@@ -80,7 +91,7 @@
           <ul class="nav navbar-nav navbar-right">
             <a class="navbar-brand" href="https://www.tilsontech.com" target="_blank" name="title" id="navbar-title"> OneFiber | SLC </a>
           </ul>
-        </div><!--/.navbar-collapse -->
+        </div>
       </div>
     </div>
 

@@ -1,6 +1,8 @@
 $("#RefreshInterval_BTN").click(function() {	
 	setInterval(function() { 
 
+		$("#progress_bar-section").show();
+
 		var currentDate = new Date();
 
 		var date = currentDate.getDate();
@@ -53,6 +55,8 @@ $("#RefreshInterval_BTN").click(function() {
 		$(".navbar-collapse.in").collapse("hide");
 		return false;
 	}, 10*60000);
+	
+	$("#progress_bar-section").hide();
 });
 
 // REFRESH GIS DATA CLICK

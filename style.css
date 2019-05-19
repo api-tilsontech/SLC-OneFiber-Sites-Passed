@@ -22,6 +22,22 @@ input[type="radio"], input[type="checkbox"] {
 #map {
   height: 100%;
 }
+#loading-mask {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.loading-indicator {
+  position: absolute;
+  width: 220px;
+  height: 100px;
+  top: 50%;
+  left: 50%;
+  margin: -10px 0 0 -110px;
+  z-index: 20001;
+}
+.loading-bar {
+  width: 100%;
+  height: 100px;
+}
 #gisSites_features {
   margin: 0px;
   border: none;
@@ -57,16 +73,15 @@ input[type="radio"], input[type="checkbox"] {
 #aboutTabsContent {
   padding-top: 10px;
 }
+.progress-bar-full {
+  width: 100%;
+}
 .white {
   color: #FFFFFF;
 }
 .feature-row {
   cursor: pointer;
 }
-
-
-/* Sidebar */
-
 .sidebar-wrapper {
   width: 100%;
   height: 100%;
@@ -79,10 +94,6 @@ input[type="radio"], input[type="checkbox"] {
   bottom: 0px;
   overflow: auto;
 }
-
-
-/* Leaflet */
-
 .leaflet-control-layers label {
   font-weight: normal;
   margin-bottom: 0px;
@@ -100,10 +111,6 @@ input[type="radio"], input[type="checkbox"] {
 .legend img {
   margin-right: 5px;
 }
-
-
-/* Navbar */
-
 .navbar .navbar-brand {
   font-weight: bold;
   font-size: 24px;
@@ -151,20 +158,8 @@ input[type="radio"], input[type="checkbox"] {
   .dropdown-input {
     color: #777;
   }
-  .navbar .navbar-nav {
-      display: inline-block;
-      float: none;
-      vertical-align: top;
-  }
-  .navbar .navbar-collapse {
-      text-align: center;
-  }
 }
-
-
-
 /* Print Handling */
-
 @media print {
   .navbar {
     display: none !important;
@@ -173,9 +168,6 @@ input[type="radio"], input[type="checkbox"] {
     display: none !important;
   }
 }
-
-
-/* Data Tables */
 
 div.dataTables_length label {
   float: left;

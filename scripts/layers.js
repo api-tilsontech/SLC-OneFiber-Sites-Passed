@@ -163,5 +163,7 @@ $("#map-only").click(function(){
 
 // SITES SIDEBAR MAP
 
-sidebarMap = new L.map(document.getElementById("gisSites-map"));
+sidebarMap = new L.map(document.getElementById("gisSites-map"), {
+    zoomControl: false
+});
 sidebarMap.addLayer(mapboxSat);

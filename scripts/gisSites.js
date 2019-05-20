@@ -195,12 +195,7 @@ var gisSitesLayer = L.geoJson(null, {
             
             
             sidebarMap.setView(new L.LatLng(feature.geometry.coordinates[1], feature.geometry.coordinates[0]),17);
-            myLatlng = new L.Marker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], {
-                stroke: false,
-                fillColor: "#00d0ff",
-                fillOpacity: 1,
-                radius: 8
-              }).addTo(sidebarMap);
+            myLatlng = new L.Marker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]]).addTo(sidebarMap);
         }
       });
       $("#gisSites_feature-list tbody").append('<tr onclick= "gisSitesSearchClick(' + L.stamp(layer) + ')"><td class="gisSites_feature-name">' + layer.feature.properties.site_name + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');

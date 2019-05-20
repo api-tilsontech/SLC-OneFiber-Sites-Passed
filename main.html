@@ -58,7 +58,7 @@
           </div>
         </div>
         <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-center">
+          <ul class="nav navbar-nav">
             <!-- <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="refresh-btn"><i class="fa fa-refresh white"></i>&nbsp;&nbsp;Refresh</a></li> -->
              <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" name="view" id="map-only"><i class="fa fa-globe"></i> Map</a></li>
             <li class="dropdown">
@@ -86,14 +86,6 @@
 
     <div id="map-container">
       <div id="map"></div>
-    </div>
-
-    <div id="loading-mask" class="modal-backdrop">
-      <div class="loading-indicator">
-        <div class="progress progress-striped active">
-          <div class="progress-bar progress-bar-info loading-bar"></div>
-        </div>
-      </div>
     </div>
 
     <div id="gisSitesSearch">
@@ -134,55 +126,53 @@
     </div>
 
     <div id="gisSitesSidebar">
-      <h3 class="modal-title text-primary" id="gisSitesInfo_Title"></h3>
-      <div id="gisSites-Info_DATA" class="sidebar-table"></div>
-      <br>
-      <footer>
-        <button type="button" class="btn btn-primary" id="gisSitesTable-btn">View </button>
+      <h4 class="modal-title text-primary" id="gisSitesInfo_Title"></h4>
+      <div class="modal-body" id="gisSites-Info_DATA" class="sidebar-table"></div>
+      <div class="modal-footer">
+        <div class="row">
+            <div class="col-md-12 modal_body_map">
+              <div class="location-map" id="location-map">
+                <div style="width: 370px; height: 275px;" id="gisSites-map"></div>
+              </div>
+            </div>
+          </div>
+          <br>
+        <button type="button" class="btn btn-primary" id="gisSitesView-btn">View </button>
         <button type="button" class="btn btn-danger" id="gisSitesEdit-btn">Edit </button>
         <button type="button" class="btn btn-default" data-dismiss="modal" id="gisSitesClose-sidebarBTN">Close</button>
-      </footer>
+      </div>
     </div>
-
-    <div id="gisSitesTable-container"> 
-      <br>
-      <table id="gisSitesTable" class="stripe" style="width:100%"></table>
-    </div>
-
-    <div class="modal" id="gisSitesPassed" tabindex="-1" role="dialog">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title">Sites</h1>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <p>Site Passed (F)</p>
+      
+    <div id="gisSitesEdit">
+      <h4 class="modal-title text-primary" id="gisSitesEdit_Title"></h4>
+      <div class="modal-body">
+            <p>Cable Placed (F)</p>
             <div class="container">
                 <div class="row">
-                    <div class='col-sm-6'>
-                        <input type='text' class="form-control" id='sitePassedF' data-provide="datepicker" />
+                    <div class='col-lg-4'>
+                        <input type='date' class="form-control" id='sitePassedF' />
                     </div>
                 </div>
             </div>
             <br>
-            <p>Site Passed (A)</p>
+            <p>Cable Placed (A)</p>
             <div class="container">
                 <div class="row">
-                    <div class='col-sm-6'>
-                        <input type='text' class="form-control" id='sitePassedA' data-provide="datepicker" />
+                    <div class='col-lg-4'>
+                        <input type='date' class="form-control" id='sitePassedA' />
                     </div>
                 </div>
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary" id="gisSitesPassed-Submit">Submit</button>
+            <button type="button" class="btn btn-success" id="gisSitesPassed-Submit">Submit</button>
             <button type="button" class="btn btn-secondary" data-dismiss="modal" id="gisSitesPassed-Cancel">Cancel</button>
           </div>
-        </div>
-      </div>
+    </div>
+
+    <div id="gisSitesTable-container"> 
+      <br>
+      <table id="gisSitesTable" class="stripe" style="width:100%"></table>
     </div>
 
     <div id="gisSegmentsSearch">
@@ -224,37 +214,17 @@
 
     <div id="gisSegmentsSidebar">
       <h3 class="modal-title text-primary" id="gisSegmentsInfo_Title"></h3>
-      <div id="gisSegments-Info_DATA" class="sidebar-table"></div>
-      <br>
-      <footer>
+      <div class="modal-body" id="gisSegments-Info_DATA" class="sidebar-table"></div>
+      <div class="modal-footer">
         <button type="button" class="btn btn-primary" id="gisSegmentsTable-btn">View</button>
         <button type="button" class="btn btn-danger" id="gisSegmentsEdit-btn">Edit</button>
         <button type="button" class="btn btn-default" data-dismiss="modal" id="gisSegmentsClose-sidebarBTN">Close</button>
-      </footer>
+      </div>
     </div>
 
     <div id="gisSegmentsTable-container"> 
       <br>
       <table id="gisSegmentsTable" class="stripe" style="width:100%"></table>
-    </div>
-
-    <div class="modal" id="gisSegmentsEdit" tabindex="-1" role="dialog">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h3 class="modal-title text-primary" id="gisSegmentsEdit-Title"></h3>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <p>WARNING: The data represented on this map will refresh every 10 minutes!</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-success" data-dismiss="modal" id="RefreshInterval_BTN">Enter</button>
-          </div>
-        </div>
-      </div>
     </div>
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
@@ -274,6 +244,7 @@
     <script src="//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/leaflet.markercluster.js"></script>
     <script src="//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.24.0/L.Control.Locate.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
+    <script src="//maps.googleapis.com/maps/api/js"></script>
     
     <script src="scripts/base.js"></script>
     <script src="scripts/gisSites.js"></script>

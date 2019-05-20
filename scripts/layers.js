@@ -84,6 +84,7 @@ var map = L.map("map", {
   zoomControl: false
 });
 
+
 // SET VIEW TO SALT LAKE CITY, UT
 
 map.setView([40.758, -111.876], 5)
@@ -158,3 +159,9 @@ $("#map-only").click(function(){
   $("#map-container").show();
   $(window).resize();
 });
+
+
+// SITES SIDEBAR MAP
+
+sidebarMap = new L.map(document.getElementById("gisSites-map"));
+sidebarMap.addLayer(mapboxSat);

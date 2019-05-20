@@ -28,9 +28,3 @@ function urlFormatter (value, row, index) {
     return "<a href='"+value+"' target='_blank'>"+value+"</a>";
   }
 }
-
-// DATE PICKER
-
-$('.datepicker').datepicker({
-    format: 'mm/dd/yyyy'
-});

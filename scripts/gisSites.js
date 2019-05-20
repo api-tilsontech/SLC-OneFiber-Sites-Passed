@@ -183,6 +183,7 @@ var gisSitesLayer = L.geoJson(null, {
         click: function (e) {
           gisSegmentsSidebar.hide();
           $("#gisSitesInfo_Title").html(feature.properties.site_name);
+          $("#gisSitesEdit_Title").html(feature.properties.site_name);
           gisSitesInfo(L.stamp(layer));
           activeRecord = feature.properties.site_name;
           highlightLayer.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], {
@@ -191,6 +192,15 @@ var gisSitesLayer = L.geoJson(null, {
             fillOpacity: 1,
             radius: 8
           }));
+            
+            
+            sidebarMap.setView(new L.LatLng(feature.geometry.coordinates[1], feature.geometry.coordinates[0]),17);
+            myLatlng = new L.Marker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], {
+                stroke: false,
+                fillColor: "#00d0ff",
+                fillOpacity: 1,
+                radius: 8
+              }).addTo(sidebarMap);
         }
       });
       $("#gisSites_feature-list tbody").append('<tr onclick= "gisSitesSearchClick(' + L.stamp(layer) + ')"><td class="gisSites_feature-name">' + layer.feature.properties.site_name + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
@@ -299,6 +309,8 @@ function gisSitesInfo(id) {
   });
   content += "<table>";
   $("#gisSites-Info_DATA").html(content);
+  
+  
   gisSitesSidebar.show();
 };
 

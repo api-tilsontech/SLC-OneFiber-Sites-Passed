@@ -12,7 +12,7 @@ var gisSitesSidebar = L.control.sidebar("gisSitesSidebar", {
 }).addTo(map);
 
 
-$("#gisSitesTable-btn").click(function(){
+$("#gisSitesView-btn").click(function(){
   $("#map-container").hide();
   $("#gisSitesTable-container").show();
   $("#gisSegmentsTable-container").hide();
@@ -21,8 +21,20 @@ $("#gisSitesTable-btn").click(function(){
 });
 
 $("#gisSitesEdit-btn").click(function(){
-  $('#gisSitesPassed').modal('show')
+  gisSitesEdit.show();
+  gisSitesSidebar.hide();
 });
+
+$("#gisSitesPassed-Cancel").click(function(){
+  gisSitesEdit.hide();
+  gisSitesSidebar.show();
+});
+
+var gisSitesEdit = L.control.sidebar("gisSitesEdit", {
+    closeButton: false,
+    position: "right",
+    autoPan: false
+}).addTo(map);
 
 $("#gisSitesPassed-Submit").click(function(){
   var ST_ID = sessionStorage.getItem("siteSiteTrackerID")
@@ -48,9 +60,10 @@ $("#gisSitesPassed-Submit").click(function(){
       "Name": SITE
     }
   });
-
-  $('#gisSitesPassed').modal('hide');
-
+    
+  gisSitesEdit.hide();
+  gisSitesSidebar.show();
+    
   setTimeout(function(){
     $.getJSON(gisSitesConfig.geojson, function (data) {
       gisSitesData = data;

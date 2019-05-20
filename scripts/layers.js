@@ -163,7 +163,7 @@ $("#map-only").click(function(){
 
 // SITES SIDEBAR MAP
 
-var sidebarMap = L.map(document.getElementById("gisSites-map"), {
-  layers: [mapboxOSM, gisSitesLayer],
-  zoomControl: false
+sidebarMap = new L.map(document.getElementById("gisSites-map"), {
+    zoomControl: false
 });
+sidebarMap.addLayer(mapboxSat);

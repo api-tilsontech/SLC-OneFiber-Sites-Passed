@@ -167,3 +167,4 @@ sidebarMap = new L.map(document.getElementById("gisSites-map"), {
     zoomControl: false
 });
 sidebarMap.addLayer(mapboxSat);
+sidebarMap.addLayer(gisSitesLayer);
